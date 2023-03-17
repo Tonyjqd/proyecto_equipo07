@@ -1,0 +1,12 @@
+@media (max-width: 992px) { 
+    .central{
+        margin-top: 20px;
+        text-align: center;
+    }
+    .derecha{
+        margin-top: 20px;
+    }
+    .fixed{
+        display: none;
+    }
+}

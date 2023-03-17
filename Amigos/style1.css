@@ -1,0 +1,167 @@
+body{
+   
+    background-color: #d4b895 ;
+    font-family:'Courier New', Courier, monospace;
+}
+.box{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr ;
+    text-align: center;
+    gap: 15px;
+
+}
+.nav-tabs{
+    background-color: #eccca5;
+    margin-bottom: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+a{
+text-decoration: none;
+    color: black;
+    }
+.pr{
+    margin-top: 10px;
+    color: black;
+}
+.lateral{
+    font-size: larger;
+    font-weight: bold;
+    color: gray;
+}
+.iconos{
+    font-size: 30px;
+
+}
+
+.lista{
+    margin-right: 40px;
+    font-weight: bold;
+    list-style: none;
+    font-size: 30px;
+    padding: 30px;
+    text-decoration: underline;
+}
+textarea{
+    border-radius:5px;
+
+    }
+
+.lupa{
+    font-size: 30px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+}
+.feed{
+    width: 100%;
+    grid-row:1/4;
+}
+.account{
+    width: 100%;
+   grid-row: 4/6;
+}
+.caja{
+    border: 1px solid white;
+    background-color: #eccca5;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px black;
+    
+}
+.amigo{
+    height: 150px;
+    background-color: #eccca5;
+    box-sizing: content-box;
+}
+textarea{
+    width: 300px;
+}
+.barra{
+    box-sizing: content-box;
+    display: flex;
+    grid-column: 2/6;
+    align-items: center;
+    justify-content: space-between;
+    height:90px;
+    padding: 20px;
+    font-size: large;
+}
+ion-icon{
+    font-size: 70px
+   
+}
+.titulo{
+    font-weight:bold;
+    font-size: 30px;
+   font-family: Arial, Helvetica, sans-serif;
+}
+.uno{
+    background-color: grey;
+}
+.dos{
+    background-color: olive;
+}
+
+.ver{
+    background-color: rgb(180, 94, 13);
+    
+}
+button{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    color: white;
+    border-radius: 5px;
+ }
+button:hover{
+    background-color: rgba(165, 108, 42, 0.863);
+    color: white;
+}
+footer{
+    color: white;
+    text-align: center;
+    margin-top: 100px;
+}
+@media screen and (max-width:400px) {
+    .feed{
+        width: 100px;
+
+    }
+    li{
+        font-size: smaller;
+    }
+    ul{
+        margin-right: 50px;
+    }
+    .account{
+        width: 100px;
+    }
+    .barra{
+        width: 200px;
+    }
+    .amigo{
+        width: 100%;
+    }
+    ion-icon{
+        width: 50%;
+    }
+    textarea{
+       width: 100px
+    }
+    .lupa{
+        width: 10px;
+    }
+    .titulo{
+        font-size: 20px;
+    }
+    button{
+        width: 40px;
+        font-size: 10px;
+    }
+    .texto{
+        font-size: 12px
+    }
+    .box{
+        grid-template-columns:repeat(1fr)
+    }
+}

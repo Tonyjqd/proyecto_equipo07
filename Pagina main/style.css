@@ -1,0 +1,128 @@
+body{
+    background-color: #d4b895;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+.container-fluid{
+    justify-content:space-between ;
+}
+.nav{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.nav-tabs{
+    background-color: #ECCCA5;
+}
+.pr{
+    margin-top: 10px;
+    color: black;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.row{
+    margin-top: 40px;
+}
+.caja{
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: #eccca5;
+    box-shadow: 2px 2px 2px black;
+    height: fit-content;
+    box-sizing: content-box;
+}
+
+
+.btn{
+    background-color: #e7e7e7;
+    color:black;
+    border:1px solid black ;
+
+}
+.izquierda{
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    border-radius: 10px;
+    background-color: #eccca5;
+    box-shadow: 2px 2px 2px black;
+    height: fit-content;
+    padding: 30px;
+}
+.enviar{
+    margin-top: 10px;
+}
+.lateral{
+    width: 70%;
+    border-radius: 5px;
+}
+.mensaje{
+    padding: 10px;
+}
+textarea{
+    border: 2px solid gray;
+    box-shadow: 1px 1px  whitesmoke;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.nombre{
+    text-decoration: underline;
+}
+.amigos{
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.amigo1{
+    margin-top: 30px;
+}
+.fixed{
+    border: 1px solid white;
+    position: fixed;
+    bottom: 50px;
+    right: 0;
+    width: fit-content;
+    height: fit-content;
+    margin-right: 10px;
+    background-color: #eccca5;
+    border-radius: 5px;
+    padding: 10px;
+   }
+footer{
+    color: white;
+    margin-top: 200px;
+}
+.enviar{
+    border-radius: 3px;
+}
+.like{
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.btn{
+    border: 2px solid lightgrey;
+    transition: transform 0.3s , background-color 0.3s, color 0.3s ;
+    border-radius: 5px;
+    border: 1px solid black;
+    }
+.btn:hover{
+    transform: translateY(-5px);
+    background-color: lightblue;
+    color: white;
+    border: 1px solid black;
+    }
+
+.like:hover{
+    background-color: red;
+}
+.boton{
+    margin-top: 10px;
+}
+.aceptar:hover{
+    background-color: green;
+}
+.rechazar:hover{
+    background-color: red;
+}
