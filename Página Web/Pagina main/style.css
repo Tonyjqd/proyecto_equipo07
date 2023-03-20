@@ -126,3 +126,8 @@ footer{
 .rechazar:hover{
     background-color: red;
 }
+.trs{
+    background-color:transparent;
+    border: none;
+    margin-top: 18px;
+}
