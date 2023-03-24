@@ -210,4 +210,11 @@ width: fit-content;
   input{
     width: 110px;
     }
+   
+
+}
+@media (max-width:350px){
+  .nav{
+    width:350px
+  }
 }
