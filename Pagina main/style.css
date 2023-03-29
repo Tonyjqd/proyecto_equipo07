@@ -6,14 +6,11 @@ body{
 .container-fluid{
     justify-content:space-between ;
 }
-.nav{
-    position: sticky;
-    top: 0;
-    z-index: 1;
+nav{
+   background-color: #eccca5;
+   border-bottom: 1px solid white; 
 }
-.nav-tabs{
-    background-color: #ECCCA5;
-}
+
 .pr{
     margin-top: 10px;
     color: black;
@@ -31,7 +28,6 @@ a{
     background-color: #eccca5;
     box-shadow: 2px 2px 2px black;
     height: fit-content;
-    box-sizing: content-box;
 }
 
 
@@ -42,14 +38,22 @@ a{
 
 }
 .izquierda{
+    position: sticky;
+    top: 0;
     border-top: 1px solid white;
     border-right: 1px solid white;
     border-bottom: 1px solid white;
     border-radius: 10px;
     background-color: #eccca5;
     box-shadow: 2px 2px 2px black;
-    height: fit-content;
-    padding: 30px;
+    height: 550px;
+    padding: 60px;
+}
+.derecha{
+    position: sticky;
+    top: 0;
+    height: 550px;
+    
 }
 .enviar{
     margin-top: 10px;
@@ -66,6 +70,10 @@ textarea{
     box-shadow: 1px 1px  whitesmoke;
     border-radius: 10px;
     margin-top: 10px;
+}
+.a{
+   margin-top: 15px;
+   padding: 10px;
 }
 
 .nombre{
@@ -129,5 +137,6 @@ footer{
 .trs{
     background-color:transparent;
     border: none;
-    margin-top: 18px;
+    margin-top: 7px;
+    
 }
