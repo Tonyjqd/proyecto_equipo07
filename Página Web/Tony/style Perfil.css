@@ -7,72 +7,25 @@ nav{
     background-color: #ECCCA5;
     border-bottom:1px solid white;
 }
-/*.pr{
-    margin-top: 10px;
-    color: black;
-}*/
-
 .photo{
     margin: 10px;
 }
-
-/*h1{
-    color: black;
-    font-size: 40%px;
-    font-style: normal;
-    background-position: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}*/
 .btn{
     background-color: #e7e7e7;
     color:black;
     border:1px solid black ;
-
 }
-
-/* h2{color:rgb(0, 60, 109);
-    
-} */
-
-/* h3{color:rgb(197, 130, 141);
-    font-family: 'Courier New', Courier, monospace;
-    text-align: center;
-    font-size:20px;
-
-} */
-
-/* p{
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-}
- */
 ul{
     text-align: center;
     list-style-type: square;
     font-family: 'Courier New', Courier, monospace;
 }
-
 li{
     list-style: none;
 }
 .photo{
     border-radius:2px;
-
 }
-
-/*.container{
-    border: black solid;
-    border-width: 1px 1px 1px 1px;
-    margin: auto;
-    padding: 10px;
-    background-color: whitesmoke;
-    width: 60%;
-    
-
-text-align: center;
-}*/
-
 footer{
     color: white;
     margin-top: 170px;
@@ -81,9 +34,7 @@ footer{
     background-color:transparent;
     border: none;
     margin-top: 7px;
-    
 }
-
 .panel {
     border: 1px solid #ddd;
     border-radius: 4px;
