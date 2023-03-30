@@ -2,7 +2,9 @@ body{
     background-color: #d4b895;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
+    transition: background-color 1s ease;
 }
+      
 #toggle-dark-mode {
     background-color: #fff;
     color: #000;
@@ -13,7 +15,7 @@ body{
   }
 .dark-mode {
     background-color: #151e21;
-    color: grey;
+    color: #fff;
     transition: background-color 1s ease;
   }
   .dark-mode .titulos{
@@ -54,14 +56,15 @@ body{
     background-color: #A0A7AC; /* color de fondo en modo oscuro */
   }
   .dark-mode .modal-body,.dark-mode .modal-header, .dark-mode .modal-footer {
-    background-color: #444;
+    background-color: #444;  /* color de fondo en modo oscuro */
   }
 .container-fluid{
     justify-content:space-between ;
 }
 nav{
    background-color: #eccca5;
-   border-bottom: 1px solid white; 
+   border-bottom: 1px solid white;
+   transition: background-color 1s ease; 
 }
 
 .pr{
@@ -101,11 +104,13 @@ a{
     box-shadow: 2px 2px 2px black;
     height: 550px;
     padding: 60px;
+    transition: background-color 1s ease;
 }
 .derecha{
     position: sticky;
     top: 0;
     height: 550px;
+    transition: background-color 1s ease;
     
 }
 .enviar{
@@ -117,6 +122,7 @@ a{
 }
 .mensaje{
     padding: 10px;
+    transition: background-color 1s ease;
 }
 textarea{
     border: 2px solid gray;
@@ -138,6 +144,7 @@ textarea{
 }
 .amigo1{
     margin-top: 30px;
+    transition: background-color 1s ease;
 }
 .fixed{
     border: 1px solid white;
@@ -150,6 +157,7 @@ textarea{
     background-color: #eccca5;
     border-radius: 5px;
     padding: 10px;
+    transition: background-color 1s ease;
    }
 footer{
     color: white;
