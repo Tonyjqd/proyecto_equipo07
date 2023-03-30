@@ -1,15 +1,11 @@
 body{
     background-color:#d4b895;
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
 }
-
-.nav{
-    position: sticky;
-    top:0
-}
-
-.nav-tabs{
+nav{
     background-color: #ECCCA5;
+    border-bottom:1px solid white;
 }
 .pr{
     margin-top: 10px;
@@ -24,12 +20,16 @@ h1{
     color: black;
     font-size: 40%px;
     font-style: normal;
-    font-family:'Courier New', Courier, monospace;
     background-position: center;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.btn{
+    background-color: #e7e7e7;
+    color:black;
+    border:1px solid black ;
 
+}
 
 h2{color:rgb(0, 60, 109);
     
@@ -74,4 +74,10 @@ text-align: center;
 footer{
     color: white;
     margin-top: 170px;
+}
+.trs{
+    background-color:transparent;
+    border: none;
+    margin-top: 7px;
+    
 }

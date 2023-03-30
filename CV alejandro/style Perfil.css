@@ -1,18 +1,19 @@
 body{
     background-color:#d4b895;
     text-align: center;
-
+    font-family:'Courier New', Courier, monospace;
 }
 
-.nav{
-    position: sticky;
-    top:0
-}
-
-.nav-tabs{
+nav{
     background-color: #ECCCA5;
+    border-bottom: 1px solid white;
 }
+.btn{
+    background-color: #e7e7e7;
+    color:black;
+    border:1px solid black ;
 
+}
 .pr{
     margin-top: 10px;
     color: black;
@@ -76,3 +77,9 @@ ul{
     font-family: 'Courier New', Courier, monospace;
     margin-top: 170px;
   }
+  .trs{
+    background-color:transparent;
+    border: none;
+    margin-top: 7px;
+    
+}

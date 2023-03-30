@@ -3,13 +3,10 @@ body{
   background-color:#d4b895;
   font-family:'Courier New', Courier, monospace;}
 
-  .nav{
-    position: sticky;
-    top:0
-}
-
-.nav-tabs{
-    background-color: #ECCCA5;
+  nav{
+    background-color: #eccca5;
+    border-bottom: 1px solid white;
+    
 }
 
 .pr{
@@ -212,9 +209,4 @@ width: fit-content;
     }
    
 
-}
-@media (max-width:350px){
-  .nav{
-    width:350px
-  }
 }
