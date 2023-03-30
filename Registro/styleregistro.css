@@ -1,5 +1,4 @@
 body{
-  text-align: center;
   background-color:#d4b895;
   font-family:'Courier New', Courier, monospace;}
 
@@ -46,6 +45,13 @@ h1{
     margin: 0 auto;
 }
 
+.form-control{
+  color: rgb(0, 13, 255);
+ 
+    font-size: 14px;
+    
+}
+
 .Ingresa{
 padding-top: 15px;
 width: fit-content;
@@ -65,6 +71,10 @@ box-sizing: content-box;
 .dos{
   margin-bottom: 10px;
   justify-content: center;
+}
+
+.placeholder{
+  background-color: aqua;
 }
 
 button{
@@ -89,6 +99,8 @@ button{
   color: white;
 }
 
+
+
 footer{
   color: white;
   font-family: 'Courier New', Courier, monospace;
@@ -98,103 +110,21 @@ footer{
 .reset{
   border: 1px solid black;
 }
-@media screen and (max-width: 1500px) {
- 
-  h1{
-      font-size: 27px;
 
-  }
-  .divtitulo{
-    width: fit-content;
-  }
 
-  .twitter{
-    width: fit-content;
-  }
-  .contenedor-registra{
-width: fit-content;
-  }
-  .Ingresa{
-    width: fit-content;
-  } 
-  p{
-    font-size: 16px;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-
-.divtitulo{width: fit-content;
-
-}
-  h1{
-      font-size: 23px;
-  }
+@media screen and (max-width: 775px) {
 
   .twitter{
     width: fit-content;
   }
 
-  .contenedor-registra{
-width: fit-content;
-  }
 
-  .Ingresa{
-    width: fit-content;
-  }
-
-  p{
-    font-size: 14px;
-  }
+.divtitulo{
+border: green solid;
 }
-
-@media screen and (max-width: 980px) {
-  .divtitulo{
-    width: fit-content;
-  }
-  h1{
-      font-size: 23px;
-  }
-
-  .twitter{
-    width: fit-content
-  }
-
-  .contenedor-registra{
-width: fit-content;
-  }
-
-  .Ingresa{
-    width: fit-content;
-  }
   .uno{
     text-align:center;
   }
-  p{
-    font-size: 12px;
-  }
-
-  input{
-    width: 110px;
-    }
-}
-
-@media screen and (max-width: 780px) {
-  .divtitulo{
-    width: fit-content;
-  }
-
-  h1{
-      font-size: 20px;
-  }
-
-  .twitter{
-    width: fit-content;
-  }
-
-  .contenedor-registra{
-width: fit-content;
-  }
 
   .Ingresa{
     width: fit-content;
@@ -202,11 +132,176 @@ width: fit-content;
 
   p{
     font-size: 12px;
+    
   }
 
   input{
     width: 110px;
     }
-   
 
+    .form-control{
+      color: rgb(0, 13, 255);
+     
+        font-size: 14px;
+        
+    }
 }
+
+@media screen and (max-width: 700px) {
+
+  .twitter{
+    width: fit-content;
+  }
+
+  .divtitulo{
+  
+    width: fit-content;
+  border: green solid;
+  }
+
+  .uno{
+    text-align:center;
+  }
+
+  .Ingresa{
+    width: fit-content;
+    border: red solid
+  }
+
+  h1{
+    font-size: 25px;
+  }
+
+  p{
+    font-size: 12px;
+    
+  }
+
+  input{
+    width: 110px;
+    }
+
+    .form-control{
+      color: rgb(0, 13, 255);
+     
+        font-size: 14px;
+        
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+  .twitter{
+    width: fit-content;
+  }
+
+  .uno{
+    text-align:center;
+  }
+
+  .Ingresa{
+    width: fit-content;
+    border: red solid
+  }
+
+  p{
+    font-size: 10px;
+    
+  }
+
+  input{
+    width: 110px;
+    }
+
+    .form-control{
+      color: rgb(0, 13, 255);
+     
+        font-size: 14px;
+        
+    }
+}
+
+
+
+
+@media screen and (max-width: 350px) {
+
+  .twitter{
+    width: fit-content;
+  }
+
+  .uno{
+    text-align:center;
+  }
+
+  .contenedor-registra{
+width: 85%;
+border: blue solid;
+  }
+
+  .Ingresa{
+    width: 85%;
+    border: red solid
+  }
+
+  p{
+    font-size: 10px;
+    
+  }
+
+  input{
+    width: 110px;
+    }
+
+    .form-control{
+      color: rgb(0, 13, 255);
+     
+        font-size: 12px;
+        
+    }
+}
+
+
+
+
+
+@media screen and (max-width: 350px) {
+
+  .twitter{
+    width: fit-content;
+  }
+
+  .uno{
+    text-align:center;
+  }
+
+  .contenedor-registra{
+width: 85%;
+border: blue solid;
+  }
+
+  .Ingresa{
+    width: 85%;
+    border: red solid
+  }
+
+  p{
+    font-size: 10px;
+    
+  }
+
+  input{
+    width: 110px;
+    }
+
+    .form-control{
+      color: rgb(0, 13, 255);
+     
+        font-size: 12px;
+        
+    }
+}
+
+
+
+
