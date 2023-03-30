@@ -12,9 +12,8 @@
 
   .Ingresa{
     border: red solid;
-   
-
   }
+
   input{
     width: 110px;
     }
@@ -22,8 +21,7 @@
     .form-control{
       color: rgb(0, 13, 255);
      
-        font-size: 14px;
-        
+        font-size: 14px;   
     }
 }
 
@@ -39,12 +37,7 @@
   }
 
   h1{
-    font-size: 25px;
-  }
-
-  p{
-    font-size: 1px;
-    
+    font-size: 26px;
   }
 
   input{
@@ -72,8 +65,13 @@
 
   .Ingresa{
     border: red solid;
-   
+  
   }
+
+  h1{
+    font-size: 23px;
+  }
+
   input{
     width: 110px;
     }
@@ -86,35 +84,62 @@
     }
 }
 
-
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .col-6 {
     flex: 0 0 100%;
-    max-width: 100%;
-  }
-}
-
-@media screen and (max-width: 350px) {
-  
-  .twitter{
-    width: fit-content;
-  }
-
-  .uno{
-    text-align:center;
-  }
-
-  .Ingresa{
-    border: red solid
-  }
-
-
-  input{
-    width: 110px;
-    }
-
+    max-width: 100%;}
+    
     .form-control{
       color: rgb(0, 13, 255);
+      width:100%;
+        font-size: 13px;
+      }
+
+      h1{
+        font-size: 21px;
+      }
+  
+ 
+}
+
+@media (max-width: 407px) {
+  .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;}
+    
+    .form-control{
+      color: rgb(0, 13, 255);
+      width:100%;
+        font-size: 13px;
+      }
+
+      h1{
+        font-size: 19px;
+      }
 
     }
-}
+
+    @media (max-width: 375px) {
+      .col-6 {
+        flex: 0 0 100%;
+        max-width: 100%;}
+        
+        .form-control{
+          color: rgb(0, 13, 255);
+          width:100%;
+            font-size: 13px;
+          }
+    
+          h1{
+            font-size: 15.8px;
+          }
+    
+        }
+
+   
+      
+
+  
+  
+ 
+

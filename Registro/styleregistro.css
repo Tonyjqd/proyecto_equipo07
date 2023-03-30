@@ -31,6 +31,7 @@ h1{
   max-width: 100%;
 }
 
+
 .twitter{
     border-radius:50%; 
     border-color:1px black solid;
@@ -45,6 +46,7 @@ h1{
   color: rgb(0, 13, 255);
  
     font-size: 14px;
+    width:108%;
     
 }
 

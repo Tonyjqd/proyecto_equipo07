@@ -4,11 +4,6 @@ body{
     font-family:'Courier New', Courier, monospace;
 }
 
-.container{
-    width: 100%;
-    
-        }
-
 nav{
     background-color: #ECCCA5;
     border-bottom: 1px solid white;
@@ -31,7 +26,7 @@ nav{
 
 h1{
     color: black;
-    font-size: 25px;
+    font-size: 40%px;
     font-style: normal;
     font-family:'Courier New', Courier, monospace;
     background-position: center;
@@ -67,7 +62,7 @@ ul{
     border-width: 1px 1px 1px 1px;
     padding: 10px;
     background-color: whitesmoke;
-    width: 60%;
+    width: 100%;
   }
 
   .uno{
