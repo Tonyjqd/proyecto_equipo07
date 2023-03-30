@@ -8,3 +8,192 @@ nav{
     margin-top: 10px;
     color: black;
 }
+
+@media screen and (max-width: 775px) {
+
+    .twitter{
+      width: fit-content;
+    }
+  
+  
+  .divtitulo{
+  border: green solid;
+  }
+    .uno{
+      text-align:center;
+    }
+  
+    .Ingresa{
+      width: fit-content;
+    }
+  
+    p{
+      font-size: 12px;
+      
+    }
+  
+    input{
+      width: 110px;
+      }
+  
+      .form-control{
+        color: rgb(0, 13, 255);
+       
+          font-size: 14px;
+          
+      }
+  }
+  
+  @media screen and (max-width: 700px) {
+  
+    .twitter{
+      width: fit-content;
+    }
+  
+    .divtitulo{
+    
+      width: fit-content;
+    border: green solid;
+    }
+  
+    .uno{
+      text-align:center;
+    }
+  
+    .Ingresa{
+      width: fit-content;
+      border: red solid
+    }
+  
+    p{
+      font-size: 12px;
+      
+    }
+  
+    input{
+      width: 110px;
+      }
+  
+      .form-control{
+        color: rgb(0, 13, 255);
+       
+          font-size: 14px;
+          
+      }
+  }
+  
+  @media screen and (max-width: 600px) {
+  
+    .twitter{
+      width: fit-content;
+    }
+  
+    .uno{
+      text-align:center;
+    }
+  
+    .Ingresa{
+      width: fit-content;
+      border: red solid
+    }
+  
+    h1{
+      font-size: 25px;
+    }
+  
+    p{
+      font-size: 10px;
+      
+    }
+  
+    input{
+      width: 110px;
+      }
+  
+      .form-control{
+        color: rgb(0, 13, 255);
+       
+          font-size: 14px;
+          
+      }
+  }
+  
+  @media screen and (max-width: 455px) {
+  
+    .twitter{
+      width: fit-content;
+    }
+  
+    .uno{
+      text-align:center;
+    }
+  
+  
+    .Ingresa{
+      width: 85%;
+      border: red solid
+    }
+  
+    h1{
+      font-size: 20px;
+    }
+  
+    p{
+      font-size: 10px;
+      
+    }
+  
+    input{
+      width: 110px;
+      }
+  
+      .form-control{
+        color: rgb(0, 13, 255);
+       
+          font-size: 12px;
+          
+      }
+  }
+  
+  @media screen and (max-width: 325px) {
+  
+    .twitter{
+      width: fit-content;
+    }
+  
+    .uno{
+      text-align:center;
+    }
+  
+    .divtitulo{
+    
+      width: fit-content;
+    border: green solid;
+    }
+  
+    .Ingresa{
+      width: 80%;
+      border: red solid
+    }
+  
+    h1{
+      font-size: 22px;
+    }
+  
+    p{
+      font-size: 10px;
+      
+    }
+  
+    input{
+      width: 110px;
+      }
+  
+      .form-control{
+        color: rgb(0, 13, 255);
+       
+          font-size: 12px;
+          
+      }
+  }
+  
