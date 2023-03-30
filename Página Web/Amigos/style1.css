@@ -11,12 +11,10 @@ body{
     gap: 15px;
 
 }
-.nav-tabs{
+nav{
     background-color: #eccca5;
-    margin-bottom: 10px;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+    border-bottom: 1px solid white;
+    margin-bottom: 8px;
 }
 a{
 text-decoration: none;
@@ -121,6 +119,17 @@ footer{
     color: white;
     text-align: center;
     margin-top: 100px;
+}
+.trs{
+    background-color:transparent;
+    border: none;
+    margin-top: 7px;
+    color: rgb(0 0 0 / 65%);
+    
+}
+.trs:hover{
+    background-color: transparent;
+    color: rgb(0 0 0 / 65%);;
 }
 @media screen and (max-width:400px) {
     .feed{

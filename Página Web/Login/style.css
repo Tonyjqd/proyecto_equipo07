@@ -2,8 +2,9 @@ body{
     background-color: #d4b895;
     font-family: 'Courier New', Courier, monospace;
 }
-.nav-tabs{
+nav{
     background-color: #eccca5;
+    border-bottom: 1px solid white;
 }
 
 .pr{

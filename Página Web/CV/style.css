@@ -7,11 +7,7 @@ ul{
     list-style: none;
 
 }
-.nav{
-    position: sticky;
-    top: 0;
-}
-.nav-tabs{
+nav{
     background-color: #eccca5;
 }
 
@@ -65,3 +61,9 @@ footer{
     margin-top: 10px;
     color: white;
 }
+.trs{
+        background-color:transparent;
+        border: none;
+        margin-top: 7px;
+        
+    } 
