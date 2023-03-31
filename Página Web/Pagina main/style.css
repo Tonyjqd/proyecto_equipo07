@@ -58,6 +58,14 @@ body{
   .dark-mode .modal-body,.dark-mode .modal-header, .dark-mode .modal-footer {
     background-color: #444;  /* color de fondo en modo oscuro */
   }
+
+  .container{
+    display: flex;
+    align-items: baseline;
+    justify-content:space-evenly;
+
+  }
+
 .container-fluid{
     justify-content:space-between ;
 }
@@ -263,4 +271,13 @@ footer{
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 
+  }
+
+  .contador{
+    border: black solid 1px;
+    width: 40px;
+    height: 28px;
+    border-radius: 15%;
+    background-color: lightgray;
+    
   }
