@@ -1,0 +1,28 @@
+@media (max-width: 991px) { 
+    .central{
+        margin-top: 20px;
+        text-align: center;
+    }
+    .fixed{
+        display: none;
+    }
+    .derecha{
+        width: 90%;
+        margin: 20px auto;
+        height: fit-content;
+        
+    }
+    .izquierda{
+        position: static;
+       width: 90%;
+       margin: 20px auto;
+       height: fit-content;
+
+    }
+
+    .iz{
+        width: 100%;
+        
+    }
+}
+
