@@ -5,7 +5,8 @@ body{
 
   nav{
     background-color: #eccca5;
-    border-bottom: 1px solid white; 
+    border-bottom: 1px solid white;
+    
 }
 
 .pr{
@@ -13,6 +14,12 @@ body{
     color: black;
 }
  
+.contenedor-registra{
+  width: 80%;
+  margin: 0 auto;
+  background-color: #d4b895;
+}
+
 h1{
   font-size: 27px;
 }
@@ -28,9 +35,7 @@ h1{
   margin: 0 auto;
   margin-bottom: 20px;
   box-shadow: 2px 2px 2px black;
-  max-width: 100%;
 }
-
 
 .twitter{
     border-radius:50%; 
@@ -39,13 +44,6 @@ h1{
     height: 255px;
     display: block;
     margin: 0 auto;
-    max-width: 100%;
-}
-
-.form-control{
-    font-size: 14px;
-    width:108%;
-    
 }
 
 .Ingresa{
@@ -57,8 +55,6 @@ border-radius: 3%;
 box-shadow: 1px 1px 1px black;
 background-color:#eccca5 ;
 box-sizing: content-box;
-max-width: 100%;
-
 }
 
 .uno{
@@ -69,10 +65,6 @@ max-width: 100%;
 .dos{
   margin-bottom: 10px;
   justify-content: center;
-}
-
-.placeholder{
-  background-color: aqua;
 }
 
 button{
@@ -105,4 +97,116 @@ footer{
 
 .reset{
   border: 1px solid black;
+}
+@media screen and (max-width: 1500px) {
+ 
+  h1{
+      font-size: 27px;
+
+  }
+  .divtitulo{
+    width: fit-content;
+  }
+
+  .twitter{
+    width: fit-content;
+  }
+  .contenedor-registra{
+width: fit-content;
+  }
+  .Ingresa{
+    width: fit-content;
+  } 
+  p{
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+
+.divtitulo{width: fit-content;
+
+}
+  h1{
+      font-size: 23px;
+  }
+
+  .twitter{
+    width: fit-content;
+  }
+
+  .contenedor-registra{
+width: fit-content;
+  }
+
+  .Ingresa{
+    width: fit-content;
+  }
+
+  p{
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .divtitulo{
+    width: fit-content;
+  }
+  h1{
+      font-size: 23px;
+  }
+
+  .twitter{
+    width: fit-content
+  }
+
+  .contenedor-registra{
+width: fit-content;
+  }
+
+  .Ingresa{
+    width: fit-content;
+  }
+  .uno{
+    text-align:center;
+  }
+  p{
+    font-size: 12px;
+  }
+
+  input{
+    width: 110px;
+    }
+}
+
+@media screen and (max-width: 780px) {
+  .divtitulo{
+    width: fit-content;
+  }
+
+  h1{
+      font-size: 20px;
+  }
+
+  .twitter{
+    width: fit-content;
+  }
+
+  .contenedor-registra{
+width: fit-content;
+  }
+
+  .Ingresa{
+    width: fit-content;
+  }
+
+  p{
+    font-size: 12px;
+  }
+
+  input{
+    width: 110px;
+    }
+   
+
 }
