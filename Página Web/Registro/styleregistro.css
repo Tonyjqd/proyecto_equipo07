@@ -43,8 +43,6 @@ h1{
 }
 
 .form-control{
-  color: rgb(0, 13, 255);
- 
     font-size: 14px;
     width:108%;
     
@@ -98,8 +96,6 @@ button{
   background-color: lightblue;
   color: white;
 }
-
-
 
 footer{
   color: white;
