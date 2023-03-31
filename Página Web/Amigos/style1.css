@@ -2,6 +2,7 @@ body{
    
     background-color: #d4b895 ;
     font-family:'Courier New', Courier, monospace;
+    transition: background-color 1s ease;
 }
 .box{
     display: grid;
@@ -11,15 +12,34 @@ body{
     gap: 15px;
 
 }
-.nav-tabs{
+nav{
     background-color: #eccca5;
-    margin-bottom: 10px;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+    border-bottom: 1px solid white;
+    margin-bottom: 8px;
+    transition: background-color 1s ease;
 }
-a{
-text-decoration: none;
+.dark-mode {
+    background-color: #151e21;
+    color: lightgray;
+    transition: background-color 1s ease;
+  }
+.dark-mode .caja, .dark-mode nav {
+    background-color: #444; /* color de fondo en modo oscuro */
+    transition: background-color 1s ease;
+    border: 1px solid grey
+}
+.dark-mode a, .dark-mode .mdal {
+    color: lightgray;
+}
+.dark-mode .btn{
+    color: lightgray;
+    background-color: #A0A7AC;
+}
+.dark-mode .modal-body,.dark-mode .modal-header, .dark-mode .modal-footer {
+    background-color: #444;  /* color de fondo en modo oscuro */
+  }
+.a{
+    text-decoration: none;
     color: black;
     }
 .pr{
@@ -35,20 +55,32 @@ text-decoration: none;
     font-size: 30px;
 
 }
-
+.cuenta{
+    margin-right: 50px;
+}
+li{
+    list-style: none;
+}
 .lista{
     margin-right: 40px;
     font-weight: bold;
     list-style: none;
     font-size: 30px;
     padding: 30px;
-    text-decoration: underline;
 }
 textarea{
     border-radius:5px;
 
     }
-
+.padding{
+    padding: 50px;
+}
+.btn{
+    margin-top: 30px;
+    background-color: #e7e7e7;
+    border: 1px solid black;
+    color: black;
+}
 .lupa{
     font-size: 30px;
     margin-bottom: 2px;
@@ -57,6 +89,9 @@ textarea{
 .feed{
     width: 100%;
     grid-row:1/4;
+}
+.btn:hover a{
+    color: white;
 }
 .account{
     width: 100%;
@@ -67,6 +102,7 @@ textarea{
     background-color: #eccca5;
     border-radius: 10px;
     box-shadow: 2px 2px 2px black;
+    transition: background-color 1s ease;
     
 }
 .amigo{
@@ -122,6 +158,88 @@ footer{
     text-align: center;
     margin-top: 100px;
 }
+.trs{
+    background-color:transparent;
+    border: none;
+    margin-top: 7px;
+    color: rgb(0 0 0 / 65%);
+    
+}
+.trs:hover{
+    background-color: transparent;
+    color: rgb(0 0 0 / 65%);;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    border-radius: 20px;
+    margin: 0 auto;
+
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 20px;
+}
+  
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+  
+  
+  input:checked + .slider {
+    background-color: #151e21;
+    border-radius: 20px;
+    border: 1px solid grey;
+}
+  
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+  
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+
+  }
+  @media (max-width:992px) {
+    .de{
+        margin-right: 0;
+    }
+
+    
+    
+  }
 @media screen and (max-width:400px) {
     .feed{
         width: 100px;

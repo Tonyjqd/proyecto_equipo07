@@ -1,28 +1,30 @@
 body{
   text-align: center;
   background-color:#d4b895;
-  font-family:'Courier New', Courier, monospace;}
+  font-family:'Courier New', Courier, monospace;
+  transition: background-color 1s ease;
+  }
 
-  .nav{
-    position: sticky;
-    top:0
-}
-
-.nav-tabs{
-    background-color: #ECCCA5;
+  nav{
+    background-color: #eccca5;
+    border-bottom: 1px solid white; 
+    transition: background-color 1s ease;
 }
 
 .pr{
     margin-top: 10px;
     color: black;
 }
- 
-.contenedor-registra{
-  width: 80%;
-  margin: 0 auto;
-  background-color: #d4b895;
+.dark-mode {
+  background-color: #151e21;
+  color: #fff;
+  transition: background-color 1s ease;
 }
-
+.dark-mode nav,.dark-mode .divtitulo, .dark-mode .Ingresa{
+  background-color: #444; /* color de fondo en modo oscuro */
+  transition: background-color 1s ease;
+  border: 1px solid grey
+} 
 h1{
   font-size: 27px;
 }
@@ -38,7 +40,10 @@ h1{
   margin: 0 auto;
   margin-bottom: 20px;
   box-shadow: 2px 2px 2px black;
+  max-width: 100%;
+  transition: background-color 1s ease;
 }
+
 
 .twitter{
     border-radius:50%; 
@@ -47,17 +52,26 @@ h1{
     height: 255px;
     display: block;
     margin: 0 auto;
+    max-width: 100%;
+}
+
+.form-control{
+    font-size: 14px;
+    width:108%;
+    
 }
 
 .Ingresa{
 padding-top: 15px;
 width: fit-content;
 margin: 0 auto;
-border: 2px white solid;
+border: 1px white solid;
 border-radius: 3%;
 box-shadow: 1px 1px 1px black;
 background-color:#eccca5 ;
 box-sizing: content-box;
+max-width: 100%;
+transition: background-color 1s ease;
 }
 
 .uno{
@@ -68,6 +82,10 @@ box-sizing: content-box;
 .dos{
   margin-bottom: 10px;
   justify-content: center;
+}
+
+.placeholder{
+  background-color: aqua;
 }
 
 button{
@@ -92,6 +110,8 @@ button{
   color: white;
 }
 
+
+
 footer{
   color: white;
   font-family: 'Courier New', Courier, monospace;
@@ -101,120 +121,69 @@ footer{
 .reset{
   border: 1px solid black;
 }
-@media screen and (max-width: 1500px) {
- 
-  h1{
-      font-size: 27px;
-
-  }
-  .divtitulo{
-    width: fit-content;
-  }
-
-  .twitter{
-    width: fit-content;
-  }
-  .contenedor-registra{
-width: fit-content;
-  }
-  .Ingresa{
-    width: fit-content;
-  } 
-  p{
-    font-size: 16px;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-
-.divtitulo{width: fit-content;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  border-radius: 20px;
+  margin: 0 auto;
 
 }
-  h1{
-      font-size: 23px;
-  }
 
-  .twitter{
-    width: fit-content;
-  }
-
-  .contenedor-registra{
-width: fit-content;
-  }
-
-  .Ingresa{
-    width: fit-content;
-  }
-
-  p{
-    font-size: 14px;
-  }
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-@media screen and (max-width: 980px) {
-  .divtitulo{
-    width: fit-content;
-  }
-  h1{
-      font-size: 23px;
-  }
-
-  .twitter{
-    width: fit-content
-  }
-
-  .contenedor-registra{
-width: fit-content;
-  }
-
-  .Ingresa{
-    width: fit-content;
-  }
-  .uno{
-    text-align:center;
-  }
-  p{
-    font-size: 12px;
-  }
-
-  input{
-    width: 110px;
-    }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 20px;
 }
 
-@media screen and (max-width: 780px) {
-  .divtitulo{
-    width: fit-content;
-  }
 
-  h1{
-      font-size: 20px;
-  }
-
-  .twitter{
-    width: fit-content;
-  }
-
-  .contenedor-registra{
-width: fit-content;
-  }
-
-  .Ingresa{
-    width: fit-content;
-  }
-
-  p{
-    font-size: 12px;
-  }
-
-  input{
-    width: 110px;
-    }
-   
-
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 20px;
 }
-@media (max-width:350px){
-  .nav{
-    width:350px
-  }
+
+.de{
+  margin-right: 150px;
+}
+
+
+input:checked + .slider {
+  background-color: #151e21;
+  border-radius: 20px;
+  border: 1px solid grey;
+}
+
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+
 }
