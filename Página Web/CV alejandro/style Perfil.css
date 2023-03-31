@@ -8,7 +8,6 @@ body{
     width: 100%;
     
         }
-
 nav{
     background-color: #ECCCA5;
     border-bottom: 1px solid white;
@@ -32,6 +31,7 @@ nav{
 h1{
     color: black;
     font-size: 25px;
+    font-size: 40%px;
     font-style: normal;
     font-family:'Courier New', Courier, monospace;
     background-position: center;
