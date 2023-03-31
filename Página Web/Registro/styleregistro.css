@@ -5,8 +5,8 @@ body{
 
   nav{
     background-color: #eccca5;
+    border-bottom: 1px solid white; 
     border-bottom: 1px solid white;
-    
 }
 
 .pr{
@@ -35,6 +35,9 @@ h1{
   margin: 0 auto;
   margin-bottom: 20px;
   box-shadow: 2px 2px 2px black;
+  max-width: 100%;
+}
+
 }
 
 .twitter{
@@ -44,6 +47,16 @@ h1{
     height: 255px;
     display: block;
     margin: 0 auto;
+
+    max-width: 100%;
+}
+
+.form-control{
+  color: rgb(0, 13, 255);
+ 
+    font-size: 14px;
+    width:108%;
+    
 }
 
 .Ingresa{
@@ -55,6 +68,9 @@ border-radius: 3%;
 box-shadow: 1px 1px 1px black;
 background-color:#eccca5 ;
 box-sizing: content-box;
+
+max-width: 100%;
+
 }
 
 .uno{
@@ -65,6 +81,10 @@ box-sizing: content-box;
 .dos{
   margin-bottom: 10px;
   justify-content: center;
+}
+
+.placeholder{
+  background-color: aqua;
 }
 
 button{
@@ -98,6 +118,7 @@ footer{
 .reset{
   border: 1px solid black;
 }
+
 @media screen and (max-width: 1500px) {
  
   h1{
