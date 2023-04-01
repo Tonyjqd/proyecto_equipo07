@@ -26,13 +26,13 @@ nav{
 .dark-mode .caja, .dark-mode nav {
     background-color: #444; /* color de fondo en modo oscuro */
     transition: background-color 1s ease;
-    border: 1px solid grey
+    border: 1px solid grey;
 }
 .dark-mode a, .dark-mode .mdal {
-    color: lightgray;
+    color: black;
 }
 .dark-mode .btn{
-    color: lightgray;
+    color: black;
     background-color: #A0A7AC;
 }
 .dark-mode .modal-body,.dark-mode .modal-header, .dark-mode .modal-footer {
