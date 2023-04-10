@@ -53,7 +53,9 @@ header{
    margin: auto;
    margin-bottom: 5px;
 }
-
+.dark-mode #emailHelp{
+color: #fff;
+}
 .row{
     margin: 0 auto;
 }
@@ -134,4 +136,4 @@ footer{
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 
-  }
+}
