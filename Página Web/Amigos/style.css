@@ -173,7 +173,12 @@ li{
     z-index: 9999;
     transition: left 1s;
   }
-  
+ .nav-link:hover{
+    color: white;
+ } 
+ .dark-mode .modal-body,.dark-mode .modal-header, .dark-mode .modal-footer {
+    background-color: #444;  /* color de fondo en modo oscuro */
+  }
   .account-menu.visible {
     left: 0;
     transition: left 1s;
@@ -182,6 +187,9 @@ ion-icon{
     width: 100px;
     height: 100px;
    
+}
+.a{
+    width: 100%;
 }
 .aceptar, .borrar{
     margin-top: 10px;

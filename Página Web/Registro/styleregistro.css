@@ -25,6 +25,9 @@ body{
   transition: background-color 1s ease;
   border: 1px solid grey
 } 
+.dark-mode .modal-body,.dark-mode .modal-header, .dark-mode .modal-footer {
+  background-color: #444;  /* color de fondo en modo oscuro */
+}
 h1{
   font-size: 27px;
 }
