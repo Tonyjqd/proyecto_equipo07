@@ -7,6 +7,7 @@
         display: none;
     }
     .derecha{
+        position: static;
         width: 90%;
         margin: 20px auto;
         height: fit-content;
