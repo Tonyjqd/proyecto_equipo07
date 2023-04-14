@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amigos</title>    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaquery.css">
+    <link href="https://fonts.cdnfonts.com/css/deftone-stylus" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../Pagina main/indexMain.html">Twicla</a>
+            <label class="switch">
+                <input type="checkbox" id="toggle-dark-mode">
+                <span class="slider round"></span>
+            </label>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="../Faq/index.html">FAQ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Términos de uso</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Amigos/index2.html">Amigos</a>
+              </li>
+              <li class="nav-item">
+                <button type="button" class="trs mdal" data-bs-toggle="modal" data-bs-target="#exampleModal" >Cerrar Sesión</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"><b>Cerrar Sesión:</b></h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Seguro que quieres cerrar sesión?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <a href="../Login/index.html"><button type="button" class="btn btn-primary cerrar">Cerrar Sesión</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="account-menu">
+            <button class="btn btn-primary" type="button">Edit</button>
+            <button class="btn btn-primary" type="button">Chat</button>
+            <button class="btn btn-primary" type="button"><a href="../CV/index.html" class="a">Profile</a></button>
+        </div>
+        <button class="btn btn-default account-button"><i class="fas fa-user"></i></button>
+        <div class="central row">
+            <div class="col-lg-2 izquierda">
+                <div class="caja feed">
+                    <h2>Feed</h2>
+                    <div class="botones">
+                           <button class="btn  btn-primary" type="button">Settings</button>
+                           <button class="btn  btn-primary" type="button">Explore</button>
+                           <button class="btn  btn-primary" type="button">Trends</button>
+                           <button class="btn  btn-primary" type="button">Opciones</button>
+                       </div>
+                </div>
+                <div class="caja account">
+                    <h2>Account</h2>
+                    <div class="cuenta">
+                        <button class="btn btn-primary" type="button">Edit</button>
+                        <button class="btn btn-primary" type="button">Chat</button>
+                        <button class="btn btn-primary" type="button"><a href="../CV/index.html" class="a">Profile</a></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 derecha aceptarAmigos">
+              <div class="caja buscador">
+                <div class="titulo">
+                  <h1>Amigos</h1>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">@</span>
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Username">
+                    <label for="floatingInputGroup1">Username</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" id="grid">
+                <div class="col-lg-4">
+                  <div class="caja amigo">
+                    <div>
+                      <ion-icon name="person-circle-outline"></ion-icon>
+                    </div>
+                    <div>
+                      <b>Alejandro Fernandez</b>
+                    </div>
+                    <button class="btn btn-primary aceptado" disabled type="button">Amigo</button>
+                    <button class="btn btn-primary perfil" type="button"><a href="../CV alejandro/index incremental 2 perfil.html">Ver perfil</a></button>
+                  </div>
+                </div>
+                
+                <div class="col-lg-4">
+                  <div class="caja amigo">
+                    <div>
+                      <ion-icon name="person-circle-outline"></ion-icon>
+                    </div>
+                    <div>
+                      <b>Antonio José Quintana</b></b>
+                    </div>
+                    <button class="btn btn-primary aceptado" disabled type="button">Amigo</button>
+                    <button class="btn btn-primary perfil" type="button"><a href="../Tony/index incremental 2 perfil.html">Ver perfil</a></button>
+                  </div>
+                </div>
+                
+                <div class="col-lg-4">
+                  <div class="caja amigo">
+                    <div>
+                      <ion-icon name="person-circle-outline"></ion-icon>
+                    </div>
+                    <div>
+                      <b>Julian Lopez</b>
+                    </div>
+                    <button class="btn btn-primary aceptar" type="button">Añadir amigo</button>
+                  </div>
+                </div>
+              </div>
+            
+            
+                   
+        </div>
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+      <script src="../boton.js"></script>
+      <script src="https://kit.fontawesome.com/70dccf666c.js" crossorigin="anonymous"></script>
+      <script>
+
+        //Llamada a la api
+        
+        fetch('https://randomuser.me/api/?results=12')
+        .then(response => response.json())
+        .then(data => {
+        const seccionAmigos = document.getElementById('grid');
+        data.results.forEach(result => {
+        const amigoCaja = document.createElement('div');
+        amigoCaja.classList.add('col-lg-4');
+        amigoCaja.innerHTML = `
+          <div class="caja amigo">
+            <div>
+              <img class="fotos" src="${result.picture.large}" alt="${result.name.first} ${result.name.last}">
+            </div>
+            <div>
+              <b>${result.name.first} ${result.name.last}</b>
+            </div>
+            <button class="btn ace btn-primary aceptar" type="button">Añadir amigo</button>
+          </div>
+        `;
+        seccionAmigos.appendChild(amigoCaja);
+      });
+      })
+    .catch(error => console.error(error));
+
+      //Menu desplegable
+
+        const accountButton = document.querySelector('.account-button');
+        const accountMenu = document.querySelector('.account-menu');
+
+        accountButton.addEventListener('click', () => {
+        accountMenu.classList.toggle('visible');
+        });
+
+      //Cambio de estado añadir amigo => amigo
+      const botones = document.querySelector('.aceptarAmigos');
+
+      botones.addEventListener('click', event => {
+        if (event.target.classList.contains('aceptar')) {
+          event.target.textContent = 'Amigo';
+          event.target.classList.add('aceptado');
+          event.target.classList.add('disabled');
+          event.target.disabled = true;
+          
+          // Crear botón "Borrar amigo"
+          const nuevoBoton = document.createElement('button');
+          nuevoBoton.textContent = 'Borrar amigo';
+          nuevoBoton.classList.add('btn');
+          nuevoBoton.classList.add('borrar');
+          event.target.parentNode.insertBefore(nuevoBoton, event.target.nextSibling);
+          
+        } else if (event.target.classList.contains('borrar')) {
+          // Cambiar el botón "Amigo" a "Añadir amigo"
+          const amigoButton = event.target.previousSibling;
+          amigoButton.textContent = 'Añadir amigo';
+          amigoButton.classList.remove('aceptado');
+          amigoButton.classList.remove('disabled');
+          amigoButton.disabled = false;
+          
+          // Borrar el botón "Borrar amigo"
+          event.target.parentNode.removeChild(event.target);
+        }
+
+      });
+
+
+
+
+
+
+
+
+
+
+
+      </script>
+</body>
+</html>
