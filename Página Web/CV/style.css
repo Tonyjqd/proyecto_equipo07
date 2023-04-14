@@ -125,7 +125,47 @@ ul li {
     .de{
         margin-right: 0;
     }
-
-    
-    
   }
+    .panel-body {
+      position: relative;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .edit-textarea {
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    
+    .accept-button,
+    .reject-button {
+      display: none;
+    }
+    
+    .panel-body.active .edit-textarea,
+    .panel-body.active .accept-button,
+    .panel-body.active .reject-button {
+      display: block;
+    }
+  
+    .panel-body2 {
+      position: relative;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .edit-textarea2 {
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    
+    .accept-button2,
+    .reject-button2 {
+      display: none;
+    }
+    
+    

@@ -64,17 +64,26 @@
           <h3 class="panel-title">Ciudad y país de residencia</h3>
           <h7>Me llamo Alejandro Mateos, soy de España (Gijón) y tengo 22 años, estoy empezando el curso de programación web fullstack.</h7>
         </div>
-        <div class="panel-body"></div>
+        <button id="edit-button" class="btn btn-primary btn-sm float-right">Editar</button>
+      <div class="panel-body">
+        <textarea id="edit-area" style="display:none; width:100%;"></textarea>
+        <button id="accept-button" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
+        <button id="cancel-button" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
       </div>
+    </div>
       <div class="panel panel-default shadow mb-4">
         <div class="panel-heading">
           <h3 class="panel-title">Experiencia Laboral</h3>
         </div>
         <div class="panel-body">
           <ul>
-            <li><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut assumenda similique nostrum obcaecati animi nulla expedita reprehenderit tempora, <br> rerum reiciendis dolore quo earum, modi pariatur porro, voluptates iste repellendus perspiciatis.</p></li> 
-            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut assumenda similique nostrum obcaecati animi nulla expedita reprehenderit tempora, <br> rerum reiciendis dolore quo earum, modi pariatur porro, voluptates iste repellendus perspiciatis.</li>
+            <li><p id="panel-content-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut assumenda similique nostrum obcaecati animi nulla expedita reprehenderit tempora, <br> rerum reiciendis dolore quo earum, modi pariatur porro, voluptates iste repellendus perspiciatis. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam quae corrupti tenetur enim odit, nesciunt error vero expedita at officia placeat? Dolorem corrupti iusto minus provident consequatur autem ea voluptas.</p></li> 
+            <!-- <li id="panel-content-3"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut assumenda similique nostrum obcaecati animi nulla expedita reprehenderit tempora, <br> rerum reiciendis dolore quo earum, modi pariatur porro, voluptates iste repellendus perspiciatis.</li> -->
           </ul>
+          <button id="edit-button-2" class="btn btn-primary btn-sm float-right">Editar</button>
+          <textarea id="edit-area-2" style="display:none; width:100%;"></textarea>
+          <button id="accept-button-2" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
+          <button id="cancel-button-2" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
         </div>
       </div>
       <div class="panel panel-default shadow mb-4">
@@ -83,8 +92,12 @@
         </div>
         <div class="panel-body">
           <ul>
-            <li><strong>IES Calderón de la Barca:</strong> Bachillerato de ciencias tecnológicas</li>
+            <li id="panel-content-4"><strong>IES Calderón de la Barca:</strong> Bachillerato de ciencias tecnológicas</li>
           </ul>
+          <button id="edit-button-3" class="btn btn-primary btn-sm float-right">Editar</button>
+          <textarea id="edit-area-3" style="display:none; width:100%;"></textarea>
+          <button id="accept-button-3" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
+          <button id="cancel-button-3" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
         </div>
       </div>
       <div class="panel panel-default shadow mb-4">
@@ -93,8 +106,12 @@
         </div>
         <div class="panel-body">
           <ul>
-            <li><strong>Cambridge English:</strong> B2 First</li>
+            <li id="panel-content-5"><strong>Cambridge English:</strong> B2 First</li>
           </ul>
+          <button id="edit-button-4" class="btn btn-primary btn-sm float-right">Editar</button>
+          <textarea id="edit-area-4" style="display:none; width:100%;"></textarea>
+          <button id="accept-button-4" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
+          <button id="cancel-button-4" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
         </div>
       </div>
       <div class="panel panel-default shadow mb-4">
@@ -103,11 +120,15 @@
         </div>
         <div class="panel-body">
           <ul>
-            <li>Quedar con mis amigos</li>
-            <li>La tecnología</li>
-            <li>Viajar</li>
-            <li>Jugar a videojuegos</li>
+            <li id="panel-content-6">Quedar con mis amigos</li>
+            <li id="panel-content-7">La tecnología</li>
+            <li id="panel-content-8">Viajar</li>
+            <li id="panel-content-9">Jugar a videojuegos</li>
           </ul>
+          <button id="edit-button-5" class="btn btn-primary btn-sm float-right">Editar</button>
+          <textarea id="edit-area-5" style="display:none; width:100%;"></textarea>
+          <button id="accept-button-5" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
+          <button id="cancel-button-5" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
         </div>
       </div>
       <div class="panel panel-default shadow mb-4">
@@ -116,11 +137,15 @@
         </div>
         <div class="panel-body">
           <ul>
-            <li><strong>Correo:</strong> alexmateosxd@gmail.com</li>
-            <li><strong>Teléfono:</strong> 654732812</li>
-            <li><strong>Dirección:</strong> C/Al azar n2 3 IZ</li>
-            <li><strong>Perfil de LinkedIn:</strong> <a href="https://www.linkedin.com/">Perfil</a></li>
+            <li id="panel-content-10"><strong>Correo:</strong> alexmateosxd@gmail.com</li>
+            <li id="panel-content-11"><strong>Teléfono:</strong> 654732812</li>
+            <li id="panel-content-12"><strong>Dirección:</strong> C/Al azar n2 3 IZ</li>
+            <li id="panel-content-13"><strong>Perfil de LinkedIn:</strong> <a href="https://www.linkedin.com/">Perfil</a></li>
           </ul>
+          <button id="edit-button-6" class="btn btn-primary btn-sm float-right">Editar</button>
+          <textarea id="edit-area-6" style="display:none; width:100%;"></textarea>
+          <button id="accept-button-6" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
+          <button id="cancel-button-6" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
         </div>
       </div>
     </div>
@@ -129,5 +154,6 @@
     </footer>
 <script src="../boton.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+<script src="app.js"></script>
 </body>
 </html>
