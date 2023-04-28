@@ -106,4 +106,22 @@ server.post('/registro', registrarUsuario,(req,res)=>{
     res.send("Correcto")
 });
 
+server.get('/', (req, res) => {
+  res.send('Bienvenido al sistema de publicaciones del equipo 7');
+});
+
+  server.post('/publicaciones',(req,res)=>{
+    const { des_publicacion } = req.body;
+    const query = `INSERT INTO publicaciones (des_publicacion) VALUES (?)`;
+  connection.query(query, [des_publicacion], (error, results) => {
+    if (error) throw error;
+
+    res.json({
+      id: results.insertId,
+      des_publicacion
+    });
+  });
+  })
+  
+
 server.listen(port, () => console.log('Servidor iniciado en el puerto 3000'));
