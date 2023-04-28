@@ -1,0 +1,22 @@
+@media (max-width: 992px) {
+    .izquierda {
+      width:100%;
+      margin-bottom: 30px;
+     
+    }
+    .account{
+        display: none;
+    }
+    .aceptar{
+        width: 40%;
+    }
+    .aceptado{
+        width: 20%;
+    }
+    .perfil{
+        width: 20%;
+    }
+    .account-button {
+        display: block;
+      }
+  }
