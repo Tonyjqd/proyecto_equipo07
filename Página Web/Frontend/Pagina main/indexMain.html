@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="../Faq/index.html">FAQ</a>
+            <a class="nav-link" href="#">FAQ</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Términos de uso</a>
@@ -73,24 +73,29 @@
                           <span class="visually-hidden">unread messages</span>
                         </span>
                       </button>
-                      <a href="../perfil/perfil.html"><button class="btn a col-12 btn-lg btn-primary"type="button">Profile</button></a>
+                    <button class="btn a col-12 btn-lg btn-primary"type="button"><a href="../CV/index.html">Profile</a></button>
                   </div>
             </div>
             <div class="col-lg-4 col-md-12 central">
-                    <div class="caja mensaje">
+                    <div class="caja mensaje"> <!-- Publicación -->
                         <svg class="perfil" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <circle cx="12" cy="7" r="4" />
                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                           </svg>
-                          <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
-                            <label for="floatingTextarea">Whats in your mind</label>
-                          </div>
-                        <div>
-                            <button class="btn enviar btn-primary" type="button">Enviar</button>
-                    </div>
+                          <form id="publicacion-form">
+                            <div class="form-floating">
+                              <textarea id="publicacion" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
+                              <label for="floatingTextarea">Whats in your mind</label>
+                            </div>
+                            <div>
+                              <button class="btn enviar btn-primary" type="submit">Enviar</button>
+                            </div>
+                          </form>
                     </div> 
+                    <div class="publicaciones">
+                      
+                  </div>
                     <div class=" caja amigo1">
                       <svg class="perfil" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -101,7 +106,6 @@
                             <b>Gloria Fernandez</b>
                           </p>
                               <div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe nemo suscipit harum fugiat inventore? Corporis qui perferendis quam cum cupiditate eum! Maxime ad nisi libero praesentium mollitia! Eius, blanditiis doloribus.</div>
-                       
                   </div>
                   <div class="caja amigo1">
                       <svg class="perfil" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -115,7 +119,6 @@
                       <div> Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe nemo suscipit harum fugiat inventore? Corporis qui perferendis quam cum cupiditate eum! Maxime ad nisi libero praesentium mollitia! Eius, blanditiis doloribus.</div>
                       
                   </div>
-                 
                 </div>
             <div class="col-lg-3 caja derecha">
                     <div class="d-grid a gap-2 d-md-block p-4">
@@ -146,10 +149,10 @@
       <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
       <label for="floatingTextarea">Leave a comment here</label>
     </div>
-        <div><button class="btn btn-sm btn-primary boton" type="button">Enviar</button></div>
+        <div><button class="btn btn-sm btn-primary boton" type="submit">Enviar</button></div>
     </div>
-    <footer><b>Todos los derechos reservados</b></footer>
-    <script src="./log.js"></script>
+    <footer><b>Todos los derechos reservado</b>s</footer>
+    <script src="log.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="../boton.js"></script>
   <script src="./apismainrandom.js"></script>
@@ -211,5 +214,6 @@
 
   
   </script>
+  <script src="client.js"></script>
   </body>
 </html>

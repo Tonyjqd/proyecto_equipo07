@@ -79,16 +79,18 @@ transition: background-color 1s ease;
 
 .uno{
   margin: 5px;
-  text-align: justify;
+  text-align: center;
 }
 
 .dos{
-  margin-bottom: 10px;
-  justify-content: center;
+  margin-top:10px;
+  text-align: center;
+  vertical-align: baseline;
 }
 
-.placeholder{
-  background-color: aqua;
+.tres{
+  margin-bottom: 10px;
+  justify-content: center;
 }
 
 button{

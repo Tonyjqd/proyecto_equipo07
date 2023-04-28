@@ -80,7 +80,7 @@
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 455px) {
   .col-6 {
     flex: 0 0 100%;
     max-width: 100%;}

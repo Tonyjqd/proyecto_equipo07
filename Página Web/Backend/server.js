@@ -48,19 +48,36 @@ const validarPassword = (req, res, next) => {
   });
 };
 
-const datos= (req,res,next)=>{
-  const correo = req.correo; // Obtenemos el correo del usuario del objeto req
-  const query = `SELECT * FROM usuarios WHERE correo_electronico = '${correo}'`;
-  connection.query(query,(error,results)=>{
-    if (error){
-      return res.status(500).send('Error en la base de datos');
-    } else {
-      const datos = results;
-      req.datosUsuario = datos;
-      next();
-    }
+
+const registrarUsuario = (req, res) => {
+  const correo = req.body.correo;
+  const password = req.body.password;
+  const name = req.body.name;
+  const apellidos = req.body.apellidos;
+  const alias = req.body.alias;
+  const fecha_nac = req.body.fecha_nac; // añadimos la constante fecha_nac
+  const query = `SELECT * FROM usuarios WHERE correo_electronico = '${correo}' OR alias = '${alias}'`;
+
+  connection.query(query, (error, results) => {
+      if (error) {
+          return res.status(401).send('Error en la base de datos');
+      }
+
+      if (results.length > 0) {
+          return res.status(401).send('El usuario ya existe. ¡Entra con tu cuenta!');
+      } else {
+         const queryInsert = `INSERT INTO usuarios (nombre, apellidos, alias, correo_electronico, contrasena, fecha_nac) VALUES ('${name}', '${apellidos}', '${alias}', '${correo}', '${password}', '${fecha_nac}')`; // añadimos la constante fecha_nac en la consulta SQL
+          connection.query(queryInsert, (error) => {
+              if (error) {
+                  return res.status(401).send('Error en la base de datos 2');
+              }
+              return res.send('Usuario registrado correctamente ¡Ahora puedes entrar con tu cuenta!');
+          });
+      }
   });
 };
+
+
 
 server.get('/perfil/:correo', (req, res) => {
   const correo = req.params.correo;
@@ -83,5 +100,28 @@ server.post('/login', validarCorreo, validarPassword, (req, res) => {
   const alias = req.alias;
   res.json({ logueado: true, usuario: correo, alias: alias });
 });
+
+
+server.post('/registro', registrarUsuario,(req,res)=>{
+    res.send("Correcto")
+});
+
+server.get('/', (req, res) => {
+  res.send('Bienvenido al sistema de publicaciones del equipo 7');
+});
+
+  server.post('/publicaciones',(req,res)=>{
+    const { des_publicacion } = req.body;
+    const query = `INSERT INTO publicaciones (des_publicacion) VALUES (?)`;
+  connection.query(query, [des_publicacion], (error, results) => {
+    if (error) throw error;
+
+    res.json({
+      id: results.insertId,
+      des_publicacion
+    });
+  });
+  })
+  
 
 server.listen(port, () => console.log('Servidor iniciado en el puerto 3000'));
