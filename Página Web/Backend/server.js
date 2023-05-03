@@ -106,22 +106,47 @@ server.post('/registro', registrarUsuario,(req,res)=>{
     res.send("Correcto")
 });
 
-server.get('/', (req, res) => {
-  res.send('Bienvenido al sistema de publicaciones del equipo 7');
+server.get('/main/:correo', (req, res) => {
+  const correo = req.params.correo;
+  const query = `SELECT * FROM usuarios WHERE correo_electronico = '${correo}'`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      return res.status(500).send('Error en la base de datos');
+    }
+    if (results.length > 0) {
+      const datos = results[0];
+      res.json(datos);
+    } else {
+      return res.status(400).send('El correo es incorrecto');
+    }
+  })
+});
+server.get('/publicaciones', (req, res) => {
+const query = `SELECT publicaciones.*, usuarios.alias, usuarios.imagen, usuarios.correo_electronico
+  FROM publicaciones 
+  INNER JOIN usuarios ON publicaciones.id_usuario = usuarios.id_usuario 
+  ORDER BY publicaciones.fecha_publicacion DESC`
+  connection.query(query, (error, results) => {
+    if (error) {
+      return res.status(500).send('Error en la base de datos');
+    }
+    if (results.length > 0) {
+      const datos = results;
+      res.json(datos);
+    } else {
+      return res.status(400).send('El correo es incorrecto');
+    }
+  });
+});
+server.post('/publicaciones', (req, res) => {
+  const { publicacion, id } = req.body;
+  const query = `INSERT INTO publicaciones (id_usuario, des_publicacion) VALUES (?,?)`;
+  connection.query(query, [id, publicacion], (error, results) => {
+    if (error) throw error;
+    res.json({ message: "Publicacion realizada" });
+  });
 });
 
-  server.post('/publicaciones',(req,res)=>{
-    const { des_publicacion } = req.body;
-    const query = `INSERT INTO publicaciones (des_publicacion) VALUES (?)`;
-  connection.query(query, [des_publicacion], (error, results) => {
-    if (error) throw error;
 
-    res.json({
-      id: results.insertId,
-      des_publicacion
-    });
-  });
-  })
-  
 
 server.listen(port, () => console.log('Servidor iniciado en el puerto 3000'));
