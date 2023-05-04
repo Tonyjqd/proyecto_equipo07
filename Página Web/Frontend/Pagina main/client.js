@@ -52,7 +52,10 @@ fetch(`http://localhost:3000/publicaciones`)
   });
 })
 siguiendo.addEventListener('click',()=>{
-  paraTi.classList.remove('disabled');
+  paraTi.classList.remove('active');
+  tec.classList.remove('disabled');
+  juegos.classList.remove('disabled');
+  deportes.classList.remove('disabled');
   siguiendo.classList.add('disabled');
   const elementos = document.querySelectorAll('.amigo1');
   elementos.forEach(elemento => elemento.remove());

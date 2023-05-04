@@ -78,7 +78,12 @@
                   </div>
             </div>
             <div class="col-lg-4 col-md-12 central">
-              <div class="botones" > <button class="btn de btn-primary" type="button">Para ti</button>
+              <div class="botones" > <button class="btn de btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Para ti</button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item uno" href="#">Tecnología</a></li>
+                  <li><a class="dropdown-item dos" href="#">Videojuegos</a></li>
+                  <li><a class="dropdown-item tres" href="#">Deportes</a></li>
+                </ul>
                 <button class="btn iz btn-primary disabled" type="button">Siguiendo</button></div>
                     <div class="caja mensaje"> <!-- Publicación -->
                         <img  class ="foto" id="1" src="..">
@@ -151,17 +156,30 @@
         <div><button class="btn btn-sm btn-primary boton" type="submit">Enviar</button></div>
     </div>
     <footer><b>Todos los derechos reservado</b>s</footer>
+
+
     <script src="log.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="../boton.js"></script>
   <script src="./apismainrandom.js"></script>
   <script>
+
+    const tec = document.querySelector('.uno');
+    const juegos = document.querySelector('.dos');
+    const deportes = document.querySelector('.tres');
     const paraTi = document.querySelector('.de');
     let central = document.querySelector('.central')
-    
-    paraTi.addEventListener('click',()=>{
-      paraTi.classList.add('disabled');
+    var llaveTec ='https://twitter154.p.rapidapi.com/lists/tweets?list_id=81603707&limit=40';
+    var llaveDeportes ='https://twitter154.p.rapidapi.com/lists/tweets?list_id=1433584156890615811&limit=40';
+    var llaveJuegos ='https://twitter154.p.rapidapi.com/lists/tweets?list_id=1456252198833176579&limit=40';
+    function parati(button,llave){
+    button.addEventListener('click',()=>{
+      tec.classList.remove('disabled');
+      juegos.classList.remove('disabled');
+      deportes.classList.remove('disabled');
+      button.classList.add('disabled');
       siguiendo.classList.remove('disabled');
+      paraTi.classList.add('active');
       const options = {
       method: 'GET',
       headers: {
@@ -169,10 +187,9 @@
       'X-RapidAPI-Host': 'twitter154.p.rapidapi.com'
       }
     };
-
     const elementos = document.querySelectorAll('.amigo1');
     elementos.forEach(elemento => elemento.remove());
-    fetch('https://twitter154.p.rapidapi.com/lists/tweets?list_id=1293782097723830277&limit=40', options)
+    fetch(`${llave}`, options)
   .then(response => response.json())
   .then(tweet => {
     const tweets = tweet.results;
@@ -220,7 +237,10 @@
   }) 
   .catch(err => console.error(err));
     })
-
+  }
+  parati(tec,llaveTec);
+  parati(juegos,llaveJuegos);
+  parati(deportes,llaveDeportes);
   </script>
   <script src="client.js"></script>
   </body>
