@@ -46,7 +46,7 @@ body{
     transition: background-color 1s ease;
     border: 1px solid grey
   }
-  .dark-mode .amigo1 {
+  .dark-mode .amigo1, .dark-mode .dropdown-menu {
     background-color: #444; /* color de fondo en modo oscuro */
     border: 1px solid grey;
     transition: background-color 1s ease;
@@ -78,6 +78,9 @@ body{
   .dark-mode .modal-body,.dark-mode .modal-header, .dark-mode .modal-footer {
     background-color: #444;  /* color de fondo en modo oscuro */
   }
+.dark-mode .dropdown-item{
+  color: lightgray;
+}
 .container-fluid{
     justify-content:space-between ;
 }
