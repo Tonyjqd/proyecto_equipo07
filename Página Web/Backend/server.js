@@ -98,8 +98,6 @@ server.get('/perfil/:correo', (req, res) => {
 server.patch('/perfil/:correo', (req, res) => {
   const correo = req.params.correo;
   const nuevoPerfil = req.body;
-  const nuevoCorreo = nuevoPerfil.correo_electronico;
- 
   // Buscar el perfil en la base de datos
   connection.query(
     'SELECT * FROM usuarios WHERE correo_electronico = ?',
@@ -114,9 +112,14 @@ server.patch('/perfil/:correo', (req, res) => {
       }
       // Actualizar el perfil con los nuevos datos
       const perfil = results[0];
-      const perfilActualizado = { ...nuevoPerfil };
-      // Conservar el correo electrónico original
-      perfilActualizado.correo_electronico = nuevoCorreo;
+      const perfilActualizado = { ...nuevoPerfil,
+      };
+      if (nuevoPerfil.correo_electronico && perfil.correo_electronico !== nuevoPerfil.correo_electronico) {
+      perfilActualizado.correo_electronico = nuevoPerfil.correo_electronico;
+      }
+      else{
+        perfilActualizado.correo_electronico= perfil.correo_electronico
+      }
       connection.query(
         'UPDATE usuarios SET ? WHERE correo_electronico = ?',
         [perfilActualizado, correo],

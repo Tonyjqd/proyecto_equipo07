@@ -103,13 +103,18 @@ fetch(`http://localhost:3000/perfil/${correo}`)
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data,correo)
       })
       .then(response => {
         if (response.ok) {
+          if(correo_electronico.value){
           correo = sessionStorage.setItem('usuario',correo_electronico.value);
-          correo =sessionStorage.getItem('usuario')
-          console.log('Usuario actualizado con éxito');
+          correo =sessionStorage.getItem('usuario');
+         alert("Cambios guardados con éxito");
+         }
+         else {
+          alert("Cambios guardados con éxito");
+         }
         } else {
           // La solicitud falló
           console.error('Error al actualizar usuario');
