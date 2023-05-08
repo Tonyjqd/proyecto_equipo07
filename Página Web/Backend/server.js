@@ -95,6 +95,43 @@ server.get('/perfil/:correo', (req, res) => {
   });
 });
 
+server.patch('/perfil/:correo', (req, res) => {
+  const correo = req.params.correo;
+  const nuevoPerfil = req.body;
+  const nuevoCorreo = nuevoPerfil.correo_electronico;
+ 
+  // Buscar el perfil en la base de datos
+  connection.query(
+    'SELECT * FROM usuarios WHERE correo_electronico = ?',
+    [correo],
+    (error, results) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Error al buscar el perfil' });
+      }
+      if (results.length === 0) {
+        return res.status(404).json({ error: 'Perfil no encontrado' });
+      }
+      // Actualizar el perfil con los nuevos datos
+      const perfil = results[0];
+      const perfilActualizado = { ...nuevoPerfil };
+      // Conservar el correo electrónico original
+      perfilActualizado.correo_electronico = nuevoCorreo;
+      connection.query(
+        'UPDATE usuarios SET ? WHERE correo_electronico = ?',
+        [perfilActualizado, correo],
+        error => {
+          if (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Error al actualizar el perfil' });
+          }
+          return res.json({ message: 'Perfil actualizado con éxito' });
+        }
+      );
+    }
+  );
+});
+
 server.post('/login', validarCorreo, validarPassword, (req, res) => {
   const correo = req.correo;
   const alias = req.alias;

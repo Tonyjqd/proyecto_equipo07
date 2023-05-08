@@ -51,6 +51,27 @@ footer{
 .panel-title{
     color:rgb(197, 130, 141)
 }
+#city, #exp, #datosAcademicos, #idi, #hobby, #tlf, #linked, #correo_electronico{
+  display: none;
+  border-radius: 3px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width: 90%;
+  height: 100%;
+}
+.dark-mode input {
+  background-color: lightgray;
+}
+.lista{
+  margin-top: 15px;
+}
+li{
+
+  margin-bottom: 8px;
+}
+ul{
+  margin-right: 40px;
+}
 ul li {
     list-style: none;
 }
@@ -103,7 +124,12 @@ ul li {
     border:1px solid black ;
 
 } 
-  
+
+ .btn:hover{
+  background-color: lightblue;
+  border-color: black;
+ }
+
   input:checked + .slider {
     background-color: #151e21;
     border-radius: 20px;
@@ -128,45 +154,19 @@ ul li {
     }
   }
     .panel-body {
+      overflow: hidden;
       position: relative;
       padding: 0;
       margin: 0;
     }
     
-    .edit-textarea {
-      width: 100%;
-      height: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-    }
+  .aceptar{
+    margin-left: 10px;
+  } 
     
-    .accept-button,
-    .reject-button {
-      display: none;
-    }
-    
-    .panel-body.active .edit-textarea,
-    .panel-body.active .accept-button,
-    .panel-body.active .reject-button {
-      display: block;
-    }
   
-    .panel-body2 {
-      position: relative;
-      padding: 0;
-      margin: 0;
-    }
     
-    .edit-textarea2 {
-      width: 100%;
-      height: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-    }
     
-    .accept-button2,
-    .reject-button2 {
-      display: none;
-    }
+
     
     
