@@ -22,8 +22,7 @@ fetch('http://localhost:3000/usuarios')
         <div>
           <b>${results.nombre} ${results.apellidos}</b>
         </div>
-        <button>Agregar</button>
-        <br><br>
+        <button class="btn ace btn-primary aceptar" type="button">Añadir amigo</button>
 
       </div>
    
