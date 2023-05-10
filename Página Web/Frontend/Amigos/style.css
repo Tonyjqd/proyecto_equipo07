@@ -61,6 +61,20 @@ nav{
     transition: background-color 1s ease;
     margin-bottom: 20px;
 }
+.fotosPerfil{
+    margin : 0 auto;
+    border-radius: 90px;
+    width: 100px;
+    height:100px;
+    margin-top: 5px;
+    border: 1px solid black;
+  }
+svg{
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 90px;
+    border: 1px solid rgb(44, 62, 80)
+}
 .cuenta{
     display: flex;
     flex-direction: column;
