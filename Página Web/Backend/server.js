@@ -196,4 +196,15 @@ server.get('/usuarios', (req, res) => {
   });
 });
 
+server.get('/buscar', (req, res) => {
+  const username = req.query.username;
+
+  // Ejecutar la consulta de búsqueda
+  const query = `SELECT * FROM usuarios WHERE nombre = '${username}'`;
+  connection.query(query, (error, results) => {
+    if (error) throw error;
+    res.json(results);
+  });
+});
+
 server.listen(port, () => console.log('Servidor iniciado en el puerto 3000'));
