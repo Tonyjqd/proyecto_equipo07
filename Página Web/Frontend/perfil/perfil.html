@@ -62,11 +62,13 @@
       <div class="panel panel-default shadow mb-4">
         <div class="panel-heading">
           <h3 class="panel-title">Ciudad de residencia</h3>
-          <p id="1"></p>
+          
         </div>
-        <button id="edit-button" class="btn btn-primary btn-sm float-right">Editar</button>
+        
       <div class="panel-body">
-        <textarea id="edit-area" style="display:none; width:100%;"></textarea>
+        <p>Me llamo <span id="1"></span> y soy de <span id="localidad"></span> </p>
+        <input type="text" name="" id="city">
+        <button id="edit-button-1" class="btn btn-primary btn-sm float-right">Editar</button>
         <button id="accept-button" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
         <button id="cancel-button" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
       </div>
@@ -74,17 +76,13 @@
       <div class="panel panel-default shadow mb-4">
         <div class="panel-heading">
           <h3 class="panel-title">Experiencia Laboral</h3>
-          <p id="2"></p>
+          
         </div>
         <div class="panel-body">
-          <ul>
-            <li><p id="panel-content-2"></p></li> 
-            
-          </ul>
-          <button id="edit-button-2" class="btn btn-primary btn-sm float-right">Editar</button>
-          <textarea id="edit-area-2" style="display:none; width:100%;"></textarea>
-          <button id="accept-button-2" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
-          <button id="cancel-button-2" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
+          <p id="2"></p>
+          <input type="text" name="" id="exp">
+          <button id="edit-button-2" class="btn btn-primary btn-sm float-right ">Editar</button>
+          
         </div>
       </div>
       <div class="panel panel-default shadow mb-4">
@@ -93,13 +91,9 @@
 
         </div>
         <div class="panel-body">
-          
-            <p id="3"></p>
-          
+          <p id="3"></p>
+          <input type="text" name="" id="datosAcademicos">
           <button id="edit-button-3" class="btn btn-primary btn-sm float-right">Editar</button>
-          <textarea id="edit-area-3" style="display:none; width:100%;"></textarea>
-          <button id="accept-button-3" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
-          <button id="cancel-button-3" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
         </div>
       </div>
       <div class="panel panel-default shadow mb-4">
@@ -108,10 +102,8 @@
         </div>
         <div class="panel-body">
           <p id="4"></p>
+          <input type="text" name="" id="idi">
           <button id="edit-button-4" class="btn btn-primary btn-sm float-right">Editar</button>
-          <textarea id="edit-area-4" style="display:none; width:100%;"></textarea>
-          <button id="accept-button-4" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
-          <button id="cancel-button-4" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
         </div>
       </div>
       <div class="panel panel-default shadow mb-4">
@@ -120,6 +112,7 @@
         </div>
         <div class="panel-body">
           <p id="5"></p>
+          <input type="text" name="" id="hobby">
           <button id="edit-button-5" class="btn btn-primary btn-sm float-right">Editar</button>
         </div>
       </div>
@@ -129,16 +122,26 @@
         </div>
         <div class="panel-body">
           <ul>
-            <li id="panel-content-10"><strong>Correo:</strong></li>
-            <li id="panel-content-11"><strong>Teléfono:</strong></li>
-            <li id="panel-content-13"><strong>Perfil de LinkedIn: <a id="6" href=""></a></strong></li>
+            <div class="lista"><strong>Correo:</strong></div>
+            <input type="email" name="" id="correo_electronico">
+            <li id="panel-content-10"></li>
+            <button id="edit-button-6" class="btn btn-primary btn-sm float-right">Editar</button>
+
+            <div class="lista"><strong>Teléfono:</strong></div>
+            <input type="text" name="" id="tlf">
+            <li id="panel-content-11"></li>
+            <button id="edit-button-7" class="btn btn-primary btn-sm float-right">Editar</button>
+
+            <div class="lista"><strong>Perfil de LinkedIn:</div>
+            <input type="text" name="" id="linked">
+            <a id="6" href=""></a></strong><li id="panel-content-13"></li>
+            <button id="edit-button-8" class="btn btn-primary btn-sm float-right">Editar</button>
           </ul>
-          <button id="edit-button-6" class="btn btn-primary btn-sm float-right">Editar</button>
-          <textarea id="edit-area-6" style="display:none; width:100%;"></textarea>
-          <button id="accept-button-6" class="btn btn-primary btn-sm float-right" style="display:none;">Aceptar</button>
-          <button id="cancel-button-6" class="btn btn-danger btn-sm float-right" style="display:none; margin-right:10px;">Cancelar</button>
+          
+          
         </div>
       </div>
+      <button id="guardar-cambios" class="btn btn-primary ">Guardar cambios</button>
     </div>
     <footer>
       Todos los derechos reservados

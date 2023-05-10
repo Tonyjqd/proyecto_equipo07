@@ -1,6 +1,5 @@
 let contador = sessionStorage.getItem('contador') || 0;
     if (sessionStorage.getItem('logueado') == 'true'&& contador == 0) {
-    const correo = sessionStorage.getItem('usuario');
     const alias= sessionStorage.getItem('alias');
     alert(`Has iniciado sesión correctamente. Bienvenido, ${alias}!`);
     sessionStorage.setItem('contador', ++contador);

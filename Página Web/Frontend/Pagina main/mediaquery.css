@@ -1,5 +1,6 @@
 @media (max-width: 991px) { 
     .central{
+        width: 90%;
         margin-top: 20px;
         text-align: center;
     }
@@ -21,9 +22,9 @@
 
     }
 
-    .iz{
-        width: 100%;
-        
+   
+    .botones{
+        width: 90%;
     }
+  
 }
-

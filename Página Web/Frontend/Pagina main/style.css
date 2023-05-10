@@ -13,6 +13,19 @@ body{
     border-radius: 5px;
     cursor: pointer;
   }
+.cabeza{
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  gap: 40px;
+
+}
+.fecha{
+  font-size: 15px;
+ 
+}
 .dark-mode {
     background-color: #151e21;
     color: #fff;
@@ -21,12 +34,19 @@ body{
   .dark-mode .titulos,.dark-mode .contador{
     color: black;
   }
+  svg{
+    border: 1px solid rgb(44, 62, 80);
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+  }
   .dark-mode .izquierda {
     background-color: #444; /* color de fondo en modo oscuro */
     transition: background-color 1s ease;
     border: 1px solid grey
   }
-  .dark-mode .amigo1 {
+  .dark-mode .amigo1, .dark-mode .dropdown-menu {
     background-color: #444; /* color de fondo en modo oscuro */
     border: 1px solid grey;
     transition: background-color 1s ease;
@@ -58,6 +78,9 @@ body{
   .dark-mode .modal-body,.dark-mode .modal-header, .dark-mode .modal-footer {
     background-color: #444;  /* color de fondo en modo oscuro */
   }
+.dark-mode .dropdown-item{
+  color: lightgray;
+}
 .container-fluid{
     justify-content:space-between ;
 }
@@ -66,7 +89,10 @@ nav{
    border-bottom: 1px solid white;
    transition: background-color 1s ease; 
 }
-
+.alias{
+ 
+  font-size:20px ;
+}
 .pr{
     margin-top: 10px;
     color: black;
@@ -171,7 +197,7 @@ footer{
     border-radius: 3px;
 }
 .like{
-    width: 20%;
+    width: fit-content;
     margin-bottom: 10px;
     margin-top: 5px;
 }
@@ -206,7 +232,28 @@ footer{
     background-color: red;
 }
 
-
+.botones{
+  display: flex;
+  justify-content: center;
+  gap:40px
+}
+.botones .btn {
+font-family: 'Deftone Stylus', sans-serif;
+font-size: 30px;
+ text-align: center;
+ margin-bottom: 10px;
+ background-color: transparent;
+ border: 0px;
+}
+.uno, .dos{
+  border-bottom: 1px solid black;
+}
+.dropdown-menu{
+  font-family:'Deftone Stylus', sans-serif; 
+  font-size: 30px;
+  background-color: #eccca5;
+  border-color: whitesmoke;
+  }
 .boton{
     margin-top: 10px;
 }
@@ -300,6 +347,8 @@ footer{
     margin-top: 5px;
     border: 1px solid white;
   }
+  
+
   .pais{
     font-weight: bold;
   }
