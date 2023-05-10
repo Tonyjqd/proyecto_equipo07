@@ -113,6 +113,8 @@
                     <a href="../CV alejandro/index incremental 2 perfil.html"><button class="btn btn-primary perfil" type="button">Ver perfil</button></a>
                   </div>
                 </div>
+
+                
                 
                 <div class="col-lg-4">
                   <div class="caja amigo">
@@ -146,15 +148,14 @@
         </div>
 
       <footer><b>Todos los derechos reservados</b></footer>
-      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
       <script src="../boton.js"></script>
       <script src="https://kit.fontawesome.com/70dccf666c.js" crossorigin="anonymous"></script>
+      <script src="./amigoscliente.js"></script>
       <script>
-
         //Llamada a la api
-        
-        fetch('https://randomuser.me/api/?results=12')
+        /* fetch('https://randomuser.me/api/?results=12')
         .then(response => response.json())
         .then(data => {
         const seccionAmigos = document.getElementById('grid');
@@ -175,34 +176,27 @@
         seccionAmigos.appendChild(amigoCaja);
       });
       })
-    .catch(error => console.error(error));
-
+    .catch(error => console.error(error)); */
       //Menu desplegable
-
         const accountButton = document.querySelector('.account-button');
         const accountMenu = document.querySelector('.account-menu');
-
         accountButton.addEventListener('click', () => {
         accountMenu.classList.toggle('visible');
         });
-
       //Cambio de estado añadir amigo => amigo
       const botones = document.querySelector('.aceptarAmigos');
-
       botones.addEventListener('click', event => {
         if (event.target.classList.contains('aceptar')) {
           event.target.textContent = 'Amigo';
           event.target.classList.add('aceptado');
           event.target.classList.add('disabled');
           event.target.disabled = true;
-          
           // Crear botón "Borrar amigo"
           const nuevoBoton = document.createElement('button');
           nuevoBoton.textContent = 'Borrar amigo';
           nuevoBoton.classList.add('btn');
           nuevoBoton.classList.add('borrar');
           event.target.parentNode.insertBefore(nuevoBoton, event.target.nextSibling);
-          
         } else if (event.target.classList.contains('borrar')) {
           // Cambiar el botón "Amigo" a "Añadir amigo"
           const amigoButton = event.target.previousSibling;
@@ -210,23 +204,10 @@
           amigoButton.classList.remove('aceptado');
           amigoButton.classList.remove('disabled');
           amigoButton.disabled = false;
-          
           // Borrar el botón "Borrar amigo"
           event.target.parentNode.removeChild(event.target);
         }
-
       });
-
-
-
-
-
-
-
-
-
-
-
       </script>
 </body>
 </html>

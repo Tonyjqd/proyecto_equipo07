@@ -187,6 +187,13 @@ server.post('/publicaciones', (req, res) => {
   });
 });
 
-
+/*AMIGOS*/
+server.get('/usuarios', (req, res) => {
+  connection.query('SELECT nombre, apellidos, correo_electronico, imagen, id_usuario FROM equipo7.usuarios', (error, results) => {
+    if (error) throw error;
+    console.log(results);
+    res.json(results);
+  });
+});
 
 server.listen(port, () => console.log('Servidor iniciado en el puerto 3000'));
