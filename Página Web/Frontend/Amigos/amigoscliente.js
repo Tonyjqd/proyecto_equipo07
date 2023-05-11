@@ -45,6 +45,7 @@ fetch('http://localhost:3000/usuarios')
   })
   .catch(error => console.error(error));
 }
+usuarios()
 
 
 
