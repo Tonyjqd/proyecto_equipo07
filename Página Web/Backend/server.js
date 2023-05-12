@@ -196,6 +196,34 @@ server.get('/usuarios', (req, res) => {
   });
 });
 
+server.get('/amigos/:id_logueado', (req, res) => {
+  const id_logueado = req.params.id_logueado;
+  const query = (`SELECT * FROM amigos WHERE  id_usuario = '${id_logueado}'`);
+  connection.query(query, (error, results) => {
+    if (error) {
+      return res.status(500).send('Error en la base de datos');
+    }
+    if (results.length > 0) {
+      const datos = results;
+      res.json(datos);
+    } else {
+      return res.status(400).send('ID no valida o sin amigos');
+    }
+  });
+});
+server.post("/amigos", (req, res) => {
+  const id_logueado = req.body.id_logueado;
+  const amigoId = req.body.amigoId;
+  connection.query(
+    "INSERT INTO amigos (id_usuario, id_amigo) VALUES (?, ?)",
+    [id_logueado, amigoId],
+    (error, results) => {
+      if (error) throw error;
+      console.log(results);
+      res.json(results);
+    }
+  );
+});
 server.get('/buscar', (req, res) => {
   const username = req.query.username;
 

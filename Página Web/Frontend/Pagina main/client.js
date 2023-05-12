@@ -115,6 +115,9 @@ console.log(correo);
   .then(response => response.json())
   .then(data => {
     id= data.id_usuario;
+    sessionStorage.setItem("id_logueado",id)
+    const id_logueado = sessionStorage.getItem("id_logueado")
+    console.log(id_logueado)
     alias= data.alias;
     foto = data.imagen
     const fotoInicio = document.getElementById('1');

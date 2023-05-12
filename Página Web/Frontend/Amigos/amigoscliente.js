@@ -1,3 +1,4 @@
+let usuario
 function usuarios(){
 fetch('http://localhost:3000/usuarios')
   .then(response => response.json())
@@ -5,9 +6,8 @@ fetch('http://localhost:3000/usuarios')
     const seccionAmigos = document.getElementById('grid');
     const usuarioLogueado = sessionStorage.getItem('usuario');
     const nombreLogueado = usuarioLogueado.split('@')[0];
-    const id_logueado = sessionStorage.getItem("id_logueado");
-    
-    console.log(id_logueado) 
+   
+   
     
     data.forEach(results => {
       if (results.correo_electronico === usuarioLogueado) {
@@ -23,7 +23,10 @@ fetch('http://localhost:3000/usuarios')
        else{
         perfil=`<img class="fotosPerfil" src="..${results.imagen}">`
        }
-        console.log(`Correo electrónico de ${results.id_usuario}: ${results.correo_electronico}`);
+        usuario = results.id_usuario;
+       
+       
+       
         const amigoCaja = document.createElement('div');
         amigoCaja.classList.add('col-lg-4');
         //NUEVA CAJA
@@ -33,7 +36,7 @@ fetch('http://localhost:3000/usuarios')
         <div>
           <b>${results.nombre} ${results.apellidos}</b>
         </div>
-        <button class="btn ace btn-primary aceptar" type="button">Añadir amigo</button>
+        ${botn}
 
       </div>
    
@@ -45,7 +48,33 @@ fetch('http://localhost:3000/usuarios')
   })
   .catch(error => console.error(error));
 }
+
 usuarios()
+
+let botn
+
+fetch(`http://localhost:3000/amigos/${sessionStorage.getItem("id_logueado")}`)
+        .then(response => response.json())
+        .then(data => {
+          
+          
+          data.forEach(element=>{
+            console.log(element.id_amigo);
+            
+          if(element.id_amigo != usuario){
+           botn = ` <button class="btn ace btn-primary aceptar" type="button" data-id="${usuario}">añadir amigo</button>`
+
+          }
+          else{
+            botn = `<div>
+            <button class="btn ace btn-primary aceptado" type="button" data-id="${usuario}">amigo</button>
+            <button class="btn ace btn-primary borrar" type="button" data-id="${usuario}">borrar amigo</button>
+            </div>`
+            }
+          })
+        })
+          .catch(error => console.error(error));
+
 
 
 

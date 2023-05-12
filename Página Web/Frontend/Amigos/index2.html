@@ -184,6 +184,7 @@
         accountMenu.classList.toggle('visible');
         });
       //Cambio de estado añadir amigo => amigo
+      
       const botones = document.querySelector('.aceptarAmigos');
       botones.addEventListener('click', event => {
         if (event.target.classList.contains('aceptar')) {
@@ -191,6 +192,30 @@
           event.target.classList.add('aceptado');
           event.target.classList.add('disabled');
           event.target.disabled = true;
+          const amigoId = event.target.getAttribute('data-id');
+          const id_logueado = sessionStorage.getItem("id_logueado")
+              
+          fetch('http://localhost:3000/amigos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id_logueado, amigoId })
+        })
+        .then(response => {
+          if (response.status === 400) {
+            response.text().then(error => {
+              alert(error);
+            });
+          } else if (!response.ok) {
+            alert('Error en el servidor');
+          } else {
+            return response.json();
+          }
+        })
+
+
+
+
+
           // Crear botón "Borrar amigo"
           const nuevoBoton = document.createElement('button');
           nuevoBoton.textContent = 'Borrar amigo';
