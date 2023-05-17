@@ -207,7 +207,8 @@ server.get('/amigos/:id_logueado', (req, res) => {
       const datos = results;
       res.json(datos);
     } else {
-      return res.status(400).send('ID no valida o sin amigos');
+      return res.status(400).send(['ID no valida o sin amigos']);
+      
     }
   });
 });
@@ -215,8 +216,39 @@ server.post("/amigos", (req, res) => {
   const id_logueado = req.body.id_logueado;
   const amigoId = req.body.amigoId;
   connection.query(
-    "INSERT INTO amigos (id_usuario, id_amigo) VALUES (?, ?)",
+    "SELECT * FROM amigos WHERE id_usuario = ? AND id_amigo = ?",
     [id_logueado, amigoId],
+    (error, results) => {
+      if (error) throw error;
+
+      if (results.length > 0) {
+        // Ya existe una fila con esos valores, no se inserta el dato
+        console.log("El dato ya existe");
+        res.json({ message: "El dato ya existe" });
+      } else {
+        // No existe una fila con esos valores, se inserta el dato
+        connection.query(
+          "INSERT INTO amigos (id_usuario, id_amigo) VALUES (?, ?)",
+          [id_logueado, amigoId],
+          (error, results) => {
+            if (error) throw error;
+            console.log(results);
+            res.json(results);
+          }
+        );
+      }
+    }
+  );
+});
+
+
+server.delete("/amigos/:id_amigo", (req, res) => {
+  const id_logueado = req.body.id_logueado;
+  const id_amigo = req.params.id_amigo;
+
+  connection.query(
+    "DELETE FROM amigos WHERE id_usuario = ? AND id_amigo = ?",
+    [id_logueado, id_amigo],
     (error, results) => {
       if (error) throw error;
       console.log(results);
@@ -224,6 +256,8 @@ server.post("/amigos", (req, res) => {
     }
   );
 });
+
+
 server.get('/buscar', (req, res) => {
   const username = req.query.username;
 

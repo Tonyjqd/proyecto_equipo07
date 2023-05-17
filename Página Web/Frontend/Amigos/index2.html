@@ -183,56 +183,7 @@
         accountButton.addEventListener('click', () => {
         accountMenu.classList.toggle('visible');
         });
-      //Cambio de estado añadir amigo => amigo
       
-      const botones = document.querySelector('.aceptarAmigos');
-      botones.addEventListener('click', event => {
-        if (event.target.classList.contains('aceptar')) {
-          event.target.textContent = 'Amigo';
-          event.target.classList.add('aceptado');
-          event.target.classList.add('disabled');
-          event.target.disabled = true;
-          const amigoId = event.target.getAttribute('data-id');
-          const id_logueado = sessionStorage.getItem("id_logueado")
-              
-          fetch('http://localhost:3000/amigos', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id_logueado, amigoId })
-        })
-        .then(response => {
-          if (response.status === 400) {
-            response.text().then(error => {
-              alert(error);
-            });
-          } else if (!response.ok) {
-            alert('Error en el servidor');
-          } else {
-            return response.json();
-          }
-        })
-
-
-
-
-
-          // Crear botón "Borrar amigo"
-          const nuevoBoton = document.createElement('button');
-          nuevoBoton.textContent = 'Borrar amigo';
-          nuevoBoton.classList.add('btn');
-          nuevoBoton.classList.add('borrar');
-          event.target.parentNode.insertBefore(nuevoBoton, event.target.nextSibling);
-        } else if (event.target.classList.contains('borrar')) {
-          // Cambiar el botón "Amigo" a "Añadir amigo"
-          const amigoButton = event.target.previousSibling;
-          amigoButton.textContent = 'Añadir amigo';
-          amigoButton.classList.remove('aceptado');
-          amigoButton.classList.remove('disabled');
-          amigoButton.disabled = false;
-          // Borrar el botón "Borrar amigo"
-          event.target.parentNode.removeChild(event.target);
-        }
-      });
       </script>
       <script src="buscar.js"></script>
 </body>
