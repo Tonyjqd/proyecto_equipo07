@@ -68,12 +68,7 @@
     border: 1px solid black;
   }
   
-svg{
-    width: 100px !important;
-    height: 100px !important;
-    border-radius: 90px;
-    border: 1px solid rgb(44, 62, 80)
-}
+
 .cuenta{
     display: flex;
     flex-direction: column;

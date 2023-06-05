@@ -7,7 +7,7 @@ import { MenuCentral } from '../../Componentes/menuMainCentral.jsx';
 import { Link } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 import { HandleLogOut } from '../../Componentes/logout.jsx';
-import { handleLogged } from '../../Componentes/logCheck.jsx';
+
 export function Main () {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
