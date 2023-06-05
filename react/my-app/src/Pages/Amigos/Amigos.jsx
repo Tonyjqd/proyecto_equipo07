@@ -2,6 +2,7 @@ import { Amigos } from "../../Componentes/Amigo"
 import {Nav} from '../../Componentes/nav'
 import {Footer} from "../../Componentes/footer"
 import {Link } from "react-router-dom";
+import { HandleLogOut } from "../../Componentes/logout";
 export function AmigosPag (){
     return (
         <>
@@ -10,7 +11,7 @@ export function AmigosPag (){
                     <Link to = "/Amigos" className="nav-link active">Amigos</Link>
             </li>
             <li className="nav-item">
-                    <Link to = "/" className="nav-link">Cerrar sesión</Link>
+                    <Link to = "/" onClick={HandleLogOut} className="nav-link">Cerrar sesión</Link>
             </li>
           </Nav>
           <Amigos/>

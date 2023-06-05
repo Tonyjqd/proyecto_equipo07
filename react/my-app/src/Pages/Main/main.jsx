@@ -6,7 +6,8 @@ import { Posts } from '../../Componentes/posts.jsx';
 import { MenuCentral } from '../../Componentes/menuMainCentral.jsx';
 import { Link } from 'react-router-dom';
 import { useEffect,useState } from 'react';
-
+import { HandleLogOut } from '../../Componentes/logout.jsx';
+import { handleLogged } from '../../Componentes/logCheck.jsx';
 export function Main () {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
@@ -15,16 +16,16 @@ export function Main () {
           .then(data => setPosts(data))
           .catch(error => console.log(error));
       }, []);
-      
+
     return (
         <>
         <Nav>
-        <li className="nav-item">
+            <li className="nav-item">
                     <Link to = "/Amigos" className="nav-link">Amigos</Link>
             </li>
             <li className="nav-item">
-                    <Link to = "/" className="nav-link">Cerrar Sesión</Link>
-            </li>  
+                    <Link to = "/" onClick={HandleLogOut} className="nav-link">Cerrar sesión</Link>
+            </li>
         </Nav>
         <div className='container-fluid main'>
             <div class="col-lg-3 col-md-12 izquierda">
