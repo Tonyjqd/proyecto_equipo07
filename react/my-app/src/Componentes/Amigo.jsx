@@ -135,7 +135,7 @@ function Amigos() {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary boton-friends" data-bs-dismiss="modal">Cancelar</button>
-              <a><button type="button" className="btn btn-primary cerrar boton-friends">Cerrar Sesión</button></a>
+              <button type="button" className="btn btn-primary cerrar boton-friends">Cerrar Sesión</button>
             </div>
           </div>
         </div>
@@ -234,7 +234,7 @@ function Amigos() {
                     ) : (
                       <button className="btn btn-primary boton-friends agregar-amigo" type="button" onClick={() => handleAgregarAmigo(amigo.id_usuario)}>Agregar amigo</button>
                     )}
-                    <a href={`/perfil/${amigo.id_usuario}`}><button className="btn btn-primary boton-friends ver-perfil" type="button">Ver perfil</button></a>
+                    <Link to={`/perfil/${amigo.id_usuario}`}><button className="btn btn-primary boton-friends ver-perfil" type="button">Ver perfil</button></Link>
     </div>
   </div>
 ))}

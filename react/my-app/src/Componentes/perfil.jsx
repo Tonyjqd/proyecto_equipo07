@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 
 
 
 export function Perfil(){
   const [data, setData] = useState([]);
-const id = sessionStorage.getItem('id_usuario');
+const id_logueado = sessionStorage.getItem('id_usuario')
+const  {id} = useParams()
+id === id_logueado ? console.log('si') : console.log('no')
   useEffect(() => {
     fetch(`http://localhost:3000/perfil/${id}`)
       .then(response => response.json())

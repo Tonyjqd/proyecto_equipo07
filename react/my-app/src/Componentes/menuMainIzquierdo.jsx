@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Perfil } from "./perfil";
 export function MenuIzq (){
+  const id_logueado = sessionStorage.getItem("id_usuario")
     return (
         <div className="d-grid gap-2 col-6 mx-auto">       
                     <button className="btn a col-12 btn-lg btn-primary" type="button">Opciones</button>
@@ -13,7 +14,7 @@ export function MenuIzq (){
                           <span class="visually-hidden">unread messages</span>
                         </span>
                       </button>
-                    <Link to= "/perfil"><button className="btn a col-12 btn-lg btn-primary"type="button">Profile</button></Link>
+                      <Link to={`/perfil/${id_logueado}`}><button className="btn a col-12 btn-lg btn-primary"type="button">Profile</button></Link>
                   </div>
     )
 }
