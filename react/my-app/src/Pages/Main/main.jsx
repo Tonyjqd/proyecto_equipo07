@@ -3,22 +3,85 @@ import { Footer } from '../../Componentes/footer.jsx';
 import { MenuIzq } from '../../Componentes/menuMainIzquierdo.jsx';
 import { MenuDerecho } from '../../Componentes/menuMainDerecho.jsx';
 import { Posts } from '../../Componentes/posts.jsx';
-import { MenuCentral } from '../../Componentes/menuMainCentral.jsx';
 import { Link } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 import { HandleLogOut } from '../../Componentes/logout.jsx';
+import { ToastContainer, toast } from 'react-toastify';
 
-export function Main () {
+export function Main() {
     const [posts, setPosts] = useState([]);
+  
     useEffect(() => {
-        fetch('http://localhost:3000/publicaciones')
+      fetch('http://localhost:3000/publicaciones')
+        .then(response => response.json())
+        .then(data => setPosts(data))
+        .catch(error => console.log(error));
+    }, []);
+    const [postNuevos,setPostNuevos]= useState('');
+    const correo = sessionStorage.getItem('usuario');
+    const [publicacion, setPublicacion] = useState('');
+    const [id, setId] = useState('');
+    const [alias, setAlias] = useState('');
+    const [foto, setFoto] = useState('');
+  
+    useEffect(() => {
+      const datosUsuario = () => {
+        fetch(`http://localhost:3000/main/${correo}`)
           .then(response => response.json())
-          .then(data => setPosts(data))
+          .then(data => {
+            setId(data.id_usuario);
+            setAlias(data.alias);
+            setFoto(data.imagen);
+            sessionStorage.setItem('id_usuario', data.id_usuario);
+          })
           .catch(error => console.log(error));
-      }, []);
-
+      };
+  
+      datosUsuario();
+    }, [correo]);
+  
+    useEffect(() => {
+        if (postNuevos) {
+          fetch('http://localhost:3000/publicaciones')
+            .then(response => response.json())
+            .then(data => {
+              setPosts(data);
+              setPostNuevos(null);
+            })
+            .catch(error => console.log(error));
+        }
+      }, [postNuevos]);
+  
+    const handlePublicacionChange = (event) => {
+      setPublicacion(event.target.value);
+    };
+  
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+     publicacion === '' ? toast.error('No puedes enviar publicaciones vacías') :
+      fetch('http://localhost:3000/publicaciones', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ publicacion, id })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.message);
+          setPostNuevos(data)
+          
+            setPublicacion('');
+          
+        })
+        .catch(error => console.log(error));
+    };
+    const handleKeyDown = (event) => {
+        if (event.keyCode === 13) {
+          handleFormSubmit(event);
+        }
+      };
     return (
         <>
+        
         <Nav>
             <li className="nav-item">
                     <Link to = "/Amigos" className="nav-link">Amigos</Link>
@@ -32,7 +95,27 @@ export function Main () {
                 <MenuIzq/>  
             </div>
             <div class="col-lg-4 col-md-12 central">
-               <MenuCentral/>
+               
+          <div className="caja mensaje"> 
+            <img className="foto" id="1" src={`${foto}`} alt="Foto" />
+            <form id="publicacion-form" onSubmit={handleFormSubmit}>
+              <div className="form-floating">
+                <textarea 
+                id="publicacion" 
+                className="form-control"
+                placeholder="Leave a comment here" 
+                value={publicacion} 
+                onChange={handlePublicacionChange}
+                onKeyDown={handleKeyDown}>
+                    
+                </textarea>
+                <label htmlFor="floatingTextarea">Whats in your mind</label>
+              </div>
+              <div>
+                <button className="btn enviar-main btn-primary" type="submit">Enviar</button>
+              </div>
+            </form>
+          </div> 
                <Posts posts={posts} />
             </div>
             <div class="col-lg-3 col-md-12 caja derecha"> 

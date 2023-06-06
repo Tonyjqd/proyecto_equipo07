@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export function Posts({ posts }) {
+  const [likes, setLikes] = useState([]);
+
+  useEffect(() => {
+    const initialLikes = posts.map(() => Math.floor(Math.random() * 1000 + 1));
+    setLikes(initialLikes);
+  }, [posts]);
+
   return (
     <div className="publicaciones">
-      {posts.map((element) => {
+      {posts.map((element, index) => {
         const fechaPublicacion = new Date(element.fecha_publicacion);
         const fechaActual = new Date();
         const diffMs = fechaActual - fechaPublicacion;
@@ -51,7 +58,7 @@ export function Posts({ posts }) {
             <div className="texto">{element.des_publicacion}</div>
             <div className="like-container">
               <button className="btn btn-danger p-1 like" type="button">Like</button>
-              <div className="contador">{Math.floor(Math.random() * 1000 + 1)}</div>
+              <div className="contador">{likes[index]}</div>
             </div>
           </div>
         );
