@@ -2,6 +2,10 @@ import { IonIcon } from '@ionic/react';
 import { personCircleOutline } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+
+
+
 function Amigos() {
   const [amigos, setAmigos] = useState([]);
   const usuarioLogueado = sessionStorage.getItem('usuario');
@@ -42,6 +46,12 @@ function Amigos() {
         console.log('Error al obtener los usuarios:', error);
       });
   }, []);
+
+
+  
+
+  
+
   const handleAgregarAmigo = (amigoId) => {
     const usuarioLogueadoId = sessionStorage.getItem('usuarioId');
     console.log(sessionStorage);
@@ -51,16 +61,17 @@ function Amigos() {
       amigoId: amigoId
     });
 
-    fetch('http://localhost:3000/amigos', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id_logueado: usuarioLogueadoId,
-        amigoId: amigoId
-      })
-    })
+   fetch('http://localhost:3000/solicitudes_amistad', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    id_logueado: usuarioLogueadoId,
+    amigoId: amigoId
+  })
+})
+
       .then(response => {
         console.log('Respuesta del servidor recibida:', response);
         if (response.status === 400) {
@@ -120,7 +131,12 @@ function Amigos() {
   };
 
   return (
+
+
+
     <div>
+
+
       <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
@@ -131,6 +147,7 @@ function Amigos() {
               </button>
             </div>
             <div className="modal-body">
+          
               Seguro que quieres cerrar sesión?
             </div>
             <div className="modal-footer">
