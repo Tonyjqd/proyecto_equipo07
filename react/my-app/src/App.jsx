@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AmigosPag } from './Pages/Amigos/Amigos';
 import { PerfilPag } from './Pages/Perfil/Perfiles';
 import { ToastContainer, toast } from 'react-toastify';
-
+import { DarkModeProvider } from './Componentes/darkmode';
 
 function Logcheck({ pag }) {
   const log = sessionStorage.getItem('logueado');
@@ -21,7 +21,9 @@ function Logcheck({ pag }) {
 }
 
 function App() {
+  
   return (
+    <DarkModeProvider>
     <BrowserRouter>
       <ToastContainer />
       <Routes>
@@ -33,6 +35,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
+    </DarkModeProvider>
   );
 }
 

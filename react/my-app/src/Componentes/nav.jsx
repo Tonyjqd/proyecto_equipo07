@@ -1,15 +1,26 @@
-
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../nav.css';
+import { DarkModeContext } from './darkmode';
 
-export function Nav({children}) {
+export function Nav({ children }) {
+  const { isDarkMode, setIsDarkMode } = useContext(DarkModeContext);
+
+  const handleModeToggle = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   return (
-    <nav className="navbar navbar-expand-lg sticky-top">
+    <nav className={`navbar navbar-expand-lg sticky-top ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className="container-fluid">
         <Link to='/Home' className="navbar-brand twicla">Twicla</Link>
         <label className="switch">
-          <input type="checkbox" id="toggle-dark-mode" />
+          <input
+            type="checkbox"
+            id="toggle-dark-mode"
+            checked={isDarkMode}
+            onChange={handleModeToggle}
+          />
           <span className="slider round"></span>
         </label>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +34,6 @@ export function Nav({children}) {
             <li className="nav-item">
               <a className="nav-link">Términos de uso</a>
             </li>
-            
             {children}
           </ul>
         </div>

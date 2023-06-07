@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-export function Formulario() {
+export function Formulario({isDarkMode}) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     correo: '',
     password: '',
     rememberMe: false
   });
-
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
   const handleInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -55,10 +57,10 @@ export function Formulario() {
 
   return (
     <div className='login'>
-      <header className="container-xxl caja">
+      <header className={`container-xxl caja ${isDarkMode ? 'dark-mode' : ''}`}>
       <h1>Bienvenid@ a Twicla</h1>
       </header>
-      <form className="caja formulario" onSubmit={handleSubmit}>
+      <form className={`caja formulario ${isDarkMode ? 'dark-mode' : ''}`} onSubmit={handleSubmit}>
         <div className="mb-3 form-group">
           <label className='form-label' htmlFor='correo'> Correo electrónico</label>
            <input

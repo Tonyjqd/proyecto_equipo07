@@ -3,8 +3,19 @@ body {
     font-family: 'Courier New', Courier, monospace;
     
 }
+body.dark-mode {
+    background-color: #151e21;
+    color: #fff;
+    transition: background-color 1s ease;
+  }
 footer{
     color: #fff;
     text-align: center;
    margin-top:20%;
 }
+.dark-mode {
+    background-color: #151e21;
+    color: #fff;
+    transition: background-color 1s ease;
+  }
+  
