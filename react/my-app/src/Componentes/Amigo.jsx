@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 
 
 
-function Amigos() {
+function Amigos({isDarkMode}) {
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
   const [amigos, setAmigos] = useState([]);
   const usuarioLogueado = sessionStorage.getItem('usuario');
   useEffect(() => {

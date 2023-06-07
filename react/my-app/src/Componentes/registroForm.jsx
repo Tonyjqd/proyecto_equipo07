@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
-export function RegistroFormulario() {
+export function RegistroFormulario({isDarkMode}) {
   const navigate = useNavigate();
   const [dataFormulario, setDataFormulario] = useState({
     nombre: '',
@@ -12,7 +12,9 @@ export function RegistroFormulario() {
     alias: '',
     password: ''
   });
-
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
   const handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;

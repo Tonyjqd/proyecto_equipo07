@@ -236,10 +236,7 @@ ion-icon{
     transition: transform 0.3s , background-color 0.3s, color 0.3s ;
     opacity: 0.8;
 }
-footer{
-    color: white;
-    margin-top: 200px;
-}
+
 .switch {
     position: relative;
     display: inline-block;

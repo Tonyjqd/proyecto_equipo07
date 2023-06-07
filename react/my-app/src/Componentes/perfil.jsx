@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 
 
 
-export function Perfil(){
+export function Perfil({isDarkMode}){
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
   const [data, setData] = useState([]);
 const id_logueado = sessionStorage.getItem('id_usuario');
 const log = sessionStorage.getItem('logueado')

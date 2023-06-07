@@ -4,11 +4,12 @@ import { MenuIzq } from '../../Componentes/menuMainIzquierdo.jsx';
 import { MenuDerecho } from '../../Componentes/menuMainDerecho.jsx';
 import { Posts } from '../../Componentes/posts.jsx';
 import { Link } from 'react-router-dom';
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useContext } from 'react';
 import { HandleLogOut } from '../../Componentes/logout.jsx';
-import { ToastContainer, toast } from 'react-toastify';
-
+import {  toast } from 'react-toastify';
+import { DarkModeContext } from "../../Componentes/darkmode";
 export function Main() {
+  const { isDarkMode } = useContext(DarkModeContext);
     const [posts, setPosts] = useState([]);
   
     useEffect(() => {
@@ -92,7 +93,7 @@ export function Main() {
         </Nav>
         <div className='container-fluid main'>
             <div class="col-lg-3 col-md-12 izquierda">
-                <MenuIzq/>  
+                <MenuIzq isDarkMode={isDarkMode}/>  
             </div>
             <div class="col-lg-4 col-md-12 central">
                

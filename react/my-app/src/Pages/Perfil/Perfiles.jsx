@@ -3,7 +3,10 @@ import {Footer} from "../../Componentes/footer"
 import {Link } from "react-router-dom";
 import { Perfil } from "../../Componentes/perfil";
 import { HandleLogOut } from '../../Componentes/logout';
+import { useContext } from 'react';
+import { DarkModeContext } from '../../Componentes/darkmode';
  export function PerfilPag() {
+  const { isDarkMode } = useContext(DarkModeContext);
   return (
     <>
       <Nav>
@@ -14,7 +17,7 @@ import { HandleLogOut } from '../../Componentes/logout';
                     <Link to = "/" onClick={HandleLogOut} className="nav-link">Cerrar sesión</Link>
             </li>
           </Nav>
-      <Perfil />
+      <Perfil isDarkMode= {isDarkMode}/>
       <Footer />
     </>
   )

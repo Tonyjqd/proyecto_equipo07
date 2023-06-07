@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
-import { Perfil } from "./perfil";
-export function MenuIzq (){
+import { useEffect } from "react";
+export function MenuIzq ({isDarkMode}){
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
   const id_logueado = sessionStorage.getItem("id_usuario")
     return (
         <div className="d-grid gap-2 col-6 mx-auto">       
