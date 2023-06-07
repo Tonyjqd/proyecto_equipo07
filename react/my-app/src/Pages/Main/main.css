@@ -105,8 +105,12 @@
   .btn{
       background-color: #e7e7e7;
       color:black;
-      border:1px solid black ;
+      border:1px solid black !important ;
   
+  }
+  .mainButton{
+    
+    background-color: grey!important;
   }
   .izquierda{
       position: fixed;

@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 export function Formulario({isDarkMode}) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -33,10 +34,10 @@ export function Formulario({isDarkMode}) {
     .then(response => {
       if (response.status === 400) {
         response.text().then(error => {
-          alert(error);
+          toast.error(error);
         });
       } else if (!response.ok) {
-        alert('Error en el servidor');
+        toast.error('Error en el servidor');
       } else {
         return response.json();
       }
