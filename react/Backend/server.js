@@ -2,10 +2,10 @@ const express = require('express');
 const server = express();
 const cors = require('cors');
 const port = 3000;
+const bcrypt = require("bcrypt")
 server.use(express.json());
 server.use(cors());
 const mysql = require('mysql2');
-// create the connection to database
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -26,30 +26,46 @@ const validarCorreo = (req, res, next) => {
     }
   });
 };
+// Middleware para validar la contraseña
 const validarPassword = (req, res, next) => {
   const correo = req.body.correo;
   const password = req.body.password;
-  const query = `SELECT contrasena, alias FROM usuarios WHERE correo_electronico = '${correo}'`;
-  connection.query(query, (error, results) => {
+  const query = 'SELECT contrasena, alias FROM usuarios WHERE correo_electronico = ?';
+  connection.query(query, [correo], (error, results) => {
     if (error) {
       return res.status(500).send('Error en la base de datos');
     }
-    if (results.length > 0 && results[0].contrasena === password) {
-      req.alias = results[0].alias; // Guardamos el alias del usuario en el objeto req
-      next();
+    if (results.length > 0) {
+      const storedPassword = results[0].contrasena;
+      const alias = results[0].alias;
+
+      bcrypt.compare(password, storedPassword, (error, result) => {
+        if (error) {
+          return res.status(500).send('Error en el servidor');
+        }
+        if (result) {
+          req.alias = alias; // Guardamos el alias del usuario en el objeto req
+          next();
+        } else {
+          return res.status(400).send('Contraseña incorrecta');
+        }
+      });
     } else {
-      return res.status(400).send('Password incorrecto');
+      return res.status(400).send('El correo es incorrecto');
     }
   });
 };
+
 const registrarUsuario = (req, res) => {
   const correo = req.body.correo;
   const password = req.body.password;
   const name = req.body.nombre;
   const apellidos = req.body.apellidos;
   const alias = req.body.alias;
-  const fecha_nac = req.body.fechaNac; // añadimos la constante fecha_nac
-  const query = `SELECT * FROM usuarios WHERE correo_electronico = '${correo}' OR alias = '${alias}'`;
+  const fecha_nac = req.body.fechaNac;
+  bcrypt.hash(password,8, (error,hash)=>{
+    if(error) throw error;
+    const query = `SELECT * FROM usuarios WHERE correo_electronico = '${correo}' OR alias = '${alias}'`;
   connection.query(query, (error, results) => {
       if (error) {
           return res.status(401).send('Error en la base de datos');
@@ -57,7 +73,7 @@ const registrarUsuario = (req, res) => {
       if (results.length > 0) {
           return res.status(401).send('El usuario ya existe. ¡Entra con tu cuenta!');
       } else {
-         const queryInsert = `INSERT INTO usuarios (nombre, apellidos, alias, correo_electronico, contrasena, fecha_nac) VALUES ('${name}', '${apellidos}', '${alias}', '${correo}', '${password}', '${fecha_nac}')`; // añadimos la constante fecha_nac en la consulta SQL
+         const queryInsert = `INSERT INTO usuarios (nombre, apellidos, alias, correo_electronico, contrasena, fecha_nac) VALUES ('${name}', '${apellidos}', '${alias}', '${correo}', '${hash}', '${fecha_nac}')`; // añadimos la constante fecha_nac en la consulta SQL
           connection.query(queryInsert, (error) => {
               if (error) {
                   return res.status(401).send('Error en la base de datos 2');
@@ -66,6 +82,8 @@ const registrarUsuario = (req, res) => {
           });
       }
   });
+  })
+  
 };
 server.get('/perfil/:id', (req, res) => {
   const id = req.params.id;

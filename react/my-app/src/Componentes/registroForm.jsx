@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export function RegistroFormulario({isDarkMode}) {
   const navigate = useNavigate();
@@ -39,12 +40,12 @@ export function RegistroFormulario({isDarkMode}) {
       .then(response => {
         if (response.ok) {
           response.text().then(message => {
-            alert(message);
-            navigate("/Home");
+            toast.success(message);
+            navigate("/");
           });
         } else {
           response.text().then(errorMessage => {
-            alert(errorMessage);
+            toast.error(errorMessage);
           });
         }
       })
