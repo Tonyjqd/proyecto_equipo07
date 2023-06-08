@@ -33,21 +33,21 @@ const validarCorreo = (req, res, next) => {
 const validarPassword = (req, res, next) => {
   const correo = req.body.correo;
   const password = req.body.password;
-  const query = 'SELECT contrasena, alias FROM usuarios WHERE correo_electronico = ?';
+  const query = 'SELECT contrasena, admin FROM usuarios WHERE correo_electronico = ?';
   connection.query(query, [correo], (error, results) => {
     if (error) {
       return res.status(500).send('Error en la base de datos');
     }
     if (results.length > 0) {
       const storedPassword = results[0].contrasena;
-      const alias = results[0].alias;
+      
 
       bcrypt.compare(password, storedPassword, (error, result) => {
         if (error) {
           return res.status(500).send('Error en el servidor');
         }
         if (result) {
-          req.alias = alias; // Guardamos el alias del usuario en el objeto req
+          req.admin = results[0].admin; 
           next();
         } else {
           return res.status(400).send('Contraseña incorrecta');
@@ -58,14 +58,15 @@ const validarPassword = (req, res, next) => {
     }
   });
 };
-function generarToken(correo) {
-  const token = jwt.sign({ correo }, secretKey, { expiresIn: "2h" });
+function generarToken(correo, admin) {
+  const token = jwt.sign({ correo, admin }, secretKey, { expiresIn: "2h" });
   return token;
 }
 server.post('/login', validarCorreo, validarPassword, (req, res) => {
   const correo = req.correo;
+  const admin = req.admin;
   const token = generarToken(correo);
-  res.json({ logueado: true, usuario: correo, token });
+  res.json({ logueado: true, usuario: correo, token, admin : admin });
 });
 const registrarUsuario = (req, res) => {
   const correo = req.body.correo;

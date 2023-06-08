@@ -44,8 +44,10 @@ export function Formulario({isDarkMode}) {
     })
     .then(data => {
       if (data && data.logueado) {
+        const { correo, admin } = data;
         sessionStorage.setItem('usuario', correo);
         sessionStorage.setItem('logueado', 'true');
+        sessionStorage.setItem('admin', admin);
         navigate('/Home');
       } 
     })

@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+
 export function MenuIzq ({isDarkMode}){
+  const admin = sessionStorage.getItem('admin')
   useEffect(() => {
     document.body.classList.toggle('dark-mode', isDarkMode);
   }, [isDarkMode]);
   const id_logueado = sessionStorage.getItem("id_usuario")
     return (
-        <div className="d-grid gap-2 col-6 mx-auto">       
+        <div className="d-grid gap-2 col-6 mx-auto">
+                    {admin === '1' && (
+                      <button className="btn a col-12 btn-lg btn-primary" type="button">
+                        Admin
+                      </button>
+                  )}       
                     <button className="btn a col-12 btn-lg btn-primary mainButton disabled" type="button">Opciones</button>
                     <button className="btn a col-12 btn-lg btn-primary mainButton disabled" type="button">Explorar</button>
                     <button className="btn a col-12  btn-lg btn-primary mainButton disabled" type="button">Noticias</button>
