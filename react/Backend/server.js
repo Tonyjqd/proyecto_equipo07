@@ -152,6 +152,10 @@ server.patch('/perfil/:correo', (req, res) => {
   );
 });
 
+
+
+
+
 server.post('/registro', registrarUsuario,(req,res)=>{
     res.send("Correcto")
 });
@@ -195,6 +199,8 @@ server.post('/publicaciones', (req, res) => {
     res.json({ message: "Publicacion realizada" });
   });
 });
+
+
 /*AMIGOS*/
 
 
@@ -247,7 +253,7 @@ server.delete('/solicitudes_amistad', (req, res) => {
   // Realiza la consulta SQL para eliminar la solicitud de amistad
   const query = `
     DELETE FROM equipo7.solicitudes_amistad
-    WHERE id_solicitante = ${idSolicitante} AND id_solicitado = ${idUsuario};
+    WHERE id_usuario = ${idSolicitante} AND id_solicitado = ${idUsuario};
   `;
 
   // Ejecuta la consulta SQL en tu base de datos
@@ -271,7 +277,7 @@ server.delete('/solicitudes_amistad', (req, res) => {
   const idSolicitante = req.query.idSolicitante;
   const idUsuario = req.query.idUsuario;
 
-  const sql = 'DELETE FROM solicitudes_amistad WHERE id_solicitante = ? AND id_usuario = ?';
+  const sql = 'DELETE FROM solicitudes_amistad WHERE id_usuario = ? AND id_solicitado = ?';
   const values = [idSolicitante, idUsuario];
 
   connection.query(sql, values, (error, results) => {
@@ -284,6 +290,9 @@ server.delete('/solicitudes_amistad', (req, res) => {
     }
   });
 });
+
+
+
 
 server.post('/amigos', (req, res) => {
   const idSolicitante = req.body.idSolicitante;
@@ -328,11 +337,6 @@ server.post('/amigos', (req, res) => {
 
 
 
-
-
-
-
-
 server.get('/usuarios', (req, res) => {
   connection.query('SELECT nombre, apellidos, correo_electronico, imagen, id_usuario FROM equipo7.usuarios', (error, results) => {
     if (error) throw error;
@@ -340,9 +344,11 @@ server.get('/usuarios', (req, res) => {
     res.json(results);
   });
 });
+
 server.get('/amigos/:id_logueado', (req, res) => {
   const id_logueado = req.params.id_logueado;
-  const query = (`SELECT * FROM amigos WHERE  id_usuario = '${id_logueado}'`);
+  const query = `SELECT * FROM amigos WHERE id_usuario = '${id_logueado}' OR id_amigo = '${id_logueado}'`;
+
   connection.query(query, (error, results) => {
     if (error) {
       return res.status(500).send('Error en la base de datos');
@@ -351,15 +357,45 @@ server.get('/amigos/:id_logueado', (req, res) => {
       const datos = results;
       res.json(datos);
     } else {
-      return res.status(400).send(['ID no valida o sin amigos']);
+      return res.status(400).send('ID no válida o sin amigos');
     }
   });
-  
-});server.post("/solicitudes_amistad", (req, res) => {
+});
+
+
+server.get('/solicitudes_amistad/:usuarioLogueadoId/:amigoId', (req, res) => {
+  const usuarioLogueadoId = req.params.usuarioLogueadoId;
+  const amigoId = req.params.amigoId;
+
+  const sql = `
+    SELECT *
+    FROM solicitudes_amistad
+    WHERE (id_usuario = ${usuarioLogueadoId} AND id_solicitado = ${amigoId})
+    OR (id_solicitado = ${usuarioLogueadoId} AND id_usuario = ${amigoId})
+  `;
+
+  connection.query(sql, (err, results) => {
+    if (err) {
+      console.log('Error al obtener las solicitudes de amistad:', err);
+      res.status(500).send('Error al obtener las solicitudes de amistad');
+    } else {
+      if (results.length > 0) {
+        res.json({ estado: 'solicitud_pendiente' });
+      } else {
+        res.json({ estado: 'agregar_amigo' });
+      }
+    }
+  });
+});
+
+
+
+
+server.post("/solicitudes_amistad", (req, res) => {
   const id_logueado = req.body.id_logueado;
   const amigoId = req.body.amigoId;
   connection.query(
-    "SELECT * FROM solicitudes_amistad WHERE id_solicitante = ? AND id_solicitado = ?",
+    "SELECT * FROM solicitudes_amistad WHERE id_usuario = ? AND id_solicitado = ?",
     [id_logueado, amigoId],
     (error, results) => {
       if (error) throw error;
@@ -368,7 +404,7 @@ server.get('/amigos/:id_logueado', (req, res) => {
         res.json({ message: "El dato ya existe" });
       } else {
         connection.query(
-          "INSERT INTO solicitudes_amistad (id_solicitante, id_solicitado) VALUES (?, ?)",
+          "INSERT INTO solicitudes_amistad (id_usuario, id_solicitado) VALUES (?, ?)",
           [id_logueado, amigoId],
           (error, results) => {
             if (error) throw error;
@@ -381,12 +417,15 @@ server.get('/amigos/:id_logueado', (req, res) => {
   );
 });
 
+
+
+
+
 server.delete("/amigos/:id_amigo", (req, res) => {
   const id_logueado = req.body.id_logueado;
   const id_amigo = req.params.id_amigo;
   connection.query(
-    "DELETE FROM amigos WHERE id_usuario = ? AND id_amigo = ?",
-    [id_logueado, id_amigo],
+    "DELETE FROM amigos WHERE (id_usuario = '" + id_logueado + "' AND id_amigo = '" + id_amigo + "') OR (id_usuario = '" + id_amigo + "' AND id_amigo = '" + id_logueado + "')",
     (error, results) => {
       if (error) throw error;
       console.log(results);
@@ -394,6 +433,7 @@ server.delete("/amigos/:id_amigo", (req, res) => {
     }
   );
 });
+
 //BÚSQUEDA
 server.get('/buscar', (req, res) => {
   const username = req.query.username;

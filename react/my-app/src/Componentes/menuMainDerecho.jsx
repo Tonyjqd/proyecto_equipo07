@@ -1,19 +1,15 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const MenuDerecho = () => {
+  const idUsuario = sessionStorage.getItem('id_usuario');
+  
   const [solicitudes, setSolicitudes] = useState([]);
 
   useEffect(() => {
     comprobarSolicitudesAmistad();
-
-    return () => {
-      // Limpiar las solicitudes al desmontar el componente
-      setSolicitudes([]);
-    };
   }, []);
 
   const comprobarSolicitudesAmistad = () => {
-    const idUsuario = sessionStorage.getItem('id_usuario');
     console.log(idUsuario);
     fetch(`http://localhost:3000/solicitudes_amistad?id_solicitado=${idUsuario}`)
       .then(response => response.json())
@@ -21,9 +17,9 @@ const MenuDerecho = () => {
         if (data.length > 0) {
           console.log('Solicitudes de amistad encontradas:', data);
           const idSolicitantes = data
-            .map(solicitud => solicitud.id_solicitante)
+            .map(solicitud => solicitud.id_usuario)
             .filter(id => id !== idUsuario); // Filtrar el id de la persona logueada
-          obtenerNombreApellidos(idSolicitantes); // Llamar a la función para obtener los nombres y apellidos
+          obtenerNombreApellidos(idSolicitantes);
         } else {
           console.log('No se encontraron solicitudes de amistad');
         }
@@ -65,6 +61,8 @@ const MenuDerecho = () => {
       .then(response => response.json())
       .then(data => {
         console.log('Solicitud eliminada:', data);
+        const updatedSolicitudes = solicitudes.filter(solicitud => solicitud.idSolicitante !== idSolicitante);
+        setSolicitudes(updatedSolicitudes);
         // Realiza las acciones adicionales después de eliminar la solicitud
         // Por ejemplo, puedes actualizar la lista de solicitudes llamando a comprobarSolicitudesAmistad()
         comprobarSolicitudesAmistad();
@@ -88,6 +86,8 @@ const MenuDerecho = () => {
       .then(response => response.json())
       .then(data => {
         console.log('Solicitud eliminada:', data);
+        const updatedSolicitudes = solicitudes.filter(solicitud => solicitud.idSolicitante !== idSolicitante);
+        setSolicitudes(updatedSolicitudes);
         // Realiza las acciones adicionales después de eliminar la solicitud
         // Por ejemplo, puedes actualizar la lista de solicitudes llamando a comprobarSolicitudesAmistad()
         comprobarSolicitudesAmistad();
@@ -115,10 +115,6 @@ const MenuDerecho = () => {
         console.error('Error al eliminar la solicitud:', error);
       });
   };
-  
-
-
-
 
   return (
     <>
@@ -128,8 +124,9 @@ const MenuDerecho = () => {
             <b>{solicitud.nombre} {solicitud.apellidos}</b>
           </p>
           <div className="boton-menu-main-right">
-          <button className="btn a1 btn-success aceptar" type="button" onClick={() => aceptarSolicitud(solicitud.idSolicitante)}>Aceptar Solicitud</button>
-
+            <button className="btn a1 btn-success aceptar" type="button" onClick={() => aceptarSolicitud(solicitud.idSolicitante)}>
+              Aceptar Solicitud
+            </button>
             <button className="btn a1 btn-danger rechazar" type="button" onClick={() => borrarSolicitud(solicitud.idSolicitante)}>
               Rechazar
             </button>
