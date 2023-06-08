@@ -46,7 +46,6 @@ export function Formulario({isDarkMode}) {
       if (data && data.logueado) {
         sessionStorage.setItem('usuario', correo);
         sessionStorage.setItem('logueado', 'true');
-        sessionStorage.setItem('alias', data.alias)
         navigate('/Home');
       } 
     })

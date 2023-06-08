@@ -3,9 +3,12 @@ const server = express();
 const cors = require('cors');
 const port = 3000;
 const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
+require('dotenv').config();
 server.use(express.json());
 server.use(cors());
 const mysql = require('mysql2');
+const secretKey = process.env.SECRET_KEY;
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -55,7 +58,15 @@ const validarPassword = (req, res, next) => {
     }
   });
 };
-
+function generarToken(correo) {
+  const token = jwt.sign({ correo }, secretKey, { expiresIn: "2h" });
+  return token;
+}
+server.post('/login', validarCorreo, validarPassword, (req, res) => {
+  const correo = req.correo;
+  const token = generarToken(correo);
+  res.json({ logueado: true, usuario: correo, token });
+});
 const registrarUsuario = (req, res) => {
   const correo = req.body.correo;
   const password = req.body.password;
@@ -139,11 +150,7 @@ server.patch('/perfil/:correo', (req, res) => {
     }
   );
 });
-server.post('/login', validarCorreo, validarPassword, (req, res) => {
-  const correo = req.correo;
-  const alias = req.alias;
-  res.json({ logueado: true, usuario: correo, alias: alias });
-});
+
 server.post('/registro', registrarUsuario,(req,res)=>{
     res.send("Correcto")
 });
