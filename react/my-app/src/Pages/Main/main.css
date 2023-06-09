@@ -110,7 +110,8 @@
   }
   .mainButton{
     
-    background-color: grey!important;
+    background-color: #e7e7e78d !important;
+    color: black !important;
   }
   .izquierda{
       position: fixed;

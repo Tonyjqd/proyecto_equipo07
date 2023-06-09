@@ -65,7 +65,7 @@ function generarToken(correo, admin) {
 server.post('/login', validarCorreo, validarPassword, (req, res) => {
   const correo = req.correo;
   const admin = req.admin;
-  const token = generarToken(correo);
+  const token = generarToken(correo,admin);
   res.json({ logueado: true, usuario: correo, token, admin : admin });
 });
 const registrarUsuario = (req, res) => {
@@ -332,8 +332,17 @@ server.post('/amigos', (req, res) => {
 
 
 
-
-
+server.get('/usuario', (req, res) => {
+  connection.query('SELECT * FROM usuarios', (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error en la consulta de usuarios' });
+    } else {
+      console.log(results);
+      res.json(results);
+    }
+  });
+});
 
 
 
@@ -445,3 +454,4 @@ server.get('/buscar', (req, res) => {
   });
 });
 server.listen(port, () => console.log('Servidor iniciado en el puerto 3000'));
+
