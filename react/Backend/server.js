@@ -112,40 +112,36 @@ server.get('/perfil/:id', (req, res) => {
     }
   });
 });
-server.patch('/perfil/:correo', (req, res) => {
-  const correo = req.params.correo;
+server.patch('/perfil/:id_usuario', (req, res) => {
+  const id_usuario = req.params.id_usuario;
   const nuevoPerfil = req.body;
-  // Buscar el perfil en la base de datos
+
+  // Actualizar el perfil con los nuevos datos
   connection.query(
-    'SELECT * FROM usuarios WHERE correo_electronico = ?',
-    [correo],
+    'UPDATE usuarios SET ? WHERE id_usuario = ?',
+    [nuevoPerfil, id_usuario],
     (error, results) => {
       if (error) {
         console.error(error);
-        return res.status(500).json({ error: 'Error al buscar el perfil' });
+        return res.status(500).json({ error: 'Error al actualizar el perfil' });
       }
-      if (results.length === 0) {
-        return res.status(404).json({ error: 'Perfil no encontrado' });
-      }
-      // Actualizar el perfil con los nuevos datos
-      const perfil = results[0];
-      const perfilActualizado = { ...nuevoPerfil,
-      };
-      if (nuevoPerfil.correo_electronico && perfil.correo_electronico !== nuevoPerfil.correo_electronico) {
-      perfilActualizado.correo_electronico = nuevoPerfil.correo_electronico;
-      }
-      else{
-        perfilActualizado.correo_electronico= perfil.correo_electronico
-      }
+
+      // Obtener la información actualizada del perfil
       connection.query(
-        'UPDATE usuarios SET ? WHERE correo_electronico = ?',
-        [perfilActualizado, correo],
-        error => {
+        'SELECT * FROM usuarios WHERE id_usuario = ?',
+        [id_usuario],
+        (error, results) => {
           if (error) {
             console.error(error);
-            return res.status(500).json({ error: 'Error al actualizar el perfil' });
+            return res.status(500).json({ error: 'Error al obtener el perfil actualizado' });
           }
-          return res.json({ message: 'Perfil actualizado con éxito' });
+
+          if (results.length === 0) {
+            return res.status(404).json({ error: 'Perfil no encontrado' });
+          }
+
+          const perfilActualizado = results[0];
+          return res.json({ message: 'Perfil actualizado con éxito', perfil: perfilActualizado });
         }
       );
     }
