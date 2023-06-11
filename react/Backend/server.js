@@ -352,17 +352,30 @@ server.get('/usuarios', (req, res) => {
 
 server.get('/amigos/:id_logueado', (req, res) => {
   const id_logueado = req.params.id_logueado;
-  const query = `SELECT * FROM amigos WHERE id_usuario = '${id_logueado}' OR id_amigo = '${id_logueado}'`;
+  console.log(id_logueado);
+  console.log(typeof id_logueado);
+
+  const query = `
+    SELECT id_amigo
+    FROM amigos
+    WHERE id_usuario = '${id_logueado}'
+    UNION
+    SELECT id_usuario
+    FROM amigos
+    WHERE id_amigo = '${id_logueado}'
+  `;
 
   connection.query(query, (error, results) => {
     if (error) {
       return res.status(500).send('Error en la base de datos');
     }
+
     if (results.length > 0) {
       const datos = results;
       res.json(datos);
     } else {
-      return res.status(400).send('ID no válida o sin amigos');
+      // No se encontraron datos, retornar una respuesta vacía o un mensaje adecuado
+      res.json([]);
     }
   });
 });
