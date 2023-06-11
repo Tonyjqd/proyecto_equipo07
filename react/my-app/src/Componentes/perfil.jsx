@@ -103,13 +103,15 @@ function actualizarImagenEnBaseDeDatos(nombreArchivo, id_usuario) {
 
 
 
-
-
 return (
   <div>
       
         <div className="container text-center perfilPagina">
         <img src={data.imagen} className='imagenPerfil' alt="perfil" />
+        <div>
+          <input type="file" onChange={handleFileChange} />
+          <button onClick={handleUpload}>Subir imagen</button>
+        </div>
           <h1 className="mb-4">{data.nombre} {data.apellidos}</h1>
           <div className="panel panel-default shadow mb-4">
             <div className="panel-heading">
@@ -157,7 +159,7 @@ return (
           </div>
           <div className="panel panel-default shadow mb-4">
             <div className="panel-heading">
-              <h3 className="panel-title">Comentarios</h3>
+              <h3 className="panel-title">Reseñas</h3>
               <ul>
                 
               </ul>
@@ -171,7 +173,9 @@ return (
       ) : (
         <button onClick={enableEditMode}>Editar</button>
       )}
+        <button >Añadir reseña</button>
         </div>
+        
       </div>
 );
 };

@@ -5,6 +5,7 @@ const port = 3000;
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const multer = require('multer');
+const extname = require('path').extname;
 require('dotenv').config();
 server.use(express.json());
 server.use(cors());
