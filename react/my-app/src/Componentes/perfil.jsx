@@ -12,6 +12,7 @@ const [data, setData] = useState([]);
 const [editMode, setEditMode] = useState(false);
 const [editedData, setEditedData] = useState({});
 const [id_usuario, setIdUsuario] = useState(null);
+const [selectedFile, setSelectedFile] = useState(null);
 const id_logueado = sessionStorage.getItem('id_usuario');
 const log = sessionStorage.getItem('logueado')
 const  {id} = useParams()
@@ -61,11 +62,52 @@ const saveChanges = () => {
 const cancelChanges = () => {
   setEditMode(false);
 };
+
+const handleFileChange = (event) => {
+  setSelectedFile(event.target.files[0]);
+};
+
+function handleUpload () {
+  if (selectedFile) {
+    const formData = new FormData();
+    formData.append('imagen', selectedFile);
+    fetch('http://localhost:3000/upload', {
+      method: 'POST',
+      body: formData
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      actualizarImagenEnBaseDeDatos(data.nombreArchivo, id_usuario);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+};
+
+function actualizarImagenEnBaseDeDatos(nombreArchivo, id_usuario) {
+  fetch('http://localhost:3000/actualizarImagen', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nombreArchivo, id_usuario })
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error('Error al actualizar la ruta de imagen en la base de datos:', error);
+    });
+}
+
+
+
+
+
 return (
   <div>
       
-       
-
         <div className="container text-center perfilPagina">
         <img src={data.imagen} className='imagenPerfil' alt="perfil" />
           <h1 className="mb-4">{data.nombre} {data.apellidos}</h1>
@@ -98,7 +140,7 @@ return (
               <h3 className="panel-title">Hobbies</h3>
               <h6>{editMode ? <textarea value={editedData.hobbies} onChange={e => setEditedData({ ...editedData, hobbies: e.target.value })} /> : data.hobbies}</h6>
               <ul>
-               </ul>
+              </ul>
             </div>
           </div>
           <div className="panel panel-default shadow mb-4">
@@ -131,7 +173,6 @@ return (
       )}
         </div>
       </div>
- 
 );
 };
 

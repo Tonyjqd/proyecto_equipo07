@@ -4,6 +4,7 @@ const cors = require('cors');
 const port = 3000;
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const multer = require('multer');
 require('dotenv').config();
 server.use(express.json());
 server.use(cors());
@@ -148,6 +149,46 @@ server.patch('/perfil/:id_usuario', (req, res) => {
   );
 });
 
+const MIMETYPES = ['image/jpeg', 'image/png', 'image/jpg'];
+const upload = multer({ 
+  storage: multer.diskStorage({
+    destination: '../my-app/public/imagenes',
+    filename: (req, file, cb) => {
+      const fileExtension = extname(file.originalname);
+      cb(null, `${file.fieldname}-${Date.now()}${fileExtension}`);
+    }
+  })/* ,
+  fileFilter: (req, imagen, cb) => {
+    if (MIMETYPES.includes(imagen.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error ('Tipo de archivo no soportado'));
+    }
+  },
+  limits: { fileSize: 10000000 } */
+}); 
+
+
+server.post('/actualizarImagen', (req, res) => {
+  const { nombreArchivo } = req.body; 
+  const sql = `UPDATE usuarios SET imagen = ? WHERE id_usuario = ?`;
+  const params = [`/imagenes/${nombreArchivo}`, req.body.id_usuario]; 
+
+  connection.query(sql, params, (error, results) => {
+    if (error) {
+      console.error('Error al actualizar la ruta de imagen en la base de datos:', error);
+      res.status(500).json({ message: 'Error al actualizar la ruta de imagen en la base de datos.' });
+      return;
+    }
+    res.status(200).json({ message: 'Ruta de imagen actualizada correctamente.' });
+  });
+});
+
+
+server.post('/upload', upload.single('imagen'), (req, res) => {
+  const nombreArchivo = req.file.filename;
+  res.status(200).json({nombreArchivo });
+});
 
 
 
