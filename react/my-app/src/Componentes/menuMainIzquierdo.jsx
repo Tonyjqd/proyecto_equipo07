@@ -19,7 +19,7 @@ export function MenuIzq ({isDarkMode}){
                       </button>
                       <Link to={`/perfil/${id_logueado}`}><button className="btn a col-12 btn-lg btn-primary"type="button">Profile</button></Link>
                       {admin === '1' && (
-                      <Ticket />
+                     <Link to = {'/Admin'}><button className="btn a col-12  btn-lg btn-primary" type="button">Admin</button></Link>
                   )}  
                   </div>
     )

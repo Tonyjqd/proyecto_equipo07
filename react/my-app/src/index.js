@@ -10,7 +10,9 @@ import '../src/Pages/Login/form.css'
 import '../src/Pages/Main/main.css'
 import '../src/Pages/Amigos/amigos.css'
 import '../src/Pages/Perfil/perfil.css'
+import '../src/Pages/Admin/Admin.css'
 import 'react-toastify/dist/ReactToastify.css';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

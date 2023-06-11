@@ -1,21 +1,9 @@
-import { useEffect, useState } from "react";
 import * as XLSX from 'xlsx';
 
-export function Ticket() {
-  const [userList, setUserList] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3000/usuario')
-      .then(response => response.json())
-      .then(data => setUserList(data))
-      .catch(error => console.error('Error:', error));
-  }, []);
-
-  console.log(userList);
-
+export function Ticket({ usuarios }) {
   const exportToExcel = () => {
     // Eliminar el campo 'contrasena' del objeto de usuario
-    const transformedData = userList.map(({ contrasena, ...user }) => user);
+    const transformedData = usuarios.map(({ contrasena, ...user }) => user);
 
     const worksheet = XLSX.utils.json_to_sheet(transformedData);
     const workbook = XLSX.utils.book_new();
@@ -24,8 +12,8 @@ export function Ticket() {
   };
 
   return (
-    <button className="btn a col-12 btn-lg btn-primary" onClick={exportToExcel} type="button">
-      Admin
+    <button className="btn  col-12 btn-lg btn-primary listaUsuarios" onClick={exportToExcel} type="button">
+      Imprimir listado
     </button>
   );
 }

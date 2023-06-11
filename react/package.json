@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "jsonwebtoken": "^9.0.0",
-    "react-router-dom": "^6.12.0"
-  }
-}

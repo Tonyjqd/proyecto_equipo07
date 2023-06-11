@@ -6,6 +6,7 @@ import { AmigosPag } from './Pages/Amigos/Amigos';
 import { PerfilPag } from './Pages/Perfil/Perfiles';
 import { ToastContainer, toast } from 'react-toastify';
 import { DarkModeProvider } from './Componentes/darkmode';
+import { Admin } from './Pages/Admin/Admin';
 
 function Logcheck({ pag }) {
   const log = sessionStorage.getItem('logueado');
@@ -32,6 +33,7 @@ function App() {
         <Route path="/Amigos" element={<Logcheck pag={<AmigosPag />} />} />
         <Route path="/Home" element={<Logcheck pag={<Main />} />} />
         <Route path="/perfil/:id" element={<Logcheck pag={<PerfilPag />} />} />
+        <Route path='/Admin' element={<Logcheck pag={<Admin />} />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
