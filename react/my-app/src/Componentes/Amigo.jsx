@@ -3,60 +3,16 @@ import { personCircleOutline } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-function Amigos() {
-  const [amigos, setAmigos] = useState([]);
+function Amigos(props) {
+
   const usuarioLogueado = sessionStorage.getItem('usuario');
+  
   const [solicitudesPendientes, setSolicitudesPendientes] = useState([]);
   const idUsuario = sessionStorage.getItem('id_logueado')
- 
+  const { amigos, setAmigos, searchResults} = props;
 
-  useEffect(() => {
-    fetch(`http://localhost:3000/usuarios`)
-      .then(response => response.json())
-      .then(data => {
-        const filteredData = data.filter(results => results.correo_electronico !== usuarioLogueado);
-        const usuarioLogueadoData = data.find(results => results.correo_electronico === usuarioLogueado);
-        if (usuarioLogueadoData) {
-          const usuarioLogueadoId = usuarioLogueadoData.id_usuario || '';
-          const amigosWithStatus = filteredData.map(user => {
-            const esAmigo = false;
-            return {
-              ...user,
-              esAmigo
-            };
-          });
-          console.log(amigosWithStatus); // Verificar la asignación de esAmigo
-          setAmigos(amigosWithStatus);
-          sessionStorage.setItem('usuarioId', usuarioLogueadoId);
-          
-          fetch(`http://localhost:3000/amigos/${usuarioLogueadoId}`)
-            .then(response => response.json())
-            .then(amigosData => {
-              const numAmigos = amigosData.length;
-              console.log(`Número de amigos del usuario logueado: ${numAmigos}`);
-              console.log(amigosData); // Imprimir los amigos del usuario logueado en la consola
-              console.log(usuarioLogueadoId);
-              const updatedAmigos = amigosWithStatus.map(amigo => {
-                const esAmigo = amigosData.some(a => a.id_amigo === amigo.id_usuario || a.id_usuario === amigo.id_usuario);
-                return {
-                  ...amigo,
-                  esAmigo
-                };
-              });
-              console.log(updatedAmigos); // Verificar la actualización de esAmigo
-              setAmigos(updatedAmigos);
-            })
-            .catch(error => {
-              console.log('Error al obtener los amigos:', error);
-            });
-        } else {
-          console.log('Usuario logueado no encontrado');
-        }
-      })
-      .catch(error => {
-        console.log('Error al obtener los usuarios:', error);
-      });
-  }, []);
+
+  const datosAMostrar = searchResults.length > 0 ? amigos.filter(amigo => searchResults.some(result => result.id_usuario === amigo.id_usuario)) : amigos;
 
   const handleAgregarAmigo = (amigoId) => {
     const usuarioLogueadoId = sessionStorage.getItem('usuarioId');
@@ -77,6 +33,8 @@ function Amigos() {
         return response.json();
       })
       .then(data => {
+        console.log('Estado de la solicitud de amistad:', data.estado);
+     
         if (data.estado === 'solicitud_pendiente') {
           const amigoIndex = amigos.findIndex(a => a.id_usuario === amigoId);
           if (amigoIndex !== -1) {
@@ -157,6 +115,7 @@ function Amigos() {
             const updatedAmigos = [...amigos]; // Crear una copia del array amigos
             updatedAmigos[amigoIndex].esAmigo = false; // Actualizar el estado del amigo
             setAmigos(updatedAmigos); // Actualizar el estado de amigos con el nuevo array
+
           }
         }
       })
@@ -212,22 +171,18 @@ function Amigos() {
             </div>
           </div>
           <div className="col-lg-9 derecha-amigos aceptarAmigos">
-            <div className="caja-amigos buscador-amigos">
-              <div className="titulo">
-                <h1 className="feed-account-amigos">Amigos</h1>
-              </div>
-              <div className="input-group mb-3">
-                <span className="input-group-text">@</span>
-                <div className="form-floating">
-                  <input type="text" className="form-control" id="floatingInputGroup1" placeholder="Username" />
-                  <label htmlFor="floatingInputGroup1">Username</label>
-                </div>
-              </div>
-            </div>
+          
 
       <div className="row amigos-caja-central" id="grid">
-  {amigos.map(amigo => (
-    <div className="col-lg-4" key={amigo.id_usuario}>
+{ amigos.sort((a, b) => (datosAMostrar.includes(a) ? -1 : 1) - (datosAMostrar.includes(b) ? -1 : 1))
+  .map((amigo, index) => (
+    
+    <div
+    
+      key={amigo.id}
+      className={`col-lg-4 ${!datosAMostrar.includes(amigo) ? 'invisible' : ''}`}
+  >
+
       <div className="caja-amigos amigo">
         <div>
           <i className="fas fa-user-circle"></i>
@@ -244,10 +199,7 @@ function Amigos() {
   <button className="btn btn-primary boton-friends borrar-amigo" type="button" onClick={() => handleBorrarAmigo(amigo.id_usuario)}>
     Borrar amigo
   </button>
-) : solicitudesPendientes.some(solicitud => solicitud.amigoId === amigo.id_usuario) ? (
-  <button className="btn btn-primary boton-friends solicitud-pendiente" type="button" disabled>
-    Solicitud pendiente
-  </button>
+
 ) : (
   <button className="btn btn-primary boton-friends agregar-amigo" type="button" onClick={() => handleAgregarAmigo(amigo.id_usuario)}>
     Agregar amigo

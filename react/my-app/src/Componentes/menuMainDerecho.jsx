@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 const MenuDerecho = () => {
   const idUsuario = sessionStorage.getItem('id_usuario');
-  
-  const [solicitudes, setSolicitudes] = useState([]);
 
   useEffect(() => {
+    if (!idUsuario) {
+      return;
+    }
+
     comprobarSolicitudesAmistad();
-  }, []);
+  }, [idUsuario]);
+
+  const [solicitudes, setSolicitudes] = useState([]);
 
   const comprobarSolicitudesAmistad = () => {
-    console.log(idUsuario);
+    console.log(idUsuario, "DENTRO DE COMPROBAR SOLICITUDES");
     fetch(`http://localhost:3000/solicitudes_amistad?id_solicitado=${idUsuario}`)
       .then(response => response.json())
       .then(data => {
@@ -48,6 +52,12 @@ const MenuDerecho = () => {
         console.error('Error al obtener los nombres y apellidos:', error);
       });
   };
+
+  if (!idUsuario) {
+    // Si no se ha obtenido el idUsuario, puedes mostrar un mensaje de carga o regresar null
+    return <div>Cargando...</div>;
+  }
+
 
   const borrarSolicitud = (idSolicitante) => {
     const idUsuario = sessionStorage.getItem('id_usuario');
