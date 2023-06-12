@@ -209,7 +209,7 @@ function Amigos(props) {
           <b>{amigo.nombre}</b> <b>{amigo.apellidos}</b>
         </div>
         {amigo.esAmigo === 'solicitud_pendiente' ? (
-  <button className="btn btn-primary boton-friends solicitud-pendiente" type="button" disabled>
+  <button className="btn btn-primary boton-friends feedButton solicitud-pendiente" type="button" disabled>
     Solicitud ya enviada
   </button>
    ) : amigo.esAmigo === 'ha_enviado_solicitud' ? (
