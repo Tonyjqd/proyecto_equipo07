@@ -44,10 +44,12 @@ export function Formulario({isDarkMode}) {
     })
     .then(data => {
       if (data && data.logueado) {
-      const admin = data.admin
+      const admin = data.admin;
+      const token = data.token
         sessionStorage.setItem('usuario', correo);
         sessionStorage.setItem('logueado', 'true');
-        sessionStorage.setItem('admin',admin)
+        sessionStorage.setItem('admin',admin);
+        sessionStorage.setItem('token',token)
         navigate('/Home');
       } 
     })

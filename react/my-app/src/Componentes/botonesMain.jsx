@@ -2,8 +2,15 @@ import { useState } from "react"
 export function BotonesMain ({ setPosts }){
     const [botonParaTiDisabled, setBotonParaTiDisabled] = useState(false);
     const [botonSiguiendoDisabled, setBotonSiguiendoDisabled] = useState(true);
+    const token = sessionStorage.getItem('token')
+    console.log(token)
     const publicacionesUsuarios =() =>{
-        fetch('http://localhost:3000/publicaciones-usuarios') 
+        fetch('http://localhost:3000/publicaciones-usuarios',{
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${token}`,
+          }
+        }) 
         .then(response => response.json())
         .then(data => {
           setPosts(data);
@@ -18,6 +25,7 @@ export function BotonesMain ({ setPosts }){
           const response = await fetch('http://localhost:3000/publicaciones', {
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `${token}`,
               'user-id': id
             }
           });

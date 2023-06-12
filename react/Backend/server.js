@@ -65,6 +65,21 @@ function generarToken(correo, admin) {
   const token = jwt.sign({ correo, admin }, secretKey, { expiresIn: "2h" });
   return token;
 }
+function verificarJWT(req, res, next) {
+  const token = req.headers.authorization;
+
+  if (!token) {
+    return res.status(401).json({ mensaje: 'No se proporcionó un token' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, secretKey);
+    req.usuario = decoded; // Agrega la información decodificada a la solicitud
+    next();
+  } catch (error) {
+    return res.status(401).json({ mensaje: 'Token inválido o expirado' });
+  }
+}
 server.post('/login', validarCorreo, validarPassword, (req, res) => {
   const correo = req.correo;
   const admin = req.admin;
@@ -213,7 +228,7 @@ server.get('/main/:correo', (req, res) => {
     }
   })
 });
-server.get('/publicaciones-usuarios',(req,res)=>{
+server.get('/publicaciones-usuarios',verificarJWT,(req,res)=>{
   const query = `SELECT publicaciones.*, usuarios.alias, usuarios.imagen, usuarios.correo_electronico
   FROM publicaciones
   INNER JOIN usuarios ON publicaciones.id_usuario = usuarios.id_usuario
@@ -231,7 +246,7 @@ server.get('/publicaciones-usuarios',(req,res)=>{
   });
 });
 
-server.get('/publicaciones', (req, res) => {
+server.get('/publicaciones',verificarJWT, (req, res) => {
 const userId = req.headers['user-id'];
 const query = `
 SELECT DISTINCT publicaciones.*, usuarios.alias, usuarios.imagen, usuarios.correo_electronico

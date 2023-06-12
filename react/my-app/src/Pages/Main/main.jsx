@@ -18,8 +18,8 @@ export function Main() {
   const [id, setId] = useState('');
   const [alias, setAlias] = useState('');
   const [foto, setFoto] = useState('');
+  const token = sessionStorage.getItem('token')
 
-  
   useEffect(() => {
     const obtenerDatosUsuario = async () => {
       try {
@@ -43,6 +43,7 @@ export function Main() {
         const response = await fetch('http://localhost:3000/publicaciones', {
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `${token}`,
             'user-id': id
           }
         });
@@ -63,6 +64,7 @@ export function Main() {
       fetch('http://localhost:3000/publicaciones', {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `${token}`,
           'user-id': id
         }
       })
@@ -84,7 +86,8 @@ export function Main() {
     publicacion === '' ? toast.error('No puedes enviar publicaciones vacías') :
       fetch('http://localhost:3000/publicaciones', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json',
+        'Authorization': `${token}` },
         body: JSON.stringify({ publicacion, id })
       })
         .then(response => response.json())
