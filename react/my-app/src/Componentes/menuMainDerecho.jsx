@@ -14,12 +14,12 @@ const MenuDerecho = () => {
   const [solicitudes, setSolicitudes] = useState([]);
 
   const comprobarSolicitudesAmistad = () => {
-    console.log(idUsuario, "DENTRO DE COMPROBAR SOLICITUDES");
+    
     fetch(`http://localhost:3000/solicitudes_amistad?id_solicitado=${idUsuario}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
-          console.log('Solicitudes de amistad encontradas:', data);
+        
           const idSolicitantes = data
             .map(solicitud => solicitud.id_usuario)
             .filter(id => id !== idUsuario); // Filtrar el id de la persona logueada
@@ -46,7 +46,7 @@ const MenuDerecho = () => {
           apellidos: usuario.apellidos
         }));
         setSolicitudes(solicitudesData);
-        console.log('Solicitudes de amistad obtenidas:', solicitudesData);
+     
       })
       .catch(error => {
         console.error('Error al obtener los nombres y apellidos:', error);
@@ -69,7 +69,7 @@ const MenuDerecho = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Solicitud eliminada:', data);
+
         const updatedSolicitudes = solicitudes.filter(solicitud => solicitud.idSolicitante !== idSolicitante);
         setSolicitudes(updatedSolicitudes);
         // Realiza las acciones adicionales después de eliminar la solicitud
@@ -93,7 +93,7 @@ const MenuDerecho = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Solicitud eliminada:', data);
+      
         const updatedSolicitudes = solicitudes.filter(solicitud => solicitud.idSolicitante !== idSolicitante);
         setSolicitudes(updatedSolicitudes);
         // Realiza las acciones adicionales después de eliminar la solicitud

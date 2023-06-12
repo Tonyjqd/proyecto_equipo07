@@ -198,7 +198,7 @@ server.post('/upload', upload.single('imagen'), (req, res) => {
   res.status(200).json({nombreArchivo });
 });
 
-server.post('/recomendaciones', (req, res) => {
+server.post('/recomendaciones',verificarJWT, (req, res) => {
 
   const { recomendador, recomendado, recomendacion } = req.body;
 

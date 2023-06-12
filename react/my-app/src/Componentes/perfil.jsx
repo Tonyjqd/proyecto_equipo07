@@ -18,8 +18,8 @@ const [isAddingReview, setIsAddingReview] = useState(false);
 const [recommendations, setRecommendations] = useState([]);
 const id_logueado = sessionStorage.getItem('id_usuario');
 const log = sessionStorage.getItem('logueado')
-const  {id} = useParams()
-id === id_logueado ? console.log(log) : console.log('no')
+const  {id} = useParams();
+const token = sessionStorage.getItem("token")
   useEffect(() => {
     fetch(`http://localhost:3000/perfil/${id}`)
     .then(response => response.json())
@@ -112,7 +112,12 @@ const handleReviewChange = (event) => {
 
 
 useEffect(() => {
-  fetch(`http://localhost:3000/recomendaciones/${id}`)
+  fetch(`http://localhost:3000/recomendaciones/${id}`,{
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`,
+    }
+  }) 
     .then(response => response.json())
     .then(data => {
       setRecommendations(data);
@@ -135,18 +140,23 @@ const addReview = () => {
     body: JSON.stringify({ recomendador, recomendado, recomendacion })
   };
 
-  fetch('http://localhost:3000/recomendaciones', requestOptions)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data); 
-      const newReview = { comment: recomendacion, recomendador: { id: recomendador }, recomendado: { id: recomendado } };
-      setReviews([...reviews, newReview]);
-      setReview('');
-      setIsAddingReview(false);
-      toast.success("Reseña puesta con éxito")
-    
-    
-    })
+  fetch('http://localhost:3000/recomendaciones', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': token,
+  },
+  body: JSON.stringify({ recomendador, recomendado, recomendacion })
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    const newReview = { comment: recomendacion, recomendador: { id: recomendador }, recomendado: { id: recomendado } };
+    setReviews([...reviews, newReview]);
+    setReview('');
+    setIsAddingReview(false);
+    toast.success("Reseña puesta con éxito");
+  })
     .catch(error => {
       console.error('Error al enviar la recomendación al servidor:', error);
       
