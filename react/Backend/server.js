@@ -215,7 +215,7 @@ server.get('/main/:correo', (req, res) => {
 server.get('/publicaciones', (req, res) => {
 const userId = req.headers['user-id'];
 const query = `
-SELECT DISTINCT publicaciones.*, usuarios.alias, usuarios.imagen, usuarios.correo_electronico
+SELECT publicaciones.*, usuarios.alias, usuarios.imagen, usuarios.correo_electronico
 FROM publicaciones
 INNER JOIN usuarios ON publicaciones.id_usuario = usuarios.id_usuario
 INNER JOIN amigos ON (publicaciones.id_usuario = amigos.id_usuario OR publicaciones.id_usuario = amigos.id_amigo)
