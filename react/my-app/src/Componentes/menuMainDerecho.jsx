@@ -127,9 +127,9 @@ const MenuDerecho = () => {
   if (solicitudes.length === 0) {
     
     return <div> <div>
-    <h1 className="Solicitudes_amistad">
+    <h2 className="Solicitudes_amistad">
       <b>Solicitudes de amistad</b>
-    </h1>
+    </h2>
   </div><p className="Sin_solicitudes">¡Por ahora no tienes solicitudes de amistad!</p></div>;
   }
 

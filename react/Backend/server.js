@@ -25,14 +25,14 @@ const validarCorreo = (req, res, next) => {
       return res.status(500).send('Error en la base de datos');
     }
     if (results.length > 0) {
-      req.correo = correo; // Guardamos el correo del usuario en el objeto req
+      req.correo = correo; 
       next();
     } else {
       return res.status(400).send('El correo es incorrecto');
     }
   });
 };
-// Middleware para validar la contraseña
+
 const validarPassword = (req, res, next) => {
   const correo = req.body.correo;
   const password = req.body.password;
@@ -74,7 +74,7 @@ function verificarJWT(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, secretKey);
-    req.usuario = decoded; // Agrega la información decodificada a la solicitud
+    req.usuario = decoded; 
     next();
   } catch (error) {
     return res.status(401).json({ mensaje: 'Token inválido o expirado' });
@@ -134,7 +134,6 @@ server.patch('/perfil/:id_usuario', (req, res) => {
   const id_usuario = req.params.id_usuario;
   const nuevoPerfil = req.body;
 
-  // Actualizar el perfil con los nuevos datos
   connection.query(
     'UPDATE usuarios SET ? WHERE id_usuario = ?',
     [nuevoPerfil, id_usuario],
@@ -144,7 +143,7 @@ server.patch('/perfil/:id_usuario', (req, res) => {
         return res.status(500).json({ error: 'Error al actualizar el perfil' });
       }
 
-      // Obtener la información actualizada del perfil
+
       connection.query(
         'SELECT * FROM usuarios WHERE id_usuario = ?',
         [id_usuario],
@@ -203,13 +202,13 @@ server.post('/recomendaciones', (req, res) => {
 
   const { recomendador, recomendado, recomendacion } = req.body;
 
-  // Aquí realizarías la lógica para insertar los datos en la tabla "recomendaciones" de la base de datos
 
-  // Por ejemplo, utilizando una consulta SQL:
+
+ 
   const query = `INSERT INTO recomendaciones (id_recomendador, id_recomendado, recomendacion) VALUES (?, ?, ?)`;
   const values = [recomendador, recomendado, recomendacion];
 
-  // Ejecutar la consulta utilizando tu librería o método preferido (ejemplo con MySQL):
+
   connection.query(query, values, (error, result) => {
     if (error) {
       console.error('Error al insertar la recomendación en la base de datos:', error);
@@ -228,7 +227,7 @@ server.get('/recomendaciones/:id', (req, res) => {
   INNER JOIN usuarios ON recomendaciones.id_recomendador = usuarios.id_usuario
   WHERE recomendaciones.id_recomendado = ${idUser}
 `;
-  // Ejecutar la consulta utilizando tu librería o método preferido (ejemplo con MySQL):
+ 
   connection.query(query, (error, results) => {
     if (error) {
       console.error('Error al obtener las recomendaciones de la base de datos:', error);
@@ -310,16 +309,15 @@ server.post('/publicaciones', (req, res) => {
 });
 
 
-/*AMIGOS*/
 
 
 
-// Endpoint para obtener las solicitudes de amistad
+
+
 server.get('/solicitudes_amistad', (req, res) => {
   const idSolicitado = req.query.id_solicitado;
   const consulta = 'SELECT * FROM equipo7.solicitudes_amistad WHERE id_solicitado = ?';
 
-  // Ejecutar la consulta en la base de datos y obtener las solicitudes de amistad
   connection.query(consulta, [idSolicitado], (error, resultados) => {
     if (error) {
       console.error('Error al obtener las solicitudes de amistad servidor:', error);
@@ -334,11 +332,10 @@ server.get('/solicitudes_amistad', (req, res) => {
 server.get('/usuarios/:idSolicitante', (req, res) => {
   const idSolicitante = req.params.idSolicitante;
 
-  // Aquí se realizaría la consulta SQL utilizando el idSolicitante
   const consultaSQL = `SELECT nombre, apellidos FROM usuarios WHERE id_usuario = ?`;
   const valores = [idSolicitante];
 
-  // Ejecutar la consulta SQL y obtener los resultados
+
   connection.query(consultaSQL, valores, (error, resultados) => {
     if (error) {
       console.error('Error al obtener el nombre y apellidos:', error);
@@ -356,7 +353,7 @@ server.get('/usuarios/:idSolicitante', (req, res) => {
 
 
 
-//BORRAR SOLICITUD AMISTAD
+
 server.delete('/solicitudes_amistad', (req, res) => {
   const { idSolicitante, idUsuario } = req.query;
 
@@ -381,7 +378,7 @@ server.delete('/solicitudes_amistad', (req, res) => {
 
 
 
-//ACEPTAR SOLICITUD AMISTAD
+
 
 server.delete('/solicitudes_amistad', (req, res) => {
   const idSolicitante = req.query.idSolicitante;
@@ -488,14 +485,14 @@ server.get('/amigos/:id_logueado', (req, res) => {
       const datos = results;
       res.json(datos);
     } else {
-      // No se encontraron datos, retornar una respuesta vacía o un mensaje adecuado
+     
       res.json([]);
     }
   });
 });
 
 
-//LOS DE REFRESCAR LA PAGINA
+
 server.get('/solicitudes_pendientes/:usuarioLogueadoId', (req, res) => {
   const usuarioId = req.params.usuarioLogueadoId;
 
@@ -537,26 +534,6 @@ server.get('/solicitudes_pendientes/:usuarioLogueadoId', (req, res) => {
       res.status(500).json({ error: 'Error al obtener las solicitudes pendientes' });
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 server.get('/solicitudes_amistad/:usuarioLogueadoId/:amigoId', (req, res) => {

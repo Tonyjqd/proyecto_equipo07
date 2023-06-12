@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IonIcon } from '@ionic/react';
-import { personCircleOutline } from 'ionicons/icons';
+
 
 const AccountMenu = (props) => {
     const {usuarioLogueadoId} = props;
@@ -9,13 +8,13 @@ const AccountMenu = (props) => {
 
   const handleButtonClick = () => {
     setShowMenu(!showMenu);
-    console.log('Botón clickeado');
+    
   };
 
   return (
     <div className="container-fluid" style={{ position: 'relative' }}>
       <button className="btn btn-default account-button" onClick={handleButtonClick}>
-        <i></i>
+        menu
       </button>
       {showMenu ? (
         <div className="cuenta menu-animado" onClick={handleButtonClick}>

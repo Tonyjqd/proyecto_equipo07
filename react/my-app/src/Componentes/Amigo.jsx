@@ -4,30 +4,22 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {AccountMenu} from './Account'
 function Amigos(props) {
-
   const usuarioLogueado = sessionStorage.getItem('usuario');
-  
  const [solicitudesPendientes, setSolicitudesPendientes] = useState([]);
  const usuarioLogueadoId = sessionStorage.getItem('usuarioId');
- 
   const { amigos, setAmigos, searchResults, isDarkMode} = props;
-
   useEffect(() => {
     document.body.classList.toggle('dark-mode', isDarkMode);
   }, [isDarkMode]);
-
   const datosAMostrar = searchResults.length > 0 ? amigos.filter(amigo => searchResults.some(result => result.id_usuario === amigo.id_usuario)) : amigos;
- 
   useEffect(() => {
     let isMounted = true;
-  
     fetch(`http://localhost:3000/solicitudes_pendientes/${usuarioLogueadoId}`)
       .then(response => response.json())
       .then(data => {
         if (isMounted) {
           if (data && data.amigosEnviados && data.amigosRecibidos) {
             setSolicitudesPendientes(data);
-  
             const updatedAmigos = amigos.map(amigo => {
               if (data.amigosEnviados.includes(amigo.id_usuario) && amigo.esAmigo !== 'solicitud_pendiente') {
                 return {
@@ -42,7 +34,6 @@ function Amigos(props) {
               }
               return amigo;
             });
-  
             setAmigos(updatedAmigos);
           } else {
             console.error('Error en la estructura de datos de las solicitudes pendientes:', data);
@@ -52,19 +43,12 @@ function Amigos(props) {
       .catch(error => {
         console.error('Error al obtener las solicitudes pendientes:', error);
       });
-  
     return () => {
       isMounted = false;
     };
   }, [usuarioLogueadoId, amigos, setAmigos]);
-  
-
-  
   const handleAgregarAmigo = (amigoId) => {
-   
-    
     console.log(sessionStorage);
-
     // Primer fetch: Obtener el estado de la solicitud de amistad o enviar solicitud de amistad si no existe
     fetch(`http://localhost:3000/solicitudes_amistad/${usuarioLogueadoId}/${amigoId}`, {
       method: 'GET',
@@ -80,7 +64,6 @@ function Amigos(props) {
       })
       .then(data => {
         console.log('Estado de la solicitud de amistad:', data.estado);
-     
         if (data.estado === 'solicitud_pendiente') {
           alert ("Tienes una solicitud de este amigo")
           const amigoIndex = amigos.findIndex(a => a.id_usuario === amigoId);
@@ -90,14 +73,11 @@ function Amigos(props) {
             setAmigos(updatedAmigos);
           }
         } else {
-          
           // Segundo fetch: Enviar solicitud de amistad
           console.log('Enviando solicitud POST:', {
             id_logueado: usuarioLogueadoId,
             amigoId: amigoId
-            
           });
-
           fetch('http://localhost:3000/solicitudes_amistad', {
             method: 'POST',
             headers: {
@@ -134,16 +114,13 @@ function Amigos(props) {
         console.log('Error al obtener el estado de la solicitud de amistad:', error);
       });
   };
-
   const handleBorrarAmigo = (amigoId) => {
     const usuarioLogueadoId = sessionStorage.getItem('usuarioId');
     console.log(sessionStorage);
-
     console.log('Enviando solicitud DELETE:', {
       id_logueado: usuarioLogueadoId,
       amigoId: amigoId
     });
-
     fetch(`http://localhost:3000/amigos/${amigoId}`, {
       method: 'DELETE',
       headers: {
@@ -164,16 +141,13 @@ function Amigos(props) {
             const updatedAmigos = [...amigos]; // Crear una copia del array amigos
             updatedAmigos[amigoIndex].esAmigo = false; // Actualizar el estado del amigo
             setAmigos(updatedAmigos); // Actualizar el estado de amigos con el nuevo array
-
           }
         }
       })
       .catch(error => {
         console.log('Error al borrar amigo:', error);
       });
-
   };
-
   return (
     <div>
       <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -197,7 +171,6 @@ function Amigos(props) {
       </div>
       <div className="container-fluid amigos-caja-general">
       <AccountMenu usuarioLogueadoId={usuarioLogueadoId} />
-      
         <div className="central-amigos row h-100">
           <div className="col-lg-2 izquierda-amigos">
             <div className="caja-amigos feed">
@@ -220,18 +193,13 @@ function Amigos(props) {
             </div>
           </div>
           <div className="col-lg-9 derecha-amigos aceptarAmigos">
-          
-
       <div className="row amigos-caja-central" id="grid">
 { amigos.sort((a, b) => (datosAMostrar.includes(a) ? -1 : 1) - (datosAMostrar.includes(b) ? -1 : 1))
   .map((amigo, index) => (
-    
     <div
-    
       key={amigo.id}
       className={`col-lg-4 ${!datosAMostrar.includes(amigo) ? 'invisible' : ''}`}
   >
-
       <div className="caja-amigos amigo">
         <div>
           <i className="fas fa-user-circle"></i>
@@ -250,31 +218,24 @@ function Amigos(props) {
       Tienes una solicitud suya
     </Link>
   </button>
-  
-  
-
 ) : amigo.esAmigo ? (
   <button className="btn btn-primary boton-friends borrar-amigo" type="button" onClick={() => handleBorrarAmigo(amigo.id_usuario)} style={{ backgroundColor: 'red' }}>
     Borrar amigo
   </button>
-
 ) : (
-  <button className="btn btn-primary boton-friends agregar-amigo" type="button" onClick={() => handleAgregarAmigo(amigo.id_usuario)} style={{ backgroundColor: 'green' }}>
+  <button className="btn btn-primary boton-friends agregar-amigo" type="button" onClick={() => handleAgregarAmigo(amigo.id_usuario)}>
     Agregar amigo
   </button>
 )}
-
         <Link to={`/perfil/${amigo.id_usuario}`}><button className="btn btn-primary boton-friends ver-perfil" type="button">Ver perfil</button></Link>
       </div>
     </div>
   ))}
 </div>
-
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 export { Amigos };

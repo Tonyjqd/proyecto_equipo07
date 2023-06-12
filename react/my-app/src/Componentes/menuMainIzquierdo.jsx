@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { Ticket } from "./ticketUsuarios";
 export function MenuIzq ({isDarkMode}){
   const admin = sessionStorage.getItem('admin')
   console.log(admin)

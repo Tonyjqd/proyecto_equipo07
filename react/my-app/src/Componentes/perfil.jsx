@@ -109,7 +109,7 @@ const handleReviewChange = (event) => {
   setReview(event.target.value);
 };
 
-console.log (id);
+
 
 useEffect(() => {
   fetch(`http://localhost:3000/recomendaciones/${id}`)
