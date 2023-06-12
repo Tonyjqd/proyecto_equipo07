@@ -128,12 +128,14 @@ a:hover{
 .feed{
     height:fit-content;
 }
+
 .buscador-amigos {
     display: flex;
     justify-items: flex-end;
     align-items: center;
     padding: 10px;
     background-color: #f5f5f5;
+    margin-top: 10px;
     
   }
   
@@ -312,8 +314,42 @@ ion-icon{
     margin-top: 9px;
  }
 
-
-
+ 
+ .menu-animado {
+    position: absolute;
+    height: fit-content;
+    top: 100%;
+    left: 0;
+    border: 1px solid white;
+    background-color: #eccca5;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: aparecer 0.3s ease-in-out forwards;
+  }
+  
+  @keyframes aparecer {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes desaparecer {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+   
+  
   @media (max-width: 992px) {
     .izquierda-amigos {
       width:100%;

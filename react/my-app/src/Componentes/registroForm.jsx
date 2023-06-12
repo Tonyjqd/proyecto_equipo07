@@ -102,7 +102,7 @@ export function RegistroFormulario({isDarkMode}) {
               </label>
             </div>
             <div className='col-6 col-md-6'>
-              <input type="date" id="exampleIexampleInputFechaNacnput" className="form-control" required name="fechaNac" value={dataFormulario.fechaNac} onChange={handleInputChange} />
+              <input type="date" id="exampleInputFechaNac" className="form-control" required name="fechaNac" value={dataFormulario.fechaNac} onChange={handleInputChange} />
             </div>
           </div>
 

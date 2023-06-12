@@ -58,7 +58,6 @@ const MenuDerecho = () => {
     return <div>Cargando...</div>;
   }
 
-
   const borrarSolicitud = (idSolicitante) => {
     const idUsuario = sessionStorage.getItem('id_usuario');
 
@@ -81,7 +80,6 @@ const MenuDerecho = () => {
         console.error('Error al eliminar la solicitud:', error);
       });
   };
-
 
   const aceptarSolicitud = (idSolicitante) => {
     const idUsuario = sessionStorage.getItem('id_usuario');
@@ -126,8 +124,22 @@ const MenuDerecho = () => {
       });
   };
 
+  if (solicitudes.length === 0) {
+    
+    return <div> <div>
+    <h1 className="Solicitudes_amistad">
+      <b>Solicitudes de amistad</b>
+    </h1>
+  </div><p className="Sin_solicitudes">¡Por ahora no tienes solicitudes de amistad!</p></div>;
+  }
+
   return (
     <>
+      <div>
+        <h1 className="Solicitudes_amistad">
+          <b>Solicitudes de amistad</b>
+        </h1>
+      </div>
       {solicitudes.map((solicitud, index) => (
         <div className="d-grid a gap-2 d-md-block p-4" key={index}>
           <p className="nombre titulos">

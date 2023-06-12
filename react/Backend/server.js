@@ -313,6 +313,7 @@ server.post('/publicaciones', (req, res) => {
 /*AMIGOS*/
 
 
+
 // Endpoint para obtener las solicitudes de amistad
 server.get('/solicitudes_amistad', (req, res) => {
   const idSolicitado = req.query.id_solicitado;
@@ -494,6 +495,70 @@ server.get('/amigos/:id_logueado', (req, res) => {
 });
 
 
+//LOS DE REFRESCAR LA PAGINA
+server.get('/solicitudes_pendientes/:usuarioLogueadoId', (req, res) => {
+  const usuarioId = req.params.usuarioLogueadoId;
+
+  const sqlAmigosEnviados = 'SELECT id_solicitado FROM solicitudes_amistad WHERE id_usuario = ?';
+  const sqlAmigosRecibidos = 'SELECT id_usuario FROM solicitudes_amistad WHERE id_solicitado = ?';
+
+  const amigosEnviadosPromise = new Promise((resolve, reject) => {
+    connection.query(sqlAmigosEnviados, [usuarioId], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        const amigosEnviados = results.map(result => result.id_solicitado);
+        resolve(amigosEnviados);
+      }
+    });
+  });
+
+  const amigosRecibidosPromise = new Promise((resolve, reject) => {
+    connection.query(sqlAmigosRecibidos, [usuarioId], (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        const amigosRecibidos = results.map(result => result.id_usuario);
+        resolve(amigosRecibidos);
+      }
+    });
+  });
+
+  Promise.all([amigosEnviadosPromise, amigosRecibidosPromise])
+    .then(([amigosEnviados, amigosRecibidos]) => {
+      const solicitudesPendientes = {
+        amigosEnviados,
+        amigosRecibidos
+      };
+      res.json(solicitudesPendientes);
+    })
+    .catch(error => {
+      console.error('Error al obtener las solicitudes pendientes:', error);
+      res.status(500).json({ error: 'Error al obtener las solicitudes pendientes' });
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 server.get('/solicitudes_amistad/:usuarioLogueadoId/:amigoId', (req, res) => {
   const usuarioLogueadoId = req.params.usuarioLogueadoId;
   const amigoId = req.params.amigoId;
@@ -576,4 +641,5 @@ server.get('/buscar', (req, res) => {
   });
 });
 server.listen(port, () => console.log('Servidor iniciado en el puerto 3000'));
+
 

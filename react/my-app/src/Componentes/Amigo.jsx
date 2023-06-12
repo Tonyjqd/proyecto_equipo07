@@ -2,20 +2,66 @@ import { IonIcon } from '@ionic/react';
 import { personCircleOutline } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import {AccountMenu} from './Account'
 function Amigos(props) {
 
   const usuarioLogueado = sessionStorage.getItem('usuario');
   
-  const [solicitudesPendientes, setSolicitudesPendientes] = useState([]);
-  const idUsuario = sessionStorage.getItem('id_logueado')
-  const { amigos, setAmigos, searchResults} = props;
+ const [solicitudesPendientes, setSolicitudesPendientes] = useState([]);
+ const usuarioLogueadoId = sessionStorage.getItem('usuarioId');
+ 
+  const { amigos, setAmigos, searchResults, isDarkMode} = props;
 
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
 
   const datosAMostrar = searchResults.length > 0 ? amigos.filter(amigo => searchResults.some(result => result.id_usuario === amigo.id_usuario)) : amigos;
+ 
+  useEffect(() => {
+    let isMounted = true;
+  
+    fetch(`http://localhost:3000/solicitudes_pendientes/${usuarioLogueadoId}`)
+      .then(response => response.json())
+      .then(data => {
+        if (isMounted) {
+          if (data && data.amigosEnviados && data.amigosRecibidos) {
+            setSolicitudesPendientes(data);
+  
+            const updatedAmigos = amigos.map(amigo => {
+              if (data.amigosEnviados.includes(amigo.id_usuario) && amigo.esAmigo !== 'solicitud_pendiente') {
+                return {
+                  ...amigo,
+                  esAmigo: 'solicitud_pendiente'
+                };
+              } else if (data.amigosRecibidos.includes(amigo.id_usuario) && amigo.esAmigo !== 'ha_enviado_solicitud') {
+                return {
+                  ...amigo,
+                  esAmigo: 'ha_enviado_solicitud'
+                };
+              }
+              return amigo;
+            });
+  
+            setAmigos(updatedAmigos);
+          } else {
+            console.error('Error en la estructura de datos de las solicitudes pendientes:', data);
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error al obtener las solicitudes pendientes:', error);
+      });
+  
+    return () => {
+      isMounted = false;
+    };
+  }, [usuarioLogueadoId, amigos, setAmigos]);
+  
 
+  
   const handleAgregarAmigo = (amigoId) => {
-    const usuarioLogueadoId = sessionStorage.getItem('usuarioId');
+   
     
     console.log(sessionStorage);
 
@@ -36,6 +82,7 @@ function Amigos(props) {
         console.log('Estado de la solicitud de amistad:', data.estado);
      
         if (data.estado === 'solicitud_pendiente') {
+          alert ("Tienes una solicitud de este amigo")
           const amigoIndex = amigos.findIndex(a => a.id_usuario === amigoId);
           if (amigoIndex !== -1) {
             const updatedAmigos = [...amigos];
@@ -43,10 +90,12 @@ function Amigos(props) {
             setAmigos(updatedAmigos);
           }
         } else {
+          
           // Segundo fetch: Enviar solicitud de amistad
           console.log('Enviando solicitud POST:', {
             id_logueado: usuarioLogueadoId,
             amigoId: amigoId
+            
           });
 
           fetch('http://localhost:3000/solicitudes_amistad', {
@@ -147,6 +196,8 @@ function Amigos(props) {
         </div>
       </div>
       <div className="container-fluid amigos-caja-general">
+      <AccountMenu usuarioLogueadoId={usuarioLogueadoId} />
+      
         <div className="central-amigos row h-100">
           <div className="col-lg-2 izquierda-amigos">
             <div className="caja-amigos feed">
@@ -163,9 +214,7 @@ function Amigos(props) {
               <div className="cuenta">
                 <button className="btn btn-primary boton-friends" type="button">Edit</button>
                 <button className="btn btn-primary boton-friends" type="button">Chat</button>
-                <Link to='/perfil/'>
-              
-                  <button className="btn btn-primary boton-friends1" type="button">Profile</button>
+                <Link to={`/perfil/${usuarioLogueadoId}`}><button className="btn btn-primary boton-friends1" type="button">Profile</button>
                 </Link>
               </div>
             </div>
@@ -193,15 +242,24 @@ function Amigos(props) {
         </div>
         {amigo.esAmigo === 'solicitud_pendiente' ? (
   <button className="btn btn-primary boton-friends solicitud-pendiente" type="button" disabled>
-    Solicitud pendiente
+    Solicitud ya enviada
   </button>
+   ) : amigo.esAmigo === 'ha_enviado_solicitud' ? (
+    <button className="btn btn-primary boton-friends ha-enviado-solicitud" type="button"style={{ backgroundColor: 'brown', color: 'white' }} >
+    <Link to="/Home" style={{ textDecoration: 'none', color: 'inherit' }}>
+      Tienes una solicitud suya
+    </Link>
+  </button>
+  
+  
+
 ) : amigo.esAmigo ? (
-  <button className="btn btn-primary boton-friends borrar-amigo" type="button" onClick={() => handleBorrarAmigo(amigo.id_usuario)}>
+  <button className="btn btn-primary boton-friends borrar-amigo" type="button" onClick={() => handleBorrarAmigo(amigo.id_usuario)} style={{ backgroundColor: 'red' }}>
     Borrar amigo
   </button>
 
 ) : (
-  <button className="btn btn-primary boton-friends agregar-amigo" type="button" onClick={() => handleAgregarAmigo(amigo.id_usuario)}>
+  <button className="btn btn-primary boton-friends agregar-amigo" type="button" onClick={() => handleAgregarAmigo(amigo.id_usuario)} style={{ backgroundColor: 'green' }}>
     Agregar amigo
   </button>
 )}
