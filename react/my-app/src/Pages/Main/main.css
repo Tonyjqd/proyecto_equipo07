@@ -225,8 +225,15 @@
   .like:hover{
       background-color: red;
   }
- 
+ .menuPosts{
+  border: none !important;
+ }
+ .menuPosts .dark-mode{
+  border: none !important;
+
+ }
   .botones{
+    border: none;
     display: flex;
     justify-content: center;
     gap:40px

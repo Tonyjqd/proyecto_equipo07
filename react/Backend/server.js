@@ -10,6 +10,7 @@ require('dotenv').config();
 server.use(express.json());
 server.use(cors());
 const mysql = require('mysql2');
+const req = require('express/lib/request');
 const secretKey = process.env.SECRET_KEY;
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -212,10 +213,28 @@ server.get('/main/:correo', (req, res) => {
     }
   })
 });
+server.get('/publicaciones-usuarios',(req,res)=>{
+  const query = `SELECT publicaciones.*, usuarios.alias, usuarios.imagen, usuarios.correo_electronico
+  FROM publicaciones
+  INNER JOIN usuarios ON publicaciones.id_usuario = usuarios.id_usuario
+  ORDER BY publicaciones.fecha_publicacion DESC`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      return res.status(500).send('Error en la base de datos');
+    }
+    if (results.length > 0) {
+      const datos = results;
+      res.json(datos);
+    } else {
+      return res.status(400).send('El correo es incorrecto');
+    }
+  });
+});
+
 server.get('/publicaciones', (req, res) => {
 const userId = req.headers['user-id'];
 const query = `
-SELECT publicaciones.*, usuarios.alias, usuarios.imagen, usuarios.correo_electronico
+SELECT DISTINCT publicaciones.*, usuarios.alias, usuarios.imagen, usuarios.correo_electronico
 FROM publicaciones
 INNER JOIN usuarios ON publicaciones.id_usuario = usuarios.id_usuario
 INNER JOIN amigos ON (publicaciones.id_usuario = amigos.id_usuario OR publicaciones.id_usuario = amigos.id_amigo)

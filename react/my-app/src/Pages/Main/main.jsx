@@ -8,7 +8,7 @@ import { useEffect, useState, useContext } from 'react';
 import { HandleLogOut } from '../../Componentes/logout.jsx';
 import { toast } from 'react-toastify';
 import { DarkModeContext } from "../../Componentes/darkmode";
-
+import { BotonesMain } from '../../Componentes/botonesMain.jsx';
 export function Main() {
   const { isDarkMode } = useContext(DarkModeContext);
   const [posts, setPosts] = useState([]);
@@ -19,6 +19,7 @@ export function Main() {
   const [alias, setAlias] = useState('');
   const [foto, setFoto] = useState('');
 
+  
   useEffect(() => {
     const obtenerDatosUsuario = async () => {
       try {
@@ -94,12 +95,13 @@ export function Main() {
         })
         .catch(error => console.log(error));
   };
-
+  
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       handleFormSubmit(event);
     }
   };
+ 
     return (
         <>
         
@@ -115,31 +117,33 @@ export function Main() {
             <div class="col-lg-3 col-md-12 izquierda">
                 <MenuIzq isDarkMode={isDarkMode}/>  
             </div>
-            <div class="col-lg-4 col-md-12 central">
-               
-          <div className="caja mensaje"> 
-            <img className="foto" id="1" src={`${foto}`} alt="Foto" />
-            <form id="publicacion-form" onSubmit={handleFormSubmit}>
-              <div className="form-floating">
-                <textarea 
-                id="publicacion" 
-                className="form-control"
-                placeholder="Leave a comment here" 
-                value={publicacion} 
-                onChange={handlePublicacionChange}
-                onKeyDown={handleKeyDown}>
-                    
-                </textarea>
-                <label htmlFor="floatingTextarea">Whats in your mind</label>
-              </div>
-              <div>
-                <button className="btn enviar-main btn-primary" type="submit">Enviar</button>
-              </div>
-            </form>
-          </div> 
-               <Posts posts={posts} />
+            <div className="col-lg-4 col-md-12 central">
+                <div className='botones'>
+                <BotonesMain setPosts={setPosts} />
+                </div>
+                <div className="caja mensaje"> 
+                  <img className="foto" id="1" src={`${foto}`} alt="Foto" />
+                  <form id="publicacion-form" onSubmit={handleFormSubmit}>
+                    <div className="form-floating">
+                      <textarea 
+                      id="publicacion" 
+                      className="form-control"
+                      placeholder="Leave a comment here" 
+                      value={publicacion} 
+                      onChange={handlePublicacionChange}
+                      onKeyDown={handleKeyDown}>
+                          
+                      </textarea>
+                      <label htmlFor="floatingTextarea">Whats in your mind</label>
+                    </div>
+                    <div>
+                      <button className="btn enviar-main btn-primary" type="submit">Enviar</button>
+                    </div>
+                  </form>
+                </div> 
+                    <Posts posts={posts} />
             </div>
-            <div class="col-lg-3 col-md-12 caja derecha"> 
+            <div className="col-lg-3 col-md-12 caja derecha"> 
                 <MenuDerecho />
             </div>
         </div>
