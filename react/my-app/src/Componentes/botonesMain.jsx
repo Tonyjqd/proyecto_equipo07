@@ -3,7 +3,7 @@ export function BotonesMain ({ setPosts }){
     const [botonParaTiDisabled, setBotonParaTiDisabled] = useState(false);
     const [botonSiguiendoDisabled, setBotonSiguiendoDisabled] = useState(true);
     const token = sessionStorage.getItem('token')
-    console.log(token)
+
     const publicacionesUsuarios =() =>{
         fetch('http://localhost:3000/publicaciones-usuarios',{
           headers: {

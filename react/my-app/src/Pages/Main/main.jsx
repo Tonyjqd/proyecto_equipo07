@@ -92,7 +92,7 @@ export function Main() {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data.message);
+         
           setPostNuevos(data);
           setPublicacion('');
         })
