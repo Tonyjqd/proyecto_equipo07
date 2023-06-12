@@ -213,10 +213,15 @@ server.get('/main/:correo', (req, res) => {
   })
 });
 server.get('/publicaciones', (req, res) => {
-const query = `SELECT publicaciones.*, usuarios.alias, usuarios.imagen, usuarios.correo_electronico
-  FROM publicaciones
-  INNER JOIN usuarios ON publicaciones.id_usuario = usuarios.id_usuario
-  ORDER BY publicaciones.fecha_publicacion DESC`
+const userId = req.headers['user-id'];
+const query = `
+SELECT DISTINCT publicaciones.*, usuarios.alias, usuarios.imagen, usuarios.correo_electronico
+FROM publicaciones
+INNER JOIN usuarios ON publicaciones.id_usuario = usuarios.id_usuario
+INNER JOIN amigos ON (publicaciones.id_usuario = amigos.id_usuario OR publicaciones.id_usuario = amigos.id_amigo)
+WHERE amigos.id_usuario = ${userId} OR amigos.id_amigo = ${userId}
+ORDER BY publicaciones.fecha_publicacion DESC;
+`;
   connection.query(query, (error, results) => {
     if (error) {
       return res.status(500).send('Error en la base de datos');
