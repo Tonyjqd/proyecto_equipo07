@@ -15,7 +15,9 @@
     font-size: 50px;
     font-family: 'Deftone Stylus', sans-serif;
 }
-
+.feedButton{
+  background-color: #e7e7e7 !important;
+}
 .amigos-caja-central{
     text-align: center;
 }

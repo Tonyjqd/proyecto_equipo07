@@ -176,17 +176,17 @@ function Amigos(props) {
             <div className="caja-amigos feed">
               <h2 className="feed-account-amigos">Feed</h2>
               <div className="botones-amigos">
-                <button className="btn btn-primary boton-friends disabled" type="button">Settings</button>
-                <button className="btn btn-primary boton-friends disabled" type="button">Explore</button>
-                <button className="btn btn-primary boton-friends disabled" type="button">Trends</button>
-                <button className="btn btn-primary boton-friends disabled" type="button">Opciones</button>
+                <button className="btn btn-primary boton-friends feedButton disabled" type="button">Settings</button>
+                <button className="btn btn-primary boton-friends feedButton disabled" type="button">Explore</button>
+                <button className="btn btn-primary boton-friends feedButton disabled" type="button">Trends</button>
+                <button className="btn btn-primary boton-friends feedButton disabled" type="button">Opciones</button>
               </div>
             </div>
             <div className="caja-amigos account">
               <h2 className="feed-account-amigos">Account</h2>
               <div className="cuenta">
-                <button className="btn btn-primary boton-friends disabled" type="button">Edit</button>
-                <button className="btn btn-primary boton-friends disabled" type="button">Chat</button>
+                <button className="btn btn-primary boton-friends feedButton disabled" type="button">Edit</button>
+                <button className="btn btn-primary boton-friends feedButton disabled" type="button">Chat</button>
                 <Link to={`/perfil/${usuarioLogueadoId}`}><button className="btn btn-primary boton-friends1" type="button">Profile</button>
                 </Link>
               </div>
