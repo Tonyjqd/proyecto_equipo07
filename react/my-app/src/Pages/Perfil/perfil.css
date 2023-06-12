@@ -33,7 +33,13 @@ img{
     border-radius: 50%;
     margin-top: 50px;
 }
-
+.recomendacion{
+  border-bottom: 1px solid black;
+  font-weight: bold;
+}
+.recomendacion-body{
+  margin-bottom: 20px;
+}
 .trs{
   background-color:transparent;
   border: none;

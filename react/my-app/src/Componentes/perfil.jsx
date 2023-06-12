@@ -1,3 +1,4 @@
+import {toast} from "react-toastify"
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
@@ -26,7 +27,7 @@ id === id_logueado ? console.log(log) : console.log('no')
       setData(data);
       setEditedData(data);
       setIdUsuario(data.id_usuario); 
-      fetchRecommendations();
+    
     });
 }, []);
 
@@ -110,76 +111,22 @@ const handleReviewChange = (event) => {
 
 console.log (id);
 
-/* const addReview = () => {
-  const recomendador = id_logueado;
-  const recomendado = id;
-  const recomendacion = `${review} - Del usuario ${id_logueado} al usuario ${id}`;
-
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ recomendador, recomendado, recomendacion })
-  };
-
-
-
+useEffect(() => {
   fetch(`http://localhost:3000/recomendaciones/${id}`)
     .then(response => response.json())
     .then(data => {
       setRecommendations(data);
-      const newReview = { comment: recomendacion, recomendador: { id: recomendador }, recomendado: { id: recomendado } };
-      setReviews([...reviews, newReview]);
-      setReview('');
-      setIsAddingReview(false);
-    })
-    .catch(error => {
-      console.error('Error al enviar la recomendación al servidor:', error);
-      // Manejo de errores, si es necesario
-    });
-}; */
-console.log(recommendations);
-/* const fetchRecommendations = () => {
-  fetch(`http://localhost:3000/recomendaciones?recomendador=${id_logueado}&recomendado=${id}&recomendacion=${review}`)
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Error al obtener las recomendaciones del servidor');
-      }
-    })
-    .then(data => {
-      console.log(data);
-      setReviews(data);
     })
     .catch(error => {
       console.error('Error al obtener las recomendaciones del servidor:', error);
     });
-}; */
+}, []);
 
 
-
-const fetchRecommendations = () => {
-  fetch('http://localhost:3000/recomendaciones')
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Error al obtener las recomendaciones del servidor');
-      }
-    })
-    .then(data => {
-      setReviews(data);
-    })
-    .catch(error => {
-      console.error('Error al obtener las recomendaciones del servidor:', error);
-    });
-};
-
-/*BUENA*/
 const addReview = () => {
   const recomendador = id_logueado;
   const recomendado = id;
-  const recomendacion = `${review} - Del usuario ${id_logueado} al usuario ${id}`;
+  const recomendacion = `${review}`;
   
 
   const requestOptions = {
@@ -196,39 +143,16 @@ const addReview = () => {
       setReviews([...reviews, newReview]);
       setReview('');
       setIsAddingReview(false);
-
-      // Obtener las recomendaciones actualizadas después de agregar una nueva
-      fetchRecommendations();
+      toast.success("Reseña puesta con éxito")
+    
+    
     })
     .catch(error => {
       console.error('Error al enviar la recomendación al servidor:', error);
-      // Manejo de errores, si es necesario
+      
     });
 }; 
 
-/* const fetchRecommendations = () => {
-  fetch('http://localhost:3000/recomendaciones')
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Error al obtener las recomendaciones del servidor');
-      }
-    })
-    .then(data => {
-      setReviews(data);
-    })
-    .catch(error => {
-      console.error('Error al obtener las recomendaciones del servidor:', error);
-    });
-};  */
-/* const addReview = () => {
-  // Aquí puedes realizar cualquier acción necesaria con el comentario (por ejemplo, enviarlo al servidor).
-  const newReview = { comment: `${review} - Del usuario ${id_logueado} al usuario ${id}`, recomendador: {id_logueado}, recomendado: {id} };
-    setReviews([...reviews, newReview]);
-    setReview('');
-    setIsAddingReview(false)
-}; */
 
 
 return (
@@ -237,8 +161,12 @@ return (
         <div className="container text-center perfilPagina">
         <img src={data.imagen} className='imagenPerfil' alt="perfil" />
         <div>
-          <input type="file" onChange={handleFileChange} />
-          <button onClick={handleUpload}>Subir imagen</button>
+          {id == id_logueado ? (
+            <div>
+              <input type="file" onChange={handleFileChange} />
+              <button onClick={handleUpload}>Subir imagen</button>
+            </div>
+          ) : null}
         </div>
           <h1 className="mb-4">{data.nombre} {data.apellidos}</h1>
           <div className="panel panel-default shadow mb-4">
@@ -288,14 +216,14 @@ return (
           <div className="panel panel-default shadow mb-4">
             <div className="panel-heading">
               <h3 className="panel-title">Reseñas</h3>
-              {recommendations.map ((usuario) =>{
-          
-        /* key = {usuario.id_recomendacion}; */
-            <div>
-              {usuario.nombre}{usuario.apellidos}
-              {usuario.recomendacion}
-            </div>}
-            )}
+              {recommendations.map((usuario) => {
+          return (
+            <div key={usuario.id_recomendacion}>
+              <div className='recomendacion'>Nombre: {usuario.nombre} {usuario.apellidos}</div>
+              <div className='recomendacion-body'>{usuario.recomendacion}</div>
+            </div>
+          );
+        })}
             {isAddingReview ? (
               <div>
                 <textarea value={review} onChange={handleReviewChange} />
@@ -303,7 +231,8 @@ return (
                 <button onClick={() => setIsAddingReview(false)}>Cancelar</button>
                 </div>
             ) : (
-              <button disabled={id===id_logueado} onClick={() => setIsAddingReview(true)} >Añadir reseña</button>
+              id !==id_logueado ?(
+              <button disabled={id===id_logueado} onClick={() => setIsAddingReview(true)} >Añadir reseña</button>) : null
             )}
             </div>
           </div>
@@ -312,11 +241,11 @@ return (
           <button onClick={saveChanges}>Guardar</button>
           <button onClick={cancelChanges}>Cancelar</button>
         </div>
-      ) : (
-        <button disabled={id!==id_logueado} onClick={enableEditMode}>Editar</button>
+      ) : (id ==id_logueado ?(
+        <button disabled={id!==id_logueado} onClick={enableEditMode}>Editar</button>) : null
         
       )}
-        {/* <button >Añadir reseña</button> */}
+       
         </div>
         
       </div>
