@@ -203,7 +203,7 @@ function Amigos(props) {
       <div className="caja-amigos amigo">
         <div>
           <i className="fas fa-user-circle"></i>
-          <IonIcon icon={personCircleOutline} />
+         <img className='fotos-amigos' src={amigo.imagen} alt="" />
         </div>
         <div>
           <b>{amigo.nombre}</b> <b>{amigo.apellidos}</b>
