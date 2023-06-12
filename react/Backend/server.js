@@ -224,7 +224,10 @@ server.post('/recomendaciones', (req, res) => {
 
 server.get('/recomendaciones/:id', (req, res) => {
   const idUser = req.params.id
-  const query = `SELECT * from recomendaciones where id_recomendado = ${idUser} `;
+  const query = `SELECT usuarios.nombre, usuarios.apellidos, recomendaciones.recomendacion, recomendaciones.id_recomendacion FROM recomendaciones
+  INNER JOIN usuarios ON recomendaciones.id_recomendador = usuarios.id_usuario
+  WHERE recomendaciones.id_recomendado = ${idUser}
+`;
   // Ejecutar la consulta utilizando tu librería o método preferido (ejemplo con MySQL):
   connection.query(query, (error, results) => {
     if (error) {

@@ -14,6 +14,7 @@ const [selectedFile, setSelectedFile] = useState(null);
 const [review, setReview] = useState('');
 const [reviews, setReviews] = useState([]);
 const [isAddingReview, setIsAddingReview] = useState(false);
+const [recommendations, setRecommendations] = useState([]);
 const id_logueado = sessionStorage.getItem('id_usuario');
 const log = sessionStorage.getItem('logueado')
 const  {id} = useParams()
@@ -107,9 +108,9 @@ const handleReviewChange = (event) => {
   setReview(event.target.value);
 };
 
+console.log (id);
 
-
-const addReview = () => {
+/* const addReview = () => {
   const recomendador = id_logueado;
   const recomendado = id;
   const recomendacion = `${review} - Del usuario ${id_logueado} al usuario ${id}`;
@@ -120,19 +121,24 @@ const addReview = () => {
     body: JSON.stringify({ recomendador, recomendado, recomendacion })
   };
 
-  fetch(`http://localhost:3000/recomendaciones/${id_logueado}`)
+
+
+  fetch(`http://localhost:3000/recomendaciones/${id}`)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-      
+      setRecommendations(data);
+      const newReview = { comment: recomendacion, recomendador: { id: recomendador }, recomendado: { id: recomendado } };
+      setReviews([...reviews, newReview]);
+      setReview('');
+      setIsAddingReview(false);
     })
     .catch(error => {
       console.error('Error al enviar la recomendación al servidor:', error);
       // Manejo de errores, si es necesario
     });
-};
-
-const fetchRecommendations = () => {
+}; */
+console.log(recommendations);
+/* const fetchRecommendations = () => {
   fetch(`http://localhost:3000/recomendaciones?recomendador=${id_logueado}&recomendado=${id}&recomendacion=${review}`)
     .then(response => {
       if (response.ok) {
@@ -148,11 +154,11 @@ const fetchRecommendations = () => {
     .catch(error => {
       console.error('Error al obtener las recomendaciones del servidor:', error);
     });
-};
+}; */
 
 
 
-/* const fetchRecommendations = () => {
+const fetchRecommendations = () => {
   fetch('http://localhost:3000/recomendaciones')
     .then(response => {
       if (response.ok) {
@@ -167,10 +173,10 @@ const fetchRecommendations = () => {
     .catch(error => {
       console.error('Error al obtener las recomendaciones del servidor:', error);
     });
-}; */
+};
 
 /*BUENA*/
-/* const addReview = () => {
+const addReview = () => {
   const recomendador = id_logueado;
   const recomendado = id;
   const recomendacion = `${review} - Del usuario ${id_logueado} al usuario ${id}`;
@@ -198,9 +204,9 @@ const fetchRecommendations = () => {
       console.error('Error al enviar la recomendación al servidor:', error);
       // Manejo de errores, si es necesario
     });
-};
+}; 
 
-const fetchRecommendations = () => {
+/* const fetchRecommendations = () => {
   fetch('http://localhost:3000/recomendaciones')
     .then(response => {
       if (response.ok) {
@@ -215,7 +221,7 @@ const fetchRecommendations = () => {
     .catch(error => {
       console.error('Error al obtener las recomendaciones del servidor:', error);
     });
-}; */
+};  */
 /* const addReview = () => {
   // Aquí puedes realizar cualquier acción necesaria con el comentario (por ejemplo, enviarlo al servidor).
   const newReview = { comment: `${review} - Del usuario ${id_logueado} al usuario ${id}`, recomendador: {id_logueado}, recomendado: {id} };
@@ -282,11 +288,14 @@ return (
           <div className="panel panel-default shadow mb-4">
             <div className="panel-heading">
               <h3 className="panel-title">Reseñas</h3>
-              <ul>
-              {reviews.map(review => (
-                <li key={review.comment}>{review.comment}</li>
-              ))}
-            </ul>
+              {recommendations.map ((usuario) =>{
+          
+        /* key = {usuario.id_recomendacion}; */
+            <div>
+              {usuario.nombre}{usuario.apellidos}
+              {usuario.recomendacion}
+            </div>}
+            )}
             {isAddingReview ? (
               <div>
                 <textarea value={review} onChange={handleReviewChange} />
