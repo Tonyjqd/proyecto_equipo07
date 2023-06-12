@@ -174,15 +174,7 @@ const upload = multer({
       const fileExtension = extname(file.originalname);
       cb(null, `${file.fieldname}-${Date.now()}${fileExtension}`);
     }
-  })/* ,
-  fileFilter: (req, imagen, cb) => {
-    if (MIMETYPES.includes(imagen.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(new Error ('Tipo de archivo no soportado'));
-    }
-  },
-  limits: { fileSize: 10000000 } */
+  })
 }); 
 
 
@@ -207,7 +199,53 @@ server.post('/upload', upload.single('imagen'), (req, res) => {
   res.status(200).json({nombreArchivo });
 });
 
+server.post('/recomendaciones', (req, res) => {
+  const { recomendador, recomendado, recomendacion } = req.body;
 
+  // Aquí realizarías la lógica para insertar los datos en la tabla "recomendaciones" de la base de datos
+
+  // Por ejemplo, utilizando una consulta SQL:
+  const query = `INSERT INTO recomendaciones (id_recomendador, id_recomendado, recomendacion) VALUES (?, ?, ?)`;
+  const values = [recomendador, recomendado, recomendacion];
+
+  // Ejecutar la consulta utilizando tu librería o método preferido (ejemplo con MySQL):
+  connection.query(query, values, (error, result) => {
+    if (error) {
+      console.error('Error al insertar la recomendación en la base de datos:', error);
+      res.status(500).json({ error: 'Error al insertar la recomendación' });
+    } else {
+      console.log('Recomendación insertada correctamente');
+      res.status(200).json({ message: 'Recomendación insertada correctamente' });
+      
+    }
+  });
+});
+
+server.get('/recomendaciones', (req, res) => {
+  // Aquí realizarías la lógica para obtener las recomendaciones de la base de datos
+  // Por ejemplo, utilizando una consulta SQL:
+  const { recomendador, recomendado, recomendacion } = req.query;
+  /* const recomendador = req.params.recomendador;
+  const recomendado = req.params.recomendado;
+  const recomendacion = req.params.recomendacion; */
+  const query = `SELECT recomendaciones.recomendacion, recomendaciones.id_recomendado, recomendaciones.id_recomendador, usuarios.nombre, usuarios.apellidos
+  FROM recomendaciones
+  JOIN usuarios ON recomendaciones.id_recomendado = usuarios.id_usuario
+  WHERE recomendaciones.id_recomendado = '${recomendado}'
+    AND recomendaciones.recomendacion = '${recomendacion}'
+    AND recomendaciones.id_recomendador = '${recomendador}'`;
+  // Ejecutar la consulta utilizando tu librería o método preferido (ejemplo con MySQL):
+  connection.query(query, (error, results) => {
+    if (error) {
+      console.error('Error al obtener las recomendaciones de la base de datos:', error);
+      res.status(500).json({ error: 'Error al obtener las recomendaciones' });
+    } else {
+      console.log('Recomendaciones obtenidas correctamente');
+      res.status(200).json(results);
+      ;
+    }
+  });
+});
 
 
 server.post('/registro', registrarUsuario,(req,res)=>{
