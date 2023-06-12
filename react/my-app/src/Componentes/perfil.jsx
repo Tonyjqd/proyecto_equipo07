@@ -120,16 +120,11 @@ const addReview = () => {
     body: JSON.stringify({ recomendador, recomendado, recomendacion })
   };
 
-  fetch('http://localhost:3000/recomendaciones', requestOptions)
+  fetch(`http://localhost:3000/recomendaciones/${id_logueado}`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      const newReview = { comment: recomendacion, recomendador: { id: recomendador }, recomendado: { id: recomendado } };
-      setReviews([...reviews, newReview]);
-      setReview('');
-      setIsAddingReview(false);
-
-      fetchRecommendations(); // Obtener las recomendaciones actualizadas después de agregar una nueva
+      
     })
     .catch(error => {
       console.error('Error al enviar la recomendación al servidor:', error);

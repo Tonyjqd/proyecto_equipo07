@@ -200,6 +200,7 @@ server.post('/upload', upload.single('imagen'), (req, res) => {
 });
 
 server.post('/recomendaciones', (req, res) => {
+
   const { recomendador, recomendado, recomendacion } = req.body;
 
   // Aquí realizarías la lógica para insertar los datos en la tabla "recomendaciones" de la base de datos
@@ -221,19 +222,9 @@ server.post('/recomendaciones', (req, res) => {
   });
 });
 
-server.get('/recomendaciones', (req, res) => {
-  // Aquí realizarías la lógica para obtener las recomendaciones de la base de datos
-  // Por ejemplo, utilizando una consulta SQL:
-  const { recomendador, recomendado, recomendacion } = req.query;
-  /* const recomendador = req.params.recomendador;
-  const recomendado = req.params.recomendado;
-  const recomendacion = req.params.recomendacion; */
-  const query = `SELECT recomendaciones.recomendacion, recomendaciones.id_recomendado, recomendaciones.id_recomendador, usuarios.nombre, usuarios.apellidos
-  FROM recomendaciones
-  JOIN usuarios ON recomendaciones.id_recomendado = usuarios.id_usuario
-  WHERE recomendaciones.id_recomendado = '${recomendado}'
-    AND recomendaciones.recomendacion = '${recomendacion}'
-    AND recomendaciones.id_recomendador = '${recomendador}'`;
+server.get('/recomendaciones/:id', (req, res) => {
+  const idUser = req.params.id
+  const query = `SELECT * from recomendaciones where id_recomendado = ${idUser} `;
   // Ejecutar la consulta utilizando tu librería o método preferido (ejemplo con MySQL):
   connection.query(query, (error, results) => {
     if (error) {
